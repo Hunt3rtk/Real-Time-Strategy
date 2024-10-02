@@ -23,6 +23,11 @@ public class BuildingManager : MonoBehaviour {
     [SerializeField]
     private ObjectsDataBaseSO database;
 
+    void Start() {
+        hudm.UpdateLumber(GetLumber());
+         hudm.UpdateMetal(GetMetal());
+    }
+
     void Update() {
         if(gm.state == State.Building) {
             if (selectedObjectIndex < 0) return;
@@ -34,13 +39,18 @@ public class BuildingManager : MonoBehaviour {
         }
     }
 
-    public void PlaceBuilding(Vector3 mousePosition) {
+    public bool PlaceBuilding(Vector3 mousePosition) {
+        if (playerData.lumber < database.objectsData[selectedObjectIndex].cost) {
+            return false;
+        }
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         gridPosition.z = 0;
         GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].prefab);
         newObject.transform.position = grid.CellToWorld(gridPosition);
         newObject.transform.SetParent(this.transform);
         gm.BakeNavMesh();
+        RemoveLumber(database.objectsData[selectedObjectIndex].cost);
+        return true;
     }
 
     public void CancelBuilding() {
@@ -51,12 +61,14 @@ public class BuildingManager : MonoBehaviour {
         hudm.GetBuildingPanel().SetActive(false);
     }
 
-    public void StartPlacement(int id) {
+    public bool StartPlacement(int id) {
         Destroy(visualObject, 0);
         selectedObjectIndex = database.objectsData.FindIndex(data => data.id == id);
         if (selectedObjectIndex < 0) {
             Debug.LogError($"No ID found {id}");
-            return;
+            return false;
+        } else if (playerData.lumber < database.objectsData[selectedObjectIndex].cost) {
+            return false;
         }
         cellIndicator.SetActive(true);
         mouseIndicator.SetActive(true);
@@ -66,29 +78,34 @@ public class BuildingManager : MonoBehaviour {
         Transform obj = visualObject.transform.GetChild(0);
         var x = obj.gameObject.AddComponent<PlacementValidity>();
         x.gm = gm;
+        return true;
     }
 
     public void AddLumber(int amount) {
         playerData.lumber += amount;
-        string x = playerData.lumber.ToString();
-        hudm.UpdateLumber(x);
+        hudm.UpdateLumber(playerData.lumber);
     }
 
     public void AddMetal(int amount) {
         playerData.metal += amount;
-        string x = playerData.metal.ToString();
-        hudm.UpdateMetal(x);
+        hudm.UpdateMetal(playerData.metal);
     }
 
     public void RemoveLumber(int amount) {
         playerData.lumber -= amount;
-        string x = playerData.lumber.ToString();
-        hudm.UpdateLumber(x);
+        hudm.UpdateLumber(playerData.lumber);
     }
 
     public void RemoveMetal(int amount) {
         playerData.metal -= amount;
-        string x = playerData.metal.ToString();
-        hudm.UpdateMetal(x);
+        hudm.UpdateMetal(playerData.metal);
+    }
+
+    public int GetLumber() {
+        return playerData.lumber;
+    }
+
+    public int GetMetal() {
+        return playerData.metal;
     }
 }

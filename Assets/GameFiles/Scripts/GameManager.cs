@@ -166,10 +166,8 @@ public class GameManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit))
-        {
-            foreach (Unit unit in selectedUnits)
-            {
+        if (Physics.Raycast(ray, out hit)) {
+            foreach (Unit unit in selectedUnits) {
                 unit.Move(hit.point);
             }
         }
@@ -177,14 +175,18 @@ public class GameManager : MonoBehaviour
 
     //Activates Building
     public void ActivateBuilding(int id) {
-        SetStateBuilding();
-        buildingManager.StartPlacement(id);
+        if (buildingManager.StartPlacement(id)) {
+            SetStateBuilding();
+        }
     }
 
     //Activates Placing a Building
     public void ActivatePlaceBuilding(Vector3 mousePosition) {
-        buildingManager.PlaceBuilding(mousePosition);
-        ActivateMove();
+        if (buildingManager.PlaceBuilding(mousePosition)) {
+            foreach (Worker unit in selectedUnits) {
+                unit.Work(mousePosition);
+            }
+        }
     }
 
     //Activating Cancel Building and Sets State to Gameplay

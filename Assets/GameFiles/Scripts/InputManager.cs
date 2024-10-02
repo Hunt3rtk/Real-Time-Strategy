@@ -82,6 +82,7 @@ public class InputManager : MonoBehaviour {
         public void Place(InputAction.CallbackContext ctx) {
             if (IsPointerOverUI()) return;
             Vector3 mousePosition = GetSelectedMapPosition();
+            Debug.Log(mousePosition);
             gm.ActivatePlaceBuilding(mousePosition);
         }
 

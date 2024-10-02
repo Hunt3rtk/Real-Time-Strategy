@@ -24,6 +24,7 @@ public abstract class Unit : MonoBehaviour
         Idle,
         Moving,
         Attacking,
+        Working,
         Dead
     }
 
@@ -61,9 +62,15 @@ public abstract class Unit : MonoBehaviour
                     agent.destination = target.transform.position;
                 }
                 break;
+            case State.Working:
+                gameObject.SetActive(false);
+                break;
             case State.Idle:
+                gameObject.SetActive(true);
                 break;
             case State.Dead:
+                gameObject.SetActive(false);
+                break;
             default:
                 break;
         }

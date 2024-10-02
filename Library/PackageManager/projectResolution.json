@@ -1,16 +1,16 @@
 {
   "context": {
-    "projectPath": "D:/Users/Hunter Klassen/Unity Projects/RTS/Packages",
+    "projectPath": "D:/Users/Hunter Klassen/Unity Projects/RTS/Real-Time-Strategy/Packages",
     "unityVersion": "6000.0.9f1"
   },
   "inputs": [
-    "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Packages\\manifest.json",
-    "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Packages\\packages-lock.json"
+    "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Packages\\manifest.json",
+    "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Packages\\packages-lock.json"
   ],
   "outputs": {
     "com.unity.2d.sprite@1.0.0": {
       "name": "com.unity.2d.sprite",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.2d.sprite",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.2d.sprite",
       "fingerprint": "0e3cfd27a2b4d364334434d9dcc1bf1f6d795736",
       "editorCompatibility": "2019.2.0a1",
       "version": "1.0.0",
@@ -18,7 +18,7 @@
     },
     "com.unity.2d.tilemap@1.0.0": {
       "name": "com.unity.2d.tilemap",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.2d.tilemap",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.2d.tilemap",
       "fingerprint": "6c40dcf2e8ac14012cdc046522369db9f24c8f30",
       "editorCompatibility": "2019.2.0a1",
       "version": "1.0.0",
@@ -26,7 +26,7 @@
     },
     "com.unity.ai.navigation@2.0.0": {
       "name": "com.unity.ai.navigation",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.ai.navigation",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.ai.navigation",
       "fingerprint": "f6367599281e08d75acc8229ad70ac03cfe57ac1",
       "editorCompatibility": "2023.2.0a18",
       "version": "2.0.0",
@@ -34,7 +34,7 @@
     },
     "com.unity.cinemachine@2.10.0": {
       "name": "com.unity.cinemachine",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.cinemachine",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.cinemachine",
       "fingerprint": "6f06b54a94ce5abd9e780534a6b389ad75950ee0",
       "editorCompatibility": "2019.4.0a1",
       "version": "2.10.0",
@@ -42,7 +42,7 @@
     },
     "com.unity.collab-proxy@2.4.3": {
       "name": "com.unity.collab-proxy",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.collab-proxy",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.collab-proxy",
       "fingerprint": "528f1389dab3605aec45519ad6a6cb0af37fbd22",
       "editorCompatibility": "2020.3.48f1",
       "version": "2.4.3",
@@ -50,14 +50,14 @@
     },
     "com.unity.feature.development@1.0.2": {
       "name": "com.unity.feature.development",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.feature.development",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.feature.development",
       "fingerprint": "c770b6a36a30949b030c5ec02d835f771b975cbb",
       "version": "1.0.2",
       "source": "builtin"
     },
     "com.unity.ide.rider@3.0.28": {
       "name": "com.unity.ide.rider",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.ide.rider",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.ide.rider",
       "fingerprint": "7605a3979f4b0ed9100a7fcc2d6140ebc24fc251",
       "editorCompatibility": "2019.2.6f1",
       "version": "3.0.28",
@@ -65,7 +65,7 @@
     },
     "com.unity.ide.visualstudio@2.0.22": {
       "name": "com.unity.ide.visualstudio",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.ide.visualstudio",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.ide.visualstudio",
       "fingerprint": "8140e851d83e922ca2021b04a89519de94ebe38c",
       "editorCompatibility": "2019.4.25f1",
       "version": "2.0.22",
@@ -73,7 +73,7 @@
     },
     "com.unity.ide.vscode@1.2.5": {
       "name": "com.unity.ide.vscode",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.ide.vscode",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.ide.vscode",
       "fingerprint": "82e68656b7bdc5da8beb1fbaf1bb4ecf13456d51",
       "editorCompatibility": "2019.2.0a12",
       "version": "1.2.5",
@@ -81,7 +81,7 @@
     },
     "com.unity.inputsystem@1.8.2": {
       "name": "com.unity.inputsystem",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.inputsystem",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.inputsystem",
       "fingerprint": "2e301545be76611bf3e328b5c47097d3838f0434",
       "editorCompatibility": "2019.4.0a1",
       "version": "1.8.2",
@@ -89,7 +89,7 @@
     },
     "com.unity.render-pipelines.high-definition@17.0.3": {
       "name": "com.unity.render-pipelines.high-definition",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.render-pipelines.high-definition",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.render-pipelines.high-definition",
       "fingerprint": "b86e0d2f7edc3260eddc5288176fd26c3443bb98",
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
@@ -97,7 +97,7 @@
     },
     "com.unity.render-pipelines.universal@17.0.3": {
       "name": "com.unity.render-pipelines.universal",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.render-pipelines.universal",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.render-pipelines.universal",
       "fingerprint": "068b8bd4935ef1a72433b4390b0627ea3f9e12e4",
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
@@ -105,7 +105,7 @@
     },
     "com.unity.shadergraph@17.0.3": {
       "name": "com.unity.shadergraph",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.shadergraph",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.shadergraph",
       "fingerprint": "324e06119b4ccc3c634adc8187dcd4026a136681",
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
@@ -113,7 +113,7 @@
     },
     "com.unity.terrain-tools@5.1.0": {
       "name": "com.unity.terrain-tools",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.terrain-tools",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.terrain-tools",
       "fingerprint": "69763fd5d928a83e52365b8a4ae60ec99e1c1d71",
       "editorCompatibility": "2023.1.0a25",
       "version": "5.1.0",
@@ -121,7 +121,7 @@
     },
     "com.unity.test-framework@1.4.4": {
       "name": "com.unity.test-framework",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.test-framework",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.test-framework",
       "fingerprint": "4e62d75b705a73b10f689eb9441e75e69dcd0116",
       "editorCompatibility": "2019.4.0a10",
       "version": "1.4.4",
@@ -129,7 +129,7 @@
     },
     "com.unity.timeline@1.8.7": {
       "name": "com.unity.timeline",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.timeline",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.timeline",
       "fingerprint": "c58b4ee65782ad38338e29f7ee67787cb6998f04",
       "editorCompatibility": "2019.3.0a1",
       "version": "1.8.7",
@@ -137,7 +137,7 @@
     },
     "com.unity.ugui@2.0.0": {
       "name": "com.unity.ugui",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.ugui",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.ugui",
       "fingerprint": "1bd040c2d659bda2b78a218b1ddc76b80b58a906",
       "editorCompatibility": "2019.2.0a1",
       "version": "2.0.0",
@@ -145,7 +145,7 @@
     },
     "com.unity.visualscripting@1.9.4": {
       "name": "com.unity.visualscripting",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.visualscripting",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.visualscripting",
       "fingerprint": "0920df93f9574f857a55af27bd38fdd9230a3f51",
       "editorCompatibility": "2021.3.0a1",
       "version": "1.9.4",
@@ -153,217 +153,217 @@
     },
     "com.unity.modules.accessibility@1.0.0": {
       "name": "com.unity.modules.accessibility",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.accessibility",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.accessibility",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.ai@1.0.0": {
       "name": "com.unity.modules.ai",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.ai",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.ai",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.androidjni@1.0.0": {
       "name": "com.unity.modules.androidjni",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.androidjni",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.androidjni",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.animation@1.0.0": {
       "name": "com.unity.modules.animation",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.animation",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.animation",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.assetbundle@1.0.0": {
       "name": "com.unity.modules.assetbundle",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.assetbundle",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.assetbundle",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.audio@1.0.0": {
       "name": "com.unity.modules.audio",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.audio",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.audio",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.cloth@1.0.0": {
       "name": "com.unity.modules.cloth",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.cloth",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.cloth",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.director@1.0.0": {
       "name": "com.unity.modules.director",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.director",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.director",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.imageconversion@1.0.0": {
       "name": "com.unity.modules.imageconversion",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.imageconversion",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.imageconversion",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.imgui@1.0.0": {
       "name": "com.unity.modules.imgui",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.imgui",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.imgui",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.jsonserialize@1.0.0": {
       "name": "com.unity.modules.jsonserialize",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.jsonserialize",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.jsonserialize",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.nvidia@1.0.0": {
       "name": "com.unity.modules.nvidia",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.nvidia",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.nvidia",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.particlesystem@1.0.0": {
       "name": "com.unity.modules.particlesystem",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.particlesystem",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.particlesystem",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.physics@1.0.0": {
       "name": "com.unity.modules.physics",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.physics",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.physics",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.physics2d@1.0.0": {
       "name": "com.unity.modules.physics2d",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.physics2d",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.physics2d",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.screencapture@1.0.0": {
       "name": "com.unity.modules.screencapture",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.screencapture",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.screencapture",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.terrain@1.0.0": {
       "name": "com.unity.modules.terrain",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.terrain",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.terrain",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.terrainphysics@1.0.0": {
       "name": "com.unity.modules.terrainphysics",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.terrainphysics",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.terrainphysics",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.tilemap@1.0.0": {
       "name": "com.unity.modules.tilemap",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.tilemap",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.tilemap",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.ui@1.0.0": {
       "name": "com.unity.modules.ui",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.ui",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.ui",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.uielements@1.0.0": {
       "name": "com.unity.modules.uielements",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.uielements",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.uielements",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.umbra@1.0.0": {
       "name": "com.unity.modules.umbra",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.umbra",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.umbra",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.unityanalytics@1.0.0": {
       "name": "com.unity.modules.unityanalytics",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.unityanalytics",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.unityanalytics",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.unitywebrequest@1.0.0": {
       "name": "com.unity.modules.unitywebrequest",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.unitywebrequest",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.unitywebrequest",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.unitywebrequestassetbundle@1.0.0": {
       "name": "com.unity.modules.unitywebrequestassetbundle",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.unitywebrequestassetbundle",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.unitywebrequestassetbundle",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.unitywebrequestaudio@1.0.0": {
       "name": "com.unity.modules.unitywebrequestaudio",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.unitywebrequestaudio",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.unitywebrequestaudio",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.unitywebrequesttexture@1.0.0": {
       "name": "com.unity.modules.unitywebrequesttexture",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.unitywebrequesttexture",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.unitywebrequesttexture",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.unitywebrequestwww@1.0.0": {
       "name": "com.unity.modules.unitywebrequestwww",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.unitywebrequestwww",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.unitywebrequestwww",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.vehicles@1.0.0": {
       "name": "com.unity.modules.vehicles",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.vehicles",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.vehicles",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.video@1.0.0": {
       "name": "com.unity.modules.video",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.video",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.video",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.vr@1.0.0": {
       "name": "com.unity.modules.vr",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.vr",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.vr",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.wind@1.0.0": {
       "name": "com.unity.modules.wind",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.wind",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.wind",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.xr@1.0.0": {
       "name": "com.unity.modules.xr",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.xr",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.xr",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.subsystems@1.0.0": {
       "name": "com.unity.modules.subsystems",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.subsystems",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.subsystems",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.modules.hierarchycore@1.0.0": {
       "name": "com.unity.modules.hierarchycore",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.modules.hierarchycore",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.modules.hierarchycore",
       "version": "1.0.0",
       "source": "builtin"
     },
     "com.unity.ext.nunit@2.0.5": {
       "name": "com.unity.ext.nunit",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.ext.nunit",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.ext.nunit",
       "fingerprint": "60ef35ffd3cd5e2f5c8887a4a4ca6148854cd092",
       "editorCompatibility": "2019.4.0a1",
       "version": "2.0.5",
@@ -371,7 +371,7 @@
     },
     "com.unity.render-pipelines.core@17.0.3": {
       "name": "com.unity.render-pipelines.core",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.render-pipelines.core",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.render-pipelines.core",
       "fingerprint": "afa13a82b7a6297c3220dc8609a896d51629caa3",
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
@@ -379,7 +379,7 @@
     },
     "com.unity.searcher@4.9.2": {
       "name": "com.unity.searcher",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.searcher",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.searcher",
       "fingerprint": "90d011a70418fd5b0f4b8e86df39444d2af228dd",
       "editorCompatibility": "2019.1.0a1",
       "version": "4.9.2",
@@ -387,7 +387,7 @@
     },
     "com.unity.render-pipelines.universal-config@17.0.3": {
       "name": "com.unity.render-pipelines.universal-config",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.render-pipelines.universal-config",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.render-pipelines.universal-config",
       "fingerprint": "fa63c96d3e1af317d84d171cd6c0e0658ab159df",
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
@@ -395,7 +395,7 @@
     },
     "com.unity.visualeffectgraph@17.0.3": {
       "name": "com.unity.visualeffectgraph",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.visualeffectgraph",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.visualeffectgraph",
       "fingerprint": "2f1a0614887f23118a565e0ecff45661c0d5b5fe",
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
@@ -403,7 +403,7 @@
     },
     "com.unity.render-pipelines.high-definition-config@17.0.3": {
       "name": "com.unity.render-pipelines.high-definition-config",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.render-pipelines.high-definition-config",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.render-pipelines.high-definition-config",
       "fingerprint": "d45858853e614916d0e96df55a30b8c69d642992",
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
@@ -411,7 +411,7 @@
     },
     "com.unity.editorcoroutines@1.0.0": {
       "name": "com.unity.editorcoroutines",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.editorcoroutines",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.editorcoroutines",
       "fingerprint": "7d48783e7b8cfcee5f8ef9ba787ed0d9dad4ebca",
       "editorCompatibility": "2018.1.0a1",
       "version": "1.0.0",
@@ -419,7 +419,7 @@
     },
     "com.unity.performance.profile-analyzer@1.2.2": {
       "name": "com.unity.performance.profile-analyzer",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.performance.profile-analyzer",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.performance.profile-analyzer",
       "fingerprint": "fe7acfd2717a98ded6ddc33be6b2ebe4459a2add",
       "editorCompatibility": "2020.3.0a1",
       "version": "1.2.2",
@@ -427,7 +427,7 @@
     },
     "com.unity.testtools.codecoverage@1.2.5": {
       "name": "com.unity.testtools.codecoverage",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.testtools.codecoverage",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.testtools.codecoverage",
       "fingerprint": "be1fd8edb454c4523a418deda696a9209411ab71",
       "editorCompatibility": "2019.3.0a1",
       "version": "1.2.5",
@@ -435,7 +435,7 @@
     },
     "com.unity.burst@1.8.16": {
       "name": "com.unity.burst",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.burst",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.burst",
       "fingerprint": "000840f9394643fba72955ad6e31718ddf96ec36",
       "editorCompatibility": "2020.3.0a1",
       "version": "1.8.16",
@@ -443,7 +443,7 @@
     },
     "com.unity.mathematics@1.3.2": {
       "name": "com.unity.mathematics",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.mathematics",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.mathematics",
       "fingerprint": "8017b507cc74bf0a1dd14b18aa860569f807314d",
       "editorCompatibility": "2021.3.0a1",
       "version": "1.3.2",
@@ -451,7 +451,7 @@
     },
     "com.unity.collections@2.4.1": {
       "name": "com.unity.collections",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.collections",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.collections",
       "fingerprint": "6fee59cd6ff39d27e6f29da7a92f8e37c60f5e72",
       "editorCompatibility": "2022.3.11f1",
       "version": "2.4.1",
@@ -459,7 +459,7 @@
     },
     "com.unity.rendering.light-transport@1.0.1": {
       "name": "com.unity.rendering.light-transport",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.rendering.light-transport",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.rendering.light-transport",
       "fingerprint": "9cfe9148c33510acdec95a74b13c3383e8957896",
       "editorCompatibility": "2023.3.0b1",
       "version": "1.0.1",
@@ -467,7 +467,7 @@
     },
     "com.unity.settings-manager@2.0.1": {
       "name": "com.unity.settings-manager",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.settings-manager",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.settings-manager",
       "fingerprint": "56a930affa1e4462d3595b5c19a1c2a4bf2015d2",
       "editorCompatibility": "2018.4.0a1",
       "version": "2.0.1",
@@ -475,7 +475,7 @@
     },
     "com.unity.nuget.mono-cecil@1.11.4": {
       "name": "com.unity.nuget.mono-cecil",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.nuget.mono-cecil",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.nuget.mono-cecil",
       "fingerprint": "d6f9955a5d5f84d45442ff1ad0fb694cc6e2fd62",
       "editorCompatibility": "2018.4.0a1",
       "version": "1.11.4",
@@ -483,7 +483,7 @@
     },
     "com.unity.test-framework.performance@3.0.3": {
       "name": "com.unity.test-framework.performance",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Library\\PackageCache\\com.unity.test-framework.performance",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.test-framework.performance",
       "fingerprint": "fb0dc592af8b524f1a06c50d7caf95552f1bcd2f",
       "editorCompatibility": "2020.3.0a1",
       "version": "3.0.3",

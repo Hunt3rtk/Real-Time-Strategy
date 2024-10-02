@@ -14,13 +14,13 @@ public class HUDManager : MonoBehaviour
     private GameObject buildingPanel, basePanel;
     [SerializeField]
     private GameObject lumberObject, metalObject;
-    private TextMeshPro lumberText, metalText;
+    private TextMeshProUGUI lumberText, metalText;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-        lumberText = lumberObject.GetComponent<TextMeshPro>();
-        metalText = metalObject.GetComponent<TextMeshPro>();
+        lumberText = lumberObject.GetComponent<TextMeshProUGUI>();
+        metalText = metalObject.GetComponent<TextMeshProUGUI>();
     }
     internal GameObject GetBuildingPanel() {
         return buildingPanel;
@@ -30,12 +30,12 @@ public class HUDManager : MonoBehaviour
         return basePanel;
     }
 
-    internal void UpdateLumber(string amount) {
-        lumberText.SetText(amount);
+    internal void UpdateLumber(int amount) {
+        lumberText.SetText(amount.ToString());
     }
 
-    internal void UpdateMetal(string amount) {
-        metalText.SetText(amount);
+    internal void UpdateMetal(int amount) {
+        metalText.SetText(amount.ToString());
     }
 
     internal void ActivateUnitPanel(Unit unit) {

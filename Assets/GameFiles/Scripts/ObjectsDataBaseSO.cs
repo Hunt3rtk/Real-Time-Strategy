@@ -16,6 +16,10 @@ public class ObjectData {
     [field: SerializeField]
     public int id {get; private set; }
     [field: SerializeField]
+    public int cost {get; private set; }
+    [field: SerializeField]
+    public int buildTime {get; private set; }
+    [field: SerializeField]
     public Vector2Int size {get; private set; }
     [field: SerializeField]
     public GameObject prefab {get; private set; }
