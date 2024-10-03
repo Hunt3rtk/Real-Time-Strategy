@@ -1,5 +1,6 @@
 using UnityEngine;
 using States;
+using System.Collections;
 
 public class BuildingManager : MonoBehaviour {
     //Game Manager
@@ -39,18 +40,25 @@ public class BuildingManager : MonoBehaviour {
         }
     }
 
-    public bool PlaceBuilding(Vector3 mousePosition) {
+    public bool isAffordable() {
         if (playerData.lumber < database.objectsData[selectedObjectIndex].cost) {
+            Debug.Log("Not Enough Lumber");
             return false;
         }
+        return true;
+    }
+
+    public IEnumerator PlaceBuilding(Vector3 mousePosition) {
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         gridPosition.z = 0;
+        Debug.Log(selectedObjectIndex);
+        RemoveLumber(database.objectsData[selectedObjectIndex].cost);
         GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].prefab);
         newObject.transform.position = grid.CellToWorld(gridPosition);
         newObject.transform.SetParent(this.transform);
         gm.BakeNavMesh();
-        RemoveLumber(database.objectsData[selectedObjectIndex].cost);
-        return true;
+        CancelBuilding();
+        yield return null;
     }
 
     public void CancelBuilding() {
@@ -66,8 +74,6 @@ public class BuildingManager : MonoBehaviour {
         selectedObjectIndex = database.objectsData.FindIndex(data => data.id == id);
         if (selectedObjectIndex < 0) {
             Debug.LogError($"No ID found {id}");
-            return false;
-        } else if (playerData.lumber < database.objectsData[selectedObjectIndex].cost) {
             return false;
         }
         cellIndicator.SetActive(true);
@@ -107,5 +113,9 @@ public class BuildingManager : MonoBehaviour {
 
     public int GetMetal() {
         return playerData.metal;
+    }
+
+    public float GetBuildTime() {
+        return database.objectsData[selectedObjectIndex].buildTime;
     }
 }

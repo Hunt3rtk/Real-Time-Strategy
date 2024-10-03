@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using States;
 using Unity.AI.Navigation;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
@@ -175,18 +176,23 @@ public class GameManager : MonoBehaviour
 
     //Activates Building
     public void ActivateBuilding(int id) {
-        if (buildingManager.StartPlacement(id)) {
-            SetStateBuilding();
-        }
+        if (!buildingManager.StartPlacement(id)) return;
+        SetStateBuilding();
     }
 
     //Activates Placing a Building
     public void ActivatePlaceBuilding(Vector3 mousePosition) {
-        if (buildingManager.PlaceBuilding(mousePosition)) {
-            foreach (Worker unit in selectedUnits) {
-                unit.Work(mousePosition);
-            }
+        if(!buildingManager.isAffordable()) return;
+        Worker worker = null;
+        foreach (Worker unit in selectedUnits) {
+            worker = unit;
+            break;
         }
+        StartCoroutine(worker.Construct(mousePosition));
+        StartCoroutine(WaitBuildTime());
+        worker.gameObject.SetActive(true);
+        buildingManager.PlaceBuilding(mousePosition);
+        SetStateGameplay();
     }
 
     //Activating Cancel Building and Sets State to Gameplay
@@ -202,6 +208,12 @@ public class GameManager : MonoBehaviour
         } else {
             inputManager.EnablePlace();
         }
+    }
+
+    //Waits for the Build Time of Buildings
+    private IEnumerator WaitBuildTime() {
+        yield return new WaitForSecondsRealtime(buildingManager.GetBuildTime());
+        yield return null;
     }
 
     public void ActivateWorkerPurchase() {

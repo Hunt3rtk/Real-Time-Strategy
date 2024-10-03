@@ -25,6 +25,9 @@ public abstract class Unit : MonoBehaviour
         Moving,
         Attacking,
         Working,
+        Building,
+        Chopping,
+        Mining,
         Dead
     }
 
@@ -63,13 +66,11 @@ public abstract class Unit : MonoBehaviour
                 }
                 break;
             case State.Working:
-                gameObject.SetActive(false);
                 break;
             case State.Idle:
-                gameObject.SetActive(true);
                 break;
             case State.Dead:
-                gameObject.SetActive(false);
+                Destroy(gameObject);
                 break;
             default:
                 break;

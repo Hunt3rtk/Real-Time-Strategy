@@ -18,7 +18,7 @@ public class ObjectData {
     [field: SerializeField]
     public int cost {get; private set; }
     [field: SerializeField]
-    public int buildTime {get; private set; }
+    public float buildTime {get; private set; }
     [field: SerializeField]
     public Vector2Int size {get; private set; }
     [field: SerializeField]
