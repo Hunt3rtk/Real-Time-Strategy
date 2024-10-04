@@ -83,7 +83,7 @@ public class InputManager : MonoBehaviour {
             if (IsPointerOverUI()) return;
             Vector3 mousePosition = GetSelectedMapPosition();
             Debug.Log(mousePosition);
-            gm.ActivatePlaceBuilding(mousePosition);
+            StartCoroutine(gm.ActivatePlaceBuilding(mousePosition));
         }
 
         public void Cancel(InputAction.CallbackContext ctx) {

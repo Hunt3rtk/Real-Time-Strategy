@@ -112,7 +112,7 @@ public class GameManager : MonoBehaviour
                 case "EnemyUnit":
                     unit = hit.collider.GetComponentInParent<Unit>();
                     foreach (Unit ally in selectedUnits) {
-                        ally.Attack(unit);
+                        StartCoroutine(ally.Attack(unit));
                     }
                     break;
                 //Base
@@ -181,17 +181,17 @@ public class GameManager : MonoBehaviour
     }
 
     //Activates Placing a Building
-    public void ActivatePlaceBuilding(Vector3 mousePosition) {
-        if(!buildingManager.isAffordable()) return;
+    public IEnumerator ActivatePlaceBuilding(Vector3 mousePosition) {
+        if(!buildingManager.isAffordable()) yield break;
         Worker worker = null;
         foreach (Worker unit in selectedUnits) {
             worker = unit;
             break;
         }
-        StartCoroutine(worker.Construct(mousePosition));
-        StartCoroutine(WaitBuildTime());
+        yield return worker.Construct(mousePosition);
+        yield return WaitBuildTime();
         worker.gameObject.SetActive(true);
-        buildingManager.PlaceBuilding(mousePosition);
+        yield return buildingManager.PlaceBuilding(mousePosition);
         SetStateGameplay();
     }
 
@@ -213,7 +213,6 @@ public class GameManager : MonoBehaviour
     //Waits for the Build Time of Buildings
     private IEnumerator WaitBuildTime() {
         yield return new WaitForSecondsRealtime(buildingManager.GetBuildTime());
-        yield return null;
     }
 
     public void ActivateWorkerPurchase() {

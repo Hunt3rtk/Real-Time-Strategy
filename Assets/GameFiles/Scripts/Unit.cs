@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
@@ -9,7 +10,6 @@ public abstract class Unit : MonoBehaviour
     public float health;
     public float speed;
     public float cooldown;
-    private float cooldownTimer;
     public float attackPower;
     public float defensePower;
     public float range;
@@ -33,37 +33,15 @@ public abstract class Unit : MonoBehaviour
 
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
-        cooldownTimer = cooldown;
     }
 
     void Update() {
 
-        cooldownTimer -= Time.deltaTime;
-
         switch(state) {
             case State.Moving:
-                agent.isStopped = false;
-                if (agent.remainingDistance <= agent.stoppingDistance) state = State.Idle;
+                if (agent.isStopped) state = State.Idle;
                 break;
             case State.Attacking:
-                if (cooldownTimer > 0) {
-                    break;
-                }
-
-                if (target.health <= 0) {
-                    target.state = State.Dead;
-                    agent.isStopped = true;
-                    state = State.Idle;
-                    break;
-                }
-                if (agent.remainingDistance < range) {
-                    agent.isStopped = true;
-                    target.health -= attackPower;
-                    cooldownTimer = cooldown;
-                } else {
-                    agent.isStopped = false;
-                    agent.destination = target.transform.position;
-                }
                 break;
             case State.Working:
                 break;
@@ -83,9 +61,19 @@ public abstract class Unit : MonoBehaviour
         state = State.Moving;
     }
 
-    public void Attack(Unit target) {
+    public IEnumerator Attack(Unit target) {
         this.target = target;
         agent.SetDestination(target.transform.position);
         state = State.Attacking;
+        while (this.target.health > 0) {
+            if (agent.remainingDistance < range) {
+                    yield return target.health -= attackPower;
+            } else {
+                    yield return agent.destination = target.transform.position;
+                }
+            yield return new WaitForSecondsRealtime(cooldown);
+        }
+        target.state = State.Dead;
+        state = State.Idle;
     }
 }

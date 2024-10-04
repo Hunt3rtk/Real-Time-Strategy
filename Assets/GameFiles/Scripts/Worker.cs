@@ -28,17 +28,14 @@ public class Worker : Unit {
         while (state == State.Moving) {
             yield return new WaitForSeconds(.2f);
         }
-        yield return null;
     }
 
     public IEnumerator Mine(Vector3 destination) {
-        Work(destination);
-        yield return null;
+        yield return Work(destination);
     }
 
     public IEnumerator Chop(Vector3 destination) {
-        Work(destination);
-        yield return  null;
+        yield return Work(destination);
     }
 
     public IEnumerator Construct(Vector3 destination) {
@@ -46,6 +43,5 @@ public class Worker : Unit {
         yield return Work(destination);
         state = State.Building;
         gameObject.SetActive(false);
-        yield return null;
     }
 }
