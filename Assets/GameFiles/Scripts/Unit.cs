@@ -36,29 +36,16 @@ public abstract class Unit : MonoBehaviour
     }
 
     void Update() {
-
-        switch(state) {
-            case State.Moving:
-                if (agent.isStopped) state = State.Idle;
-                break;
-            case State.Attacking:
-                break;
-            case State.Working:
-                break;
-            case State.Idle:
-                break;
-            case State.Dead:
-                Destroy(gameObject);
-                break;
-            default:
-                break;
-        }
     }
 
-    public void Move(Vector3 destination) {
+    public IEnumerator Move(Vector3 destination) {
         // Movement logic
-        agent.SetDestination(destination);
-        state = State.Moving;
+        agent.destination = destination;
+        while (agent.remainingDistance > 0) {
+            state = State.Moving;
+            yield return null;
+        }
+        state = State.Idle;
     }
 
     public IEnumerator Attack(Unit target) {
@@ -73,7 +60,17 @@ public abstract class Unit : MonoBehaviour
                 }
             yield return new WaitForSecondsRealtime(cooldown);
         }
-        target.state = State.Dead;
+        target.Kill();
         state = State.Idle;
+    }
+
+    public Vector3 PositionNormalize(Vector3 destination) {
+        destination.y = 0f;
+        destination.z -= 4.5f;
+        return destination;
+    }
+
+    public void Kill() {
+        Destroy(this);
     }
 }

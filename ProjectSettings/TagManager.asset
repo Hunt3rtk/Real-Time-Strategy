@@ -10,6 +10,8 @@ TagManager:
   - EnemyBase
   - Ground
   - UI
+  - Tree
+  - Mine
   layers:
   - Default
   - TransparentFX
@@ -22,8 +24,8 @@ TagManager:
   - EnemyUnits
   - Building
   - Units
-  - 
-  - 
+  - Tree
+  - Mine
   - 
   - 
   - 

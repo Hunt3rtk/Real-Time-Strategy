@@ -118,6 +118,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\TerrainDemoScene_HDRP\Scripts\TerrainTreeToggle.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Tank.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\Tree.cs" />
     <Compile Include="Assets\GameFiles\Scripts\CameraControl.cs" />
   </ItemGroup>
   <ItemGroup>

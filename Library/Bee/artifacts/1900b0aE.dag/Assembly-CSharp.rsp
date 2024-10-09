@@ -453,6 +453,7 @@
 "Assets/GameFiles/Scripts/Solider.cs"
 "Assets/GameFiles/Scripts/States.cs"
 "Assets/GameFiles/Scripts/Tank.cs"
+"Assets/GameFiles/Scripts/Tree.cs"
 "Assets/GameFiles/Scripts/Unit.cs"
 "Assets/GameFiles/Scripts/Viewport.cs"
 "Assets/GameFiles/Scripts/Worker.cs"

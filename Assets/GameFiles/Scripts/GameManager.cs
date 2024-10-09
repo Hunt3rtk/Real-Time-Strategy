@@ -127,6 +127,16 @@ public class GameManager : MonoBehaviour
                     selectedUnits.Add(unit);
                     AddIndicator(unit);
                     break;
+                case "Tree":
+                    foreach (Worker worker in selectedUnits) {
+                        StartCoroutine(worker.Chop(target.transform.position));
+                    }
+                    break;
+                case "Mine":
+                    foreach (Worker worker in selectedUnits) {
+                        StartCoroutine(worker.Mine(target.transform.position));
+                    }
+                    break;
                 case "UI":
                     break;
                 //Ground
@@ -169,7 +179,7 @@ public class GameManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit)) {
             foreach (Unit unit in selectedUnits) {
-                unit.Move(hit.point);
+                StartCoroutine(unit.Move(hit.point));
             }
         }
     }
