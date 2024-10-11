@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
         indicators = new List<GameObject>();
         inputManager.Enable();
         inputManager.EnableGameplay();
+
     }
 
     //On Disable Disable Gameplay state
@@ -199,10 +200,13 @@ public class GameManager : MonoBehaviour
             break;
         }
         yield return worker.Construct(mousePosition);
+        ActivateCancel();
         yield return WaitBuildTime();
-        worker.gameObject.SetActive(true);
         yield return buildingManager.PlaceBuilding(mousePosition);
-        SetStateGameplay();
+        worker.transform.position = worker.PositionNormailze(worker.transform.position);
+        Vector3 v = new Vector3(worker.transform.position.x,.5f, worker.transform.position.z);
+        worker.transform.position = v;
+        worker.gameObject.SetActive(true);
     }
 
     //Activating Cancel Building and Sets State to Gameplay
@@ -226,7 +230,9 @@ public class GameManager : MonoBehaviour
     }
 
     public void ActivateWorkerPurchase() {
-        
+       //To-Do Implement Purchase Worker
+       //So you can figure out how to set home base
+       //So that you can figure out the grid cell values of the possible starting roads
     }
     /*----------------------------------*/
 
@@ -253,7 +259,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Gets MousePosition for Input Manager
+    //Gets MousePosition from Input Manager
     public Vector3 MousePosition() {
         return inputManager.GetSelectedMapPosition();
     }

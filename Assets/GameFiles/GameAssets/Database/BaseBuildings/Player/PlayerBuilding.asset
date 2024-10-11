@@ -31,3 +31,9 @@ MonoBehaviour:
     <buildTime>k__BackingField: 10
     <size>k__BackingField: {x: 2, y: 2}
     <prefab>k__BackingField: {fileID: 7500817165020274920, guid: cc75e8b3fed62c84da0526539ebea275, type: 3}
+  - <name>k__BackingField: Road
+    <id>k__BackingField: 3
+    <cost>k__BackingField: 100
+    <buildTime>k__BackingField: 2
+    <size>k__BackingField: {x: 1, y: 1}
+    <prefab>k__BackingField: {fileID: 7060181079755503206, guid: d1b80def3da88634f839c46d0dfa7558, type: 3}

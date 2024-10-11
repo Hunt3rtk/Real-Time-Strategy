@@ -19,6 +19,7 @@ public class BuildingManager : MonoBehaviour {
     private GameObject visualObject;
     [SerializeField]
     private Grid grid;
+    private byte [,] cellRoadAdjacency = new byte [100,100]; // 0 = not adjacent, 1 = adjacent, 2 = road tile
     private int selectedObjectIndex = -1;
     public Material transparent;
     [SerializeField]
@@ -26,7 +27,7 @@ public class BuildingManager : MonoBehaviour {
 
     void Start() {
         hudm.UpdateLumber(GetLumber());
-         hudm.UpdateMetal(GetMetal());
+        hudm.UpdateMetal(GetMetal());
     }
 
     void Update() {
@@ -50,6 +51,16 @@ public class BuildingManager : MonoBehaviour {
 
     public IEnumerator PlaceBuilding(Vector3 mousePosition) {
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+        if (cellRoadAdjacency[gridPosition.x+50, gridPosition.y+50] == 0) {
+            yield break;
+        }
+        if (selectedObjectIndex == 3) {
+            cellRoadAdjacency[gridPosition.x+50, gridPosition.y+50] = 2;
+            cellRoadAdjacency[gridPosition.x-1+50, gridPosition.y+50] = 1;
+            cellRoadAdjacency[gridPosition.x+1+50, gridPosition.y+50] = 1;
+            cellRoadAdjacency[gridPosition.x+50, gridPosition.y-1+50] = 1;
+            cellRoadAdjacency[gridPosition.x+50, gridPosition.y+1+50] = 1;
+        }
         gridPosition.z = 0;
         Debug.Log(selectedObjectIndex);
         RemoveLumber(database.objectsData[selectedObjectIndex].cost);
@@ -57,12 +68,11 @@ public class BuildingManager : MonoBehaviour {
         newObject.transform.position = grid.CellToWorld(gridPosition);
         newObject.transform.SetParent(this.transform);
         gm.BakeNavMesh();
-        CancelBuilding();
+        selectedObjectIndex = -1;
         yield return null;
     }
 
     public void CancelBuilding() {
-        selectedObjectIndex = -1;
         Destroy(visualObject, 0);
         mouseIndicator.SetActive(false);
         cellIndicator.SetActive(false);

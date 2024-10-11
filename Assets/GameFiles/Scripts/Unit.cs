@@ -3,6 +3,7 @@ using System.Linq;
 using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public abstract class Unit : MonoBehaviour
 {
@@ -40,17 +41,18 @@ public abstract class Unit : MonoBehaviour
 
     public IEnumerator Move(Vector3 destination) {
         // Movement logic
-        agent.destination = destination;
-        while (agent.remainingDistance > 0) {
+        agent.SetDestination(PositionNormailze(destination));
+        yield return null;
+        while (agent.remainingDistance > agent.stoppingDistance) {
             state = State.Moving;
-            yield return null;
+            yield return new WaitForSecondsRealtime(.2f);
         }
         state = State.Idle;
     }
 
     public IEnumerator Attack(Unit target) {
         this.target = target;
-        agent.SetDestination(target.transform.position);
+        agent.SetDestination(PositionNormailze(target.transform.position));
         state = State.Attacking;
         while (this.target.health > 0) {
             if (agent.remainingDistance < range) {
@@ -64,10 +66,12 @@ public abstract class Unit : MonoBehaviour
         state = State.Idle;
     }
 
-    public Vector3 PositionNormalize(Vector3 destination) {
-        destination.y = 0f;
-        destination.z -= 4.5f;
-        return destination;
+    public Vector3 PositionNormailze(Vector3 destination) {
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(destination, out hit, 10f, NavMesh.AllAreas)) {
+            return hit.position;
+        }
+        return Vector3.zero;
     }
 
     public void Kill() {
