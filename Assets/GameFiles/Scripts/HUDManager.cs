@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class HUDManager : MonoBehaviour
 {
-    //Game Manager
-    [SerializeField]
-    private GameManager gm;
-
     //Building
     [SerializeField]
     private GameObject buildingPanel, basePanel;
@@ -63,5 +59,9 @@ public class HUDManager : MonoBehaviour
 
     internal void ActivateBasePanel() {
         basePanel.SetActive(true);
+    }
+
+    internal void DeactivateBasePanel() {
+        basePanel.SetActive(false);
     }
 }

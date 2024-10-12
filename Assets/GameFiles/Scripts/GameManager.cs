@@ -25,6 +25,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private BuildingManager buildingManager;
 
+    [SerializeField]
+    internal Transform home;
+
+    [SerializeField]
+    private UnitDataBase units;
+
     //State
     public State state;
 
@@ -38,7 +44,7 @@ public class GameManager : MonoBehaviour
         indicators = new List<GameObject>();
         inputManager.Enable();
         inputManager.EnableGameplay();
-
+        buildingManager.SetRoadAdjacencies(buildingManager.grid.WorldToCell(home.position));
     }
 
     //On Disable Disable Gameplay state
@@ -229,10 +235,15 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(buildingManager.GetBuildTime());
     }
 
-    public void ActivateWorkerPurchase() {
-       //To-Do Implement Purchase Worker
-       //So you can figure out how to set home base
+    public void ActivateUnitPurchase(int id) {
+       //TO-DO Implement Purchase
+       //At Base to worker.base
        //So that you can figure out the grid cell values of the possible starting roads
+        //WaitForSecondsRealtime(units.unitDatas[id].time);
+        GameObject newUnit = Instantiate<GameObject>(units.unitDatas[id].prefab);
+        Worker newWorker = newUnit.GetComponent<Worker>();
+        newWorker.home = this.home;
+        hudm.DeactivateBasePanel();
     }
     /*----------------------------------*/
 

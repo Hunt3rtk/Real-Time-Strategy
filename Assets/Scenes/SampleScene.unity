@@ -863,9 +863,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc5cc9881fd730d45a1f3ce3031d2da2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 419973775}
   buildingPanel: {fileID: 1726130600}
-  basePanel: {fileID: 0}
+  basePanel: {fileID: 1788666954}
   lumberObject: {fileID: 1351417752}
   metalObject: {fileID: 1502674958}
 --- !u!1 &330585543
@@ -1162,6 +1161,8 @@ MonoBehaviour:
   hudm: {fileID: 321186886}
   inputManager: {fileID: 1384141042}
   buildingManager: {fileID: 1365745312}
+  home: {fileID: 5824921256383202728}
+  units: {fileID: 11400000, guid: f6d25498c92a3e04693514e435b57a4a, type: 2}
   state: 0
 --- !u!4 &419973776
 Transform:
@@ -2405,6 +2406,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2437917030297899761, guid: bd6847642563a1247aa18c2bba412e2e, type: 3}
   m_PrefabInstance: {fileID: 5722633465338971152}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1788666954 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6963337474889468501, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+  m_PrefabInstance: {fileID: 1446390565230155970}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1796318872
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,6 +2837,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 321186885}
     m_Modifications:
+    - target: {fileID: 286080578134709984, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198242550607963400, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198242550607963400, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198242550607963400, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198242550607963400, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198242550607963400, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4198242550607963400, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5
+      objectReference: {fileID: 0}
     - target: {fileID: 4721417320456063987, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2915,6 +2949,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BasePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 6963337474889468501, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7317975081948755096, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
@@ -2925,7 +2963,11 @@ PrefabInstance:
       objectReference: {fileID: 419973775}
     - target: {fileID: 7317975081948755096, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ActivateWorkerPurchase
+      value: ActivateUnitPurchase
+      objectReference: {fileID: 0}
+    - target: {fileID: 8662255633747158792, guid: cb811af214af6e944bd6bb7d54fc607e, type: 3}
+      propertyPath: m_text
+      value: Worker
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2983,10 +3025,6 @@ PrefabInstance:
     - target: {fileID: 7060181079755503206, guid: d1b80def3da88634f839c46d0dfa7558, type: 3}
       propertyPath: m_Name
       value: Road
-      objectReference: {fileID: 0}
-    - target: {fileID: 9088783947047294467, guid: d1b80def3da88634f839c46d0dfa7558, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

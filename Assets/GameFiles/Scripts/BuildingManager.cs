@@ -18,7 +18,7 @@ public class BuildingManager : MonoBehaviour {
     private GameObject mouseIndicator, cellIndicator;
     private GameObject visualObject;
     [SerializeField]
-    private Grid grid;
+    internal Grid grid;
     private byte [,] cellRoadAdjacency = new byte [100,100]; // 0 = not adjacent, 1 = adjacent, 2 = road tile
     private int selectedObjectIndex = -1;
     public Material transparent;
@@ -51,15 +51,12 @@ public class BuildingManager : MonoBehaviour {
 
     public IEnumerator PlaceBuilding(Vector3 mousePosition) {
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        if (cellRoadAdjacency[gridPosition.x+50, gridPosition.y+50] == 0) {
-            yield break;
-        }
+        //TO-DO Implement Before the placing of the building
+        // if (cellRoadAdjacency[gridPosition.x+50, gridPosition.y+50] == 0) {
+        //     yield break;
+        // }
         if (selectedObjectIndex == 3) {
-            cellRoadAdjacency[gridPosition.x+50, gridPosition.y+50] = 2;
-            cellRoadAdjacency[gridPosition.x-1+50, gridPosition.y+50] = 1;
-            cellRoadAdjacency[gridPosition.x+1+50, gridPosition.y+50] = 1;
-            cellRoadAdjacency[gridPosition.x+50, gridPosition.y-1+50] = 1;
-            cellRoadAdjacency[gridPosition.x+50, gridPosition.y+1+50] = 1;
+            SetRoadAdjacencies(gridPosition);
         }
         gridPosition.z = 0;
         Debug.Log(selectedObjectIndex);
@@ -95,6 +92,14 @@ public class BuildingManager : MonoBehaviour {
         var x = obj.gameObject.AddComponent<PlacementValidity>();
         x.gm = gm;
         return true;
+    }
+
+    public void SetRoadAdjacencies(Vector3Int gridPosition) {
+                    cellRoadAdjacency[gridPosition.x+50, gridPosition.y+50] = 2;
+            cellRoadAdjacency[gridPosition.x-1+50, gridPosition.y+50] = 1;
+            cellRoadAdjacency[gridPosition.x+1+50, gridPosition.y+50] = 1;
+            cellRoadAdjacency[gridPosition.x+50, gridPosition.y-1+50] = 1;
+            cellRoadAdjacency[gridPosition.x+50, gridPosition.y+1+50] = 1;
     }
 
     public void AddLumber(int amount) {
