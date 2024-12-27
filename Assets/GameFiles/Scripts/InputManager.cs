@@ -87,6 +87,6 @@ public class InputManager : MonoBehaviour {
         }
 
         public void Cancel(InputAction.CallbackContext ctx) {
-            gm.ActivateCancel();
+            gm.ActivateBuildingCancel();
         }
     }

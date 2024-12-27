@@ -19,21 +19,25 @@ MonoBehaviour:
     <buildTime>k__BackingField: 0
     <size>k__BackingField: {x: 1, y: 1}
     <prefab>k__BackingField: {fileID: 631335330092373107, guid: 1abee56f5140d6a42a29b2de59beb3bc, type: 3}
+    <nodes>k__BackingField: []
   - <name>k__BackingField: Chalet
     <id>k__BackingField: 1
     <cost>k__BackingField: 200
     <buildTime>k__BackingField: 5
     <size>k__BackingField: {x: 1, y: 2}
     <prefab>k__BackingField: {fileID: 4833992507824477048, guid: 1a795bdafad5dd94794d83dcbb74fdec, type: 3}
+    <nodes>k__BackingField: []
   - <name>k__BackingField: Barracks
     <id>k__BackingField: 2
     <cost>k__BackingField: 700
     <buildTime>k__BackingField: 10
     <size>k__BackingField: {x: 2, y: 2}
     <prefab>k__BackingField: {fileID: 7500817165020274920, guid: cc75e8b3fed62c84da0526539ebea275, type: 3}
+    <nodes>k__BackingField: []
   - <name>k__BackingField: Road
     <id>k__BackingField: 3
     <cost>k__BackingField: 100
     <buildTime>k__BackingField: 2
     <size>k__BackingField: {x: 1, y: 1}
     <prefab>k__BackingField: {fileID: 7060181079755503206, guid: d1b80def3da88634f839c46d0dfa7558, type: 3}
+    <nodes>k__BackingField: []

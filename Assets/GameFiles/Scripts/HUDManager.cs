@@ -7,7 +7,7 @@ public class HUDManager : MonoBehaviour
 {
     //Building
     [SerializeField]
-    private GameObject buildingPanel, basePanel;
+    private GameObject buildingPanel, basePanel, barracksPanel;
     [SerializeField]
     private GameObject lumberObject, metalObject;
     private TextMeshProUGUI lumberText, metalText;
@@ -34,8 +34,14 @@ public class HUDManager : MonoBehaviour
         metalText.SetText(amount.ToString());
     }
 
+    internal void DeactivateAllPanels() {
+        buildingPanel.SetActive(false);
+        basePanel.SetActive(false);
+        barracksPanel.SetActive(false);
+    }
+
     internal void ActivateUnitPanel(Unit unit) {
-        switch(unit.name) {
+        switch(unit.tag) {
             case "Worker":
                 buildingPanel.SetActive(true);
                 break;
@@ -47,7 +53,7 @@ public class HUDManager : MonoBehaviour
     }
 
     internal void DeactivateUnitPanel(Unit unit) {
-        switch(unit.name) {
+        switch(unit.tag) {
             case "Worker":
                 buildingPanel.SetActive(false);
                 break;
@@ -55,6 +61,13 @@ public class HUDManager : MonoBehaviour
                 break;
 
         }
+    }
+
+    internal void ActivateBarracksPanel() {
+        barracksPanel.SetActive(true);
+    }
+    internal void DeactivateBarracksPanel() {
+        barracksPanel.SetActive(false); 
     }
 
     internal void ActivateBasePanel() {

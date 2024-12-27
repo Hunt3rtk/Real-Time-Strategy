@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ObjectsDataBase", menuName = "Scriptable Objects/ObjectsDataBase")]
@@ -23,5 +25,4 @@ public class ObjectData {
     public Vector2Int size {get; private set; }
     [field: SerializeField]
     public GameObject prefab {get; private set; }
-
 }

@@ -3,6 +3,8 @@ using UnityEngine;
 using States;
 using Unity.AI.Navigation;
 using System.Collections;
+using UnityEngine.AI;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -31,20 +33,25 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private UnitDataBase units;
 
+    private GameObject panelObject;
+
+    [SerializeField]
+    private LayerMask roadLayerMask;
+
     //State
     public State state;
-
 
     /* Enable Disable */
 
     //On Enable Set selected units and enable gameplay state
     private void OnEnable() {
-        state = State.Gameplay;
+        state = States.State.Gameplay;
         selectedUnits = new List<Unit>();
         indicators = new List<GameObject>();
         inputManager.Enable();
         inputManager.EnableGameplay();
-        buildingManager.SetRoadAdjacencies(buildingManager.grid.WorldToCell(home.position));
+        buildingManager.SetCellToRoad(buildingManager.grid.WorldToCell(home.position));
+        UpdateNavMesh();
     }
 
     //On Disable Disable Gameplay state
@@ -106,10 +113,12 @@ public class GameManager : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit)) {
+        if (Physics.Raycast(ray, out hit, roadLayerMask)) {
 
             GameObject target = hit.collider.gameObject;
             Unit unit;
+
+            hudm.DeactivateAllPanels();
 
             switch (target.tag) {
                 //Enemy Base
@@ -117,17 +126,32 @@ public class GameManager : MonoBehaviour
                     break;
                 //Enemy Unit
                 case "EnemyUnit":
-                    unit = hit.collider.GetComponentInParent<Unit>();
                     foreach (Unit ally in selectedUnits) {
-                        StartCoroutine(ally.Attack(unit));
+                        ally.AttackStandAlone(hit.collider);
                     }
                     break;
                 //Base
                 case "Base":
+                    ClearSelected();
+                    panelObject = target;
                     hudm.ActivateBasePanel();
+                    break;
+                //Barracks
+                case "Barracks":
+                    ClearSelected();
+                    panelObject = target;
+                    hudm.ActivateBarracksPanel();
+                    break;
+                //DestroyedBuilding
+                case "DestroyedBuilding":
+                    foreach (Worker worker in selectedUnits) {
+                        StartCoroutine(ActivateRepair(worker, target.transform.parent.transform.parent.GetChild(0).GetComponent<Building>()));
+                        break;
+                    }
                     break;
                 //Unit
                 case "Unit":
+                case "Worker":
                     unit = hit.collider.GetComponentInParent<Unit>();
                     hudm.ActivateUnitPanel(unit);
                     ClearSelected();
@@ -136,12 +160,12 @@ public class GameManager : MonoBehaviour
                     break;
                 case "Tree":
                     foreach (Worker worker in selectedUnits) {
-                        StartCoroutine(worker.Chop(target.transform.position));
+                        worker.StartChop(target.GetComponent<Tree>());
                     }
                     break;
                 case "Mine":
                     foreach (Worker worker in selectedUnits) {
-                        StartCoroutine(worker.Mine(target.transform.position));
+                        worker.StartMine(target.GetComponent<Mine>());
                     }
                     break;
                 case "UI":
@@ -150,11 +174,11 @@ public class GameManager : MonoBehaviour
                 case "Ground":
                 //Everything Else
                 default:
-                foreach (Unit x in selectedUnits) {
-                    hudm.DeactivateUnitPanel(x);
-                }
-                    ClearSelected();
-                    break;
+                    foreach (Unit x in selectedUnits) {
+                        hudm.DeactivateUnitPanel(x);
+                    }
+                        ClearSelected();
+                        break;
             }
         }
     }
@@ -186,7 +210,7 @@ public class GameManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit)) {
             foreach (Unit unit in selectedUnits) {
-                StartCoroutine(unit.Move(hit.point));
+                unit.MoveStandAlone(hit.point);
             }
         }
     }
@@ -197,28 +221,88 @@ public class GameManager : MonoBehaviour
         SetStateBuilding();
     }
 
+    //Activating Cancel Building and Sets State to Gameplay
+    public void ActivateBuildingCancel() {
+        buildingManager.CancelBuilding();
+        SetStateGameplay();
+    }
+
     //Activates Placing a Building
     public IEnumerator ActivatePlaceBuilding(Vector3 mousePosition) {
+
         if(!buildingManager.isAffordable()) yield break;
+
         Worker worker = null;
         foreach (Worker unit in selectedUnits) {
             worker = unit;
             break;
         }
+
+        if (!buildingManager.isRoadAdjacent()) yield break;
+
+        ActivateBuildingCancel();
+
+        buildingManager.PurchaseBuilding();
+
         yield return worker.Construct(mousePosition);
-        ActivateCancel();
+
         yield return WaitBuildTime();
+
         yield return buildingManager.PlaceBuilding(mousePosition);
-        worker.transform.position = worker.PositionNormailze(worker.transform.position);
-        Vector3 v = new Vector3(worker.transform.position.x,.5f, worker.transform.position.z);
-        worker.transform.position = v;
+
+        yield return new WaitForSecondsRealtime(.5f);
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(worker.transform.position, out hit, 10f, NavMesh.AllAreas);
+        worker.agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
+
         worker.gameObject.SetActive(true);
     }
 
-    //Activating Cancel Building and Sets State to Gameplay
-    public void ActivateCancel() {
-        buildingManager.CancelBuilding();
-        SetStateGameplay();
+    //Activate Repair
+    private IEnumerator ActivateRepair(Worker worker, Building building) {
+        
+        yield return worker.Repair(building);
+
+        yield return new WaitForSecondsRealtime(.5f);
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(worker.transform.position, out hit, 10f, NavMesh.AllAreas);
+        worker.agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
+
+        worker.gameObject.SetActive(true);
+    }
+
+    //Activate Unit Purchase
+    public void ActivateUnitPurchase(int id) {
+        StartCoroutine(UnitPurchase(id, panelObject.transform));
+    }
+
+    // Unit Purchase Coroutine
+    public IEnumerator UnitPurchase(int id, Transform building) {
+
+        if(panelObject.GetComponent<Training>().isTraining()) yield break;
+
+        if(!unitAffordable(id)) yield break;
+
+        buildingManager.RemoveMetal(units.unitDatas[id].cost);
+    
+        yield return WaitUnitTime(id);
+
+        GameObject newUnit = Instantiate(units.unitDatas[id].prefab);
+        Unit unit = newUnit.GetComponent<Unit>();
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(newUnit.transform.position, out hit, 100f, NavMesh.AllAreas);
+        unit.agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
+
+
+
+        if (id == 0) {
+            Worker newWorker = newUnit.GetComponent<Worker>();
+            newWorker.home = this.home;
+            newWorker.bm = buildingManager;
+        }
     }
 
     //Toggles Ability to Place
@@ -235,16 +319,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSecondsRealtime(buildingManager.GetBuildTime());
     }
 
-    public void ActivateUnitPurchase(int id) {
-       //TO-DO Implement Purchase
-       //At Base to worker.base
-       //So that you can figure out the grid cell values of the possible starting roads
-        //WaitForSecondsRealtime(units.unitDatas[id].time);
-        GameObject newUnit = Instantiate<GameObject>(units.unitDatas[id].prefab);
-        Worker newWorker = newUnit.GetComponent<Worker>();
-        newWorker.home = this.home;
-        hudm.DeactivateBasePanel();
+    //Waits for the Unit Time
+    private IEnumerator WaitUnitTime(int id) {
+        yield return panelObject.GetComponent<Training>().StartTraining(units.unitDatas[id].time);
     }
+
+    private bool unitAffordable(int id) {
+        if(units.unitDatas[id].cost > buildingManager.GetMetal()) return false;
+        return true;
+    }
+
     /*----------------------------------*/
 
 
@@ -278,8 +362,8 @@ public class GameManager : MonoBehaviour
 
 
     /* Nav Mesh For Unit Traversal */
-    public void BakeNavMesh() {
-        GetComponent<NavMeshSurface>().BuildNavMesh();
+    public void UpdateNavMesh() {
+        GetComponent<NavMeshSurface>().UpdateNavMesh(GetComponent<NavMeshSurface>().navMeshData);
     }
     /*----------------------------------*/
 }

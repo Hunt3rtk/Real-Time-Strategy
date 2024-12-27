@@ -12,6 +12,14 @@ TagManager:
   - UI
   - Tree
   - Mine
+  - Road
+  - Worker
+  - Building
+  - Barracks
+  - Overlay
+  - NodeContainer
+  - Enemy
+  - DestroyedBuilding
   layers:
   - Default
   - TransparentFX
@@ -26,9 +34,9 @@ TagManager:
   - Units
   - Tree
   - Mine
-  - 
-  - 
-  - 
+  - Road
+  - NotVisable
+  - DestroyedBuilding
   - 
   - 
   - 

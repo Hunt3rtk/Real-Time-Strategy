@@ -1,6 +1,7 @@
 using UnityEngine;
 using States;
 using System.Collections;
+using System.Collections.Generic;
 
 public class BuildingManager : MonoBehaviour {
     //Game Manager
@@ -15,15 +16,17 @@ public class BuildingManager : MonoBehaviour {
 
     //Building Variables
     [SerializeField]
-    private GameObject mouseIndicator, cellIndicator;
+    private GameObject cellIndicator;
     private GameObject visualObject;
     [SerializeField]
     internal Grid grid;
-    private byte [,] cellRoadAdjacency = new byte [100,100]; // 0 = not adjacent, 1 = adjacent, 2 = road tile
+    private byte [,] cellRoadGrid = new byte [100,100]; // 0 = not road, 1 = road
     private int selectedObjectIndex = -1;
     public Material transparent;
     [SerializeField]
     private ObjectsDataBaseSO database;
+
+    private List<Transform> nodes = new List<Transform>();
 
     void Start() {
         hudm.UpdateLumber(GetLumber());
@@ -36,7 +39,6 @@ public class BuildingManager : MonoBehaviour {
             Vector3 mousePosition = gm.MousePosition();
             Vector3Int gridPosition = grid.WorldToCell(mousePosition);
             gridPosition.z = 0;
-            mouseIndicator.transform.position = mousePosition;
             cellIndicator.transform.position = grid.CellToWorld(gridPosition);
         }
     }
@@ -49,31 +51,14 @@ public class BuildingManager : MonoBehaviour {
         return true;
     }
 
-    public IEnumerator PlaceBuilding(Vector3 mousePosition) {
-        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        //TO-DO Implement Before the placing of the building
-        // if (cellRoadAdjacency[gridPosition.x+50, gridPosition.y+50] == 0) {
-        //     yield break;
-        // }
-        if (selectedObjectIndex == 3) {
-            SetRoadAdjacencies(gridPosition);
+    public bool isRoadAdjacent() {
+        foreach (Transform node in nodes) {
+            Vector3Int nodeCell = grid.WorldToCell(node.position);
+            if (cellRoadGrid[nodeCell.x+50, nodeCell.y+50] == 1) {
+                return true;
+            }
         }
-        gridPosition.z = 0;
-        Debug.Log(selectedObjectIndex);
-        RemoveLumber(database.objectsData[selectedObjectIndex].cost);
-        GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].prefab);
-        newObject.transform.position = grid.CellToWorld(gridPosition);
-        newObject.transform.SetParent(this.transform);
-        gm.BakeNavMesh();
-        selectedObjectIndex = -1;
-        yield return null;
-    }
-
-    public void CancelBuilding() {
-        Destroy(visualObject, 0);
-        mouseIndicator.SetActive(false);
-        cellIndicator.SetActive(false);
-        hudm.GetBuildingPanel().SetActive(false);
+        return false;
     }
 
     public bool StartPlacement(int id) {
@@ -84,22 +69,50 @@ public class BuildingManager : MonoBehaviour {
             return false;
         }
         cellIndicator.SetActive(true);
-        mouseIndicator.SetActive(true);
         visualObject = Instantiate(database.objectsData[selectedObjectIndex].prefab, cellIndicator.transform);
         visualObject.transform.localPosition = Vector3.zero;
         visualObject.GetComponentInChildren<MeshRenderer>().material = transparent;
         Transform obj = visualObject.transform.GetChild(0);
+
+        // Getting the nodes cell position from the building so that we can check if the cells contain a road and therefore placeable
+        for(int i = 0; i < visualObject.transform.GetChild(1).childCount; i++) {
+            nodes.Add(visualObject.transform.GetChild(1).GetChild(i));
+        }
+
         var x = obj.gameObject.AddComponent<PlacementValidity>();
         x.gm = gm;
         return true;
     }
 
-    public void SetRoadAdjacencies(Vector3Int gridPosition) {
-                    cellRoadAdjacency[gridPosition.x+50, gridPosition.y+50] = 2;
-            cellRoadAdjacency[gridPosition.x-1+50, gridPosition.y+50] = 1;
-            cellRoadAdjacency[gridPosition.x+1+50, gridPosition.y+50] = 1;
-            cellRoadAdjacency[gridPosition.x+50, gridPosition.y-1+50] = 1;
-            cellRoadAdjacency[gridPosition.x+50, gridPosition.y+1+50] = 1;
+
+    public IEnumerator PlaceBuilding(Vector3 mousePosition) {
+        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+        if (selectedObjectIndex == 3) {
+            SetCellToRoad(gridPosition);
+        }
+        gridPosition.z = 0;
+        Debug.Log(selectedObjectIndex);
+        GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].prefab);
+        newObject.transform.position = grid.CellToWorld(gridPosition);
+        newObject.transform.SetParent(this.transform);
+        gm.UpdateNavMesh();
+        selectedObjectIndex = -1;
+        yield return null;
+    }
+
+    public void CancelBuilding() {
+        Destroy(visualObject, 0);
+        nodes.Clear();
+        cellIndicator.SetActive(false);
+        hudm.GetBuildingPanel().SetActive(false);
+    }
+
+    public void SetCellToRoad(Vector3Int gridPosition) {
+        cellRoadGrid[gridPosition.x+50, gridPosition.y+50] = 1;
+    }
+
+    public void PurchaseBuilding() {
+        RemoveLumber(database.objectsData[selectedObjectIndex].cost);
     }
 
     public void AddLumber(int amount) {

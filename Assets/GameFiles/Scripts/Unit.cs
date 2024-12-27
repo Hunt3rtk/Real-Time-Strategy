@@ -5,21 +5,38 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
 
-public abstract class Unit : MonoBehaviour
-{
+public class Unit : MonoBehaviour {
     public string unitName;
-    public float health;
+
+    [SerializeField]
+    private float health;
+    public float Health {
+        get {
+            return health;
+        }
+
+        set {
+            health = value;
+            if (health > maxHealth) health = maxHealth;
+            if (health <= 0) Kill();
+        }
+    }
+    public float maxHealth;
     public float speed;
     public float cooldown;
-    public float attackPower;
-    public float defensePower;
+    public float damage;
     public float range;
-    public State state;
+    public float visibilityRange;
+
+    [SerializeField]
+    internal State state;
+
+    [SerializeField]
+    internal Guard guard;
 
     [HideInInspector]
     public NavMeshAgent agent;
 
-    private Unit target; 
 
     public enum State {
         Idle,
@@ -34,36 +51,82 @@ public abstract class Unit : MonoBehaviour
 
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
+        guard = GetComponent<Guard>();
+        Health = maxHealth;
     }
 
-    void Update() {
+    public void MoveStandAlone(Vector3 destination) {
+        StopAllCoroutines();
+        StartCoroutine(Move(destination));
+    }
+
+    public void AttackStandAlone(Collider target) {
+        StopAllCoroutines();
+        StartCoroutine(Attack(target));
     }
 
     public IEnumerator Move(Vector3 destination) {
+        state = State.Moving;
         // Movement logic
         agent.SetDestination(PositionNormailze(destination));
         yield return null;
         while (agent.remainingDistance > agent.stoppingDistance) {
-            state = State.Moving;
             yield return new WaitForSecondsRealtime(.2f);
         }
         state = State.Idle;
+        try {
+            StartCoroutine(guard.CheckVisibility(visibilityRange));
+        } catch {
+            Debug.Log("Guard is null");
+        }
     }
 
-    public IEnumerator Attack(Unit target) {
-        this.target = target;
-        agent.SetDestination(PositionNormailze(target.transform.position));
+    public IEnumerator Attack(Collider target) {
         state = State.Attacking;
-        while (this.target.health > 0) {
-            if (agent.remainingDistance < range) {
-                    yield return target.health -= attackPower;
-            } else {
-                    yield return agent.destination = target.transform.position;
-                }
-            yield return new WaitForSecondsRealtime(cooldown);
+        Unit targetUnit = target.GetComponent<Unit>();
+        Building targetBuilding;
+
+        try {
+            targetBuilding = target.GetComponent<Building>();
+        } catch {
+            targetBuilding = null;
         }
-        target.Kill();
+
+        if (targetBuilding == null) {
+            while (targetUnit.Health > 0) {
+
+                agent.SetDestination(PositionNormailze(target.transform.position));
+                yield return null;
+
+                if (agent.remainingDistance <= range) {
+                    agent.SetDestination(agent.transform.position);
+                    targetUnit.Health -= damage;
+                    yield return new WaitForSecondsRealtime(cooldown);
+                }
+                yield return new WaitForSecondsRealtime(.2f); 
+            }
+        } else {
+            while (targetBuilding.Health > 0) {
+
+                agent.SetDestination(PositionNormailze(target.transform.position));
+                yield return null;
+
+                if (agent.remainingDistance <= range) {
+                    agent.SetDestination(agent.transform.position);
+                    targetBuilding.Health -= damage;
+                    yield return new WaitForSecondsRealtime(cooldown);
+                }
+                yield return new WaitForSecondsRealtime(.2f); 
+            }
+        }
+
         state = State.Idle;
+
+        try {
+            StartCoroutine(guard.CheckVisibility(visibilityRange));
+        } catch {
+            Debug.Log("Guard is null");
+        }
     }
 
     public Vector3 PositionNormailze(Vector3 destination) {
@@ -74,7 +137,7 @@ public abstract class Unit : MonoBehaviour
         return Vector3.zero;
     }
 
-    public void Kill() {
-        Destroy(this);
+    private void Kill() {
+        Destroy(this.gameObject);
     }
 }

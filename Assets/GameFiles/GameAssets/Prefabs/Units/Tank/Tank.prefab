@@ -253,10 +253,13 @@ PrefabInstance:
       addedObject: {fileID: 4456477100972799783}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a838196be5f4f2348b430bec3bd56386, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2685016031517698816}
+      addedObject: {fileID: 7146385838726295374}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a838196be5f4f2348b430bec3bd56386, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7146385838726295374}
+      addedObject: {fileID: 4396443504115399351}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: a838196be5f4f2348b430bec3bd56386, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1161325849585178997}
   m_SourcePrefab: {fileID: 100100000, guid: a838196be5f4f2348b430bec3bd56386, type: 3}
 --- !u!1 &2559624218147233450 stripped
 GameObject:
@@ -285,27 +288,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -5668984478841134232, guid: a838196be5f4f2348b430bec3bd56386, type: 3}
---- !u!114 &2685016031517698816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2559624218147233450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1f76df4cc9e0664abd7e136ba6e8fe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitName: 
-  health: 0
-  speed: 0
-  cooldown: 0
-  attackPower: 0
-  defensePower: 0
-  range: 0
-  state: 0
-  agent: {fileID: 0}
 --- !u!195 &7146385838726295374
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -328,6 +310,43 @@ NavMeshAgent:
   m_BaseOffset: 0.00760663
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &4396443504115399351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2559624218147233450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f9e421161ae0914b859e9df2e2f5b41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitName: Tank
+  health: 0
+  maxHealth: 200
+  speed: 3
+  cooldown: 2
+  damage: 20
+  range: 5
+  visibilityRange: 20
+  state: 0
+  guard: {fileID: 0}
+  agent: {fileID: 0}
+--- !u!114 &-1161325849585178997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2559624218147233450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0703d62339808d84990ec5dcbca384f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  home: {fileID: 0}
+  unit: {fileID: 0}
 --- !u!4 &2940371198117626896 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a838196be5f4f2348b430bec3bd56386, type: 3}

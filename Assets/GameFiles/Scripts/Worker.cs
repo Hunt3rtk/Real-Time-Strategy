@@ -4,75 +4,88 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class Worker : Unit {
-
-    public float mineTime;
-    public float chopTime;
+    public float mineTime = 2f;
+    public float chopTime = 2f;
+    public int metalAmount = 100;
+    public int lumberAmount = 100;
     public Transform home;
-    public bool carryingLumber;
-    public bool carryingMetal;
+    public BuildingManager bm;
+    public bool carryingLumber = false;
+    public bool carryingMetal = false;
 
-    private void Start() {
-        unitName = "Worker";
-        health = 200f;
-        speed = 3f;
-        attackPower = 0f;
-        defensePower = 10f;
-        cooldown = 1f;
-        range = 1f;
-        chopTime = 2f;
-        mineTime = 2f;
-        carryingLumber = false;
-        carryingMetal = false;
-    }
-
-    public new void Attack(Unit target) {
+    public new void Attack(Collider target) {
         return;
     }
 
-    public IEnumerator Mine(Vector3 destination) {
-        yield return Move(destination);
+    public void StartMine(Mine mine) {
+        StopAllCoroutines();
+        state = State.Mining;
+        StartCoroutine(Mine(mine));
+    }
+    public void StartChop(Tree tree) {
+        StopAllCoroutines();
+        state = State.Chopping;
+        StartCoroutine(Chop(tree));
+    }
+
+    public IEnumerator Mine(Mine mine) {
+        yield return Move(mine.transform.position);
         while (agent.remainingDistance >  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
-        state = State.Mining;
-        yield return new WaitForSecondsRealtime(chopTime);
+        yield return new WaitForSecondsRealtime(mineTime);
+        if(mine.metalRemaining < metalAmount) yield break;
+        mine.Deduct(metalAmount);
         carryingMetal = true;
         yield return Move(home.position);
         while (agent.remainingDistance >  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
         carryingMetal = false;
-        yield return Mine(destination);
+        bm.AddMetal(metalAmount);
+        StartMine(mine);
     }
 
-    public IEnumerator Chop(Vector3 destination) {
-        Collider[] colliders;
-        yield return Move(destination);
+    public IEnumerator Chop(Tree tree) { 
+        yield return Move(tree.transform.position);
         while (agent.remainingDistance > agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
-        colliders = Physics.OverlapSphere(this.transform.position, 7, LayerMask.GetMask("Tree"));
-        if (colliders.Length <= 0) yield break;
-        yield return Move(colliders[0].transform.position);
-        while (agent.remainingDistance >  agent.stoppingDistance) {
-            yield return new WaitForSecondsRealtime(.2f);
-        }
-        state = State.Chopping;
         yield return new WaitForSecondsRealtime(chopTime);
+        tree.ChopTree();
         carryingLumber = true;
         yield return Move(home.position);
         while (agent.remainingDistance >  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
+        bm.AddLumber(lumberAmount);
         carryingLumber = false;
-        yield return Chop(destination);
+        yield return Move(tree.transform.position);
+        Collider[] colliders = Physics.OverlapSphere(this.transform.position, visibilityRange, LayerMask.GetMask("Tree"));
+        if (colliders.Length <= 0) yield break;
+        Tree newTree = colliders[0].gameObject.GetComponent<Tree>();
+        StartChop(newTree);
     }
 
     public IEnumerator Construct(Vector3 destination) {
-        yield return Move(destination);
         state = State.Building;
+        yield return Move(destination);
+        state = State.Idle;
+        gameObject.SetActive(false);
+    }
+
+    public IEnumerator Repair(Building building) {
+        state = State.Working;
+        yield return Move(building.transform.position);
+        while(building.Health < building.maxHealth) {
+            yield return new WaitForSecondsRealtime(1.5f);
+            building.Health += 100;
+        }
+        building.Repaired();
+        state = State.Idle;
         gameObject.SetActive(false);
     }
 }

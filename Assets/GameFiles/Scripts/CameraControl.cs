@@ -35,7 +35,7 @@ public class CameraControl : MonoBehaviour {
     //screen edge motion
     [SerializeField]
     [Range(0f, 0.1f)]
-    private float edgeTolerance = 0.05f;
+    private float edgeTolerance = 0.005f;
     [SerializeField]
     private bool useScreenEdge = true;
 
@@ -51,15 +51,19 @@ public class CameraControl : MonoBehaviour {
 
     //tracks where the dragging action started
     Vector3 startDrag;
+
+    private Camera camera;
     
     private void Awake() {
         cameraInput = new PlayerInput();
+        camera = this.GetComponentInChildren<Camera>();
         cameraTransform = this.GetComponentInChildren<Camera>().transform;
         cameraInput.Camera.Enable();
     }
 
     private void OnEnable() {
-        zoomHeight = cameraTransform.localPosition.y;
+        zoomHeight = camera.orthographicSize;
+        //zoomHeight = cameraTransform.localPosition.y;
         cameraTransform.LookAt(this.transform);
         lastPosition = this.transform.position;
         cameraInput.Camera.Enable();
@@ -135,7 +139,8 @@ public class CameraControl : MonoBehaviour {
     private void ZoomCamera(InputAction.CallbackContext ctx) {
         float value = -ctx.ReadValue<Vector2>().y;
         if(Mathf.Abs(value) > 0.1f) {
-            zoomHeight = cameraTransform.localPosition.y + value * stepSize;
+            zoomHeight = camera.orthographicSize + value * stepSize;
+            //zoomHeight = cameraTransform.localPosition.y + value * stepSize;
             zoomHeight = zoomHeight % stepSize >= 2.5f ? zoomHeight = (zoomHeight - zoomHeight % stepSize) + stepSize :  zoomHeight = zoomHeight - zoomHeight % stepSize;
             
             if (zoomHeight < minHeight) {
@@ -150,7 +155,8 @@ public class CameraControl : MonoBehaviour {
         Vector3 zoomTarget = new Vector3(cameraTransform.localPosition.x, zoomHeight, cameraTransform.localPosition.z);
         zoomTarget -= zoomSpeed * (zoomHeight - cameraTransform.localPosition.y) * (Vector3.forward/2);
 
-        cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, zoomTarget, Time.deltaTime * zoomDampening);
+        //cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, zoomTarget, Time.deltaTime * zoomDampening);
+        camera.orthographicSize = zoomHeight;
         cameraTransform.LookAt(this.transform);
     }
 

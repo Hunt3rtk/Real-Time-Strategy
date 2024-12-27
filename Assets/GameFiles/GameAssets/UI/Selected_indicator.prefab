@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2616801713736812594}
   - component: {fileID: 7030253343244112699}
   - component: {fileID: 6096185276759517580}
-  m_Layer: 5
+  m_Layer: 2
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,9 +85,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7996836899244248988}
   - component: {fileID: -194878018667609106}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Selected_indicator
-  m_TagString: Untagged
+  m_TagString: Overlay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
