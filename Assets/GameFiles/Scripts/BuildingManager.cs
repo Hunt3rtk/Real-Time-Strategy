@@ -43,8 +43,8 @@ public class BuildingManager : MonoBehaviour {
         }
     }
 
-    public bool isAffordable() {
-        if (playerData.lumber < database.objectsData[selectedObjectIndex].cost) {
+    public bool isAffordable(int id) {
+        if (playerData.lumber < database.objectsData[id].cost) {
             Debug.Log("Not Enough Lumber");
             return false;
         }
@@ -70,6 +70,8 @@ public class BuildingManager : MonoBehaviour {
         }
         cellIndicator.SetActive(true);
         visualObject = Instantiate(database.objectsData[selectedObjectIndex].prefab, cellIndicator.transform);
+        visualObject.transform.GetChild(0).gameObject.layer = 5; //UI Layer
+        visualObject.transform.GetChild(visualObject.transform.childCount-1).gameObject.layer = 5; //UI Layer
         visualObject.transform.localPosition = Vector3.zero;
         visualObject.GetComponentInChildren<MeshRenderer>().material = transparent;
         Transform obj = visualObject.transform.GetChild(0);
@@ -85,18 +87,22 @@ public class BuildingManager : MonoBehaviour {
     }
 
 
-    public IEnumerator PlaceBuilding(Vector3 mousePosition) {
+    public IEnumerator PlaceBuilding(Vector3 mousePosition, int id) {
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        if (selectedObjectIndex == 3) {
+        if (id == 3) {
             SetCellToRoad(gridPosition);
+        } else if (id == 1) {
+            gm.unitSlots += 2;
+            hudm.UpdateUnitSlots(gm.unitSlots);
         }
+
         gridPosition.z = 0;
-        Debug.Log(selectedObjectIndex);
-        GameObject newObject = Instantiate(database.objectsData[selectedObjectIndex].prefab);
+        Debug.Log(id);
+
+        GameObject newObject = Instantiate(database.objectsData[id].prefab);
         newObject.transform.position = grid.CellToWorld(gridPosition);
         newObject.transform.SetParent(this.transform);
         gm.UpdateNavMesh();
-        selectedObjectIndex = -1;
         yield return null;
     }
 
@@ -111,8 +117,8 @@ public class BuildingManager : MonoBehaviour {
         cellRoadGrid[gridPosition.x+50, gridPosition.y+50] = 1;
     }
 
-    public void PurchaseBuilding() {
-        RemoveLumber(database.objectsData[selectedObjectIndex].cost);
+    public void PurchaseBuilding(int id) {
+        RemoveLumber(database.objectsData[id].cost);
     }
 
     public void AddLumber(int amount) {
@@ -145,5 +151,9 @@ public class BuildingManager : MonoBehaviour {
 
     public float GetBuildTime() {
         return database.objectsData[selectedObjectIndex].buildTime;
+    }
+
+    public int GetSelectedObjectIndex() {
+        return selectedObjectIndex;
     }
 }

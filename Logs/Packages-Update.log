@@ -107,3 +107,11 @@ The following packages were added:
   com.unity.modules.nvidia@1.0.0
 The following packages were updated:
   com.unity.ide.vscode from version 1.2.4 to 1.2.5
+
+=== Thu Jan 16 14:00:03 2025
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.postprocessing@3.4.0

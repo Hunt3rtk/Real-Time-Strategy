@@ -26,7 +26,10 @@ public class Enemy : MonoBehaviour {
 
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, visibilityRange, LayerMask.GetMask("Units", "Building"));
 
-        if (hitColliders.Length <= 0) yield return CheckVisibility(visibilityRange);
+        if (hitColliders.Length <= 0) {
+            StartCoroutine(CheckVisibility(visibilityRange));
+            yield break;
+        }
 
         hitColliders = hitColliders.OrderBy(x => x.tag switch {
             "Unit" => 0,

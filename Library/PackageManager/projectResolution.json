@@ -87,6 +87,14 @@
       "version": "1.8.2",
       "source": "registry"
     },
+    "com.unity.postprocessing@3.4.0": {
+      "name": "com.unity.postprocessing",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.postprocessing",
+      "fingerprint": "026b2a0827a438e3079df62a60ca03d54961393d",
+      "editorCompatibility": "2019.4.19f1",
+      "version": "3.4.0",
+      "source": "registry"
+    },
     "com.unity.render-pipelines.high-definition@17.0.3": {
       "name": "com.unity.render-pipelines.high-definition",
       "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.render-pipelines.high-definition",

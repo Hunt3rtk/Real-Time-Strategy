@@ -27,8 +27,10 @@ public class Building : MonoBehaviour
         this.gameObject.SetActive(true);
     }
 
-    private void Kill() {
+    public virtual void Kill() {
         this.gameObject.transform.parent.GetChild(2).gameObject.SetActive(true);
         this.gameObject.SetActive(false);
+        int unitSlots = FindAnyObjectByType<GameManager>().unitSlots -= 2;
+        FindAnyObjectByType<HUDManager>().UpdateUnitSlots(unitSlots);
     }
 }

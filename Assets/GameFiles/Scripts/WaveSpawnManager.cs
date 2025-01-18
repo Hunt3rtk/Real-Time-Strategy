@@ -1,23 +1,81 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class WaveSpawnManager : MonoBehaviour {
+
+    [SerializeField]
+    public Text timer;
+
+    [SerializeField]
+    public UnitDataBase units;
+
+    private float time;
+
+    private int waveIndex = 0;
+
+    public GameObject victoryScreen;
 
     public GameObject[] spawners;
 
     [SerializeField]
     public List<Wave> waves;
-
-    public class Batch {
-        public int enemyTanks;
-        public int enemySoldiers;
-        public int spawner;
-    }
     
+    [System.Serializable]
     public class Wave {
         public float restTime;
-        public float spawnTime;
+        public float waveTime;
         public Batch[] batches;
+    }
+
+    [System.Serializable]
+    public class Batch {
+
+        public int enemySoldiers;
+        public int enemyTanks;
+        public int enemyAerials;
+        public int spawner;
+    }
+
+    void FixedUpdate() {
+        if (FindFirstObjectByType<Enemy>() == null && waves.Count <= waveIndex) {
+            victoryScreen.SetActive(true);
+        } else if (FindFirstObjectByType<Enemy>() == null) {
+            time += Time.deltaTime;
+            timer.text = (waves[waveIndex].restTime - time).ToString();
+            if (time >= waves[waveIndex].restTime) {
+                SpawnWave();
+                waveIndex++;
+                time = 0;
+                timer.text = time.ToString();
+            }
+        }
+    }
+
+    void SpawnWave() {
+        foreach (Batch batch in waves[waveIndex].batches) {
+            for (int i = 0; i < batch.enemySoldiers; i++) {
+                SpawnUnit(0, spawners[batch.spawner].transform);
+            }
+            for (int i = 0; i < batch.enemyTanks; i++) {
+                SpawnUnit(1, spawners[batch.spawner].transform);
+            }
+             for (int i = 0; i < batch.enemyAerials; i++) {
+                SpawnUnit(2, spawners[batch.spawner].transform);
+            }
+        }
+    }
+
+    //Instantiates a Unit
+    public void SpawnUnit(int id, Transform location) {
+        GameObject newUnit = Instantiate(units.unitDatas[id].prefab);
+        Unit unit = newUnit.GetComponent<Unit>();
+        
+        NavMeshHit hit;
+        NavMesh.SamplePosition(location.position, out hit, 100f, NavMesh.AllAreas);
+        unit.agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
     }
 
 }

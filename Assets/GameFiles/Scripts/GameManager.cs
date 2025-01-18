@@ -4,13 +4,17 @@ using States;
 using Unity.AI.Navigation;
 using System.Collections;
 using UnityEngine.AI;
-using System;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
 
     //Selected Units and their HUD Indicators
     public List<Unit> selectedUnits;
+
+    //Number of Units
+    public int unitCount = 0;
+    public int unitSlots = 2;
 
     //Indicator Prefab
     public GameObject selectedIndicator;
@@ -230,7 +234,9 @@ public class GameManager : MonoBehaviour
     //Activates Placing a Building
     public IEnumerator ActivatePlaceBuilding(Vector3 mousePosition) {
 
-        if(!buildingManager.isAffordable()) yield break;
+        int id = buildingManager.GetSelectedObjectIndex();
+
+        if(!buildingManager.isAffordable(id)) yield break;
 
         Worker worker = null;
         foreach (Worker unit in selectedUnits) {
@@ -242,13 +248,13 @@ public class GameManager : MonoBehaviour
 
         ActivateBuildingCancel();
 
-        buildingManager.PurchaseBuilding();
+        buildingManager.PurchaseBuilding(id);
 
         yield return worker.Construct(mousePosition);
 
         yield return WaitBuildTime();
 
-        yield return buildingManager.PlaceBuilding(mousePosition);
+        yield return buildingManager.PlaceBuilding(mousePosition, id);
 
         yield return new WaitForSecondsRealtime(.5f);
 
@@ -285,6 +291,8 @@ public class GameManager : MonoBehaviour
 
         if(!unitAffordable(id)) yield break;
 
+        if(unitCount >= unitSlots) yield break;
+
         buildingManager.RemoveMetal(units.unitDatas[id].cost);
     
         yield return WaitUnitTime(id);
@@ -293,16 +301,16 @@ public class GameManager : MonoBehaviour
         Unit unit = newUnit.GetComponent<Unit>();
 
         NavMeshHit hit;
-        NavMesh.SamplePosition(newUnit.transform.position, out hit, 100f, NavMesh.AllAreas);
-        unit.agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
-
-
+        NavMesh.SamplePosition(building.position, out hit, 100f, NavMesh.AllAreas);
+        unit.agent.Warp(new Vector3(hit.position.x, hit.position.y+1f, hit.position.z));
 
         if (id == 0) {
             Worker newWorker = newUnit.GetComponent<Worker>();
             newWorker.home = this.home;
             newWorker.bm = buildingManager;
         }
+
+        hudm.UpdateUnitCount(++unitCount);
     }
 
     //Toggles Ability to Place
