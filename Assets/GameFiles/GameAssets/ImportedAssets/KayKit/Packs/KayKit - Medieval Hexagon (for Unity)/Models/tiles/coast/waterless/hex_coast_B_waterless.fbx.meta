@@ -1,5 +1,12 @@
 fileFormatVersion: 2
 guid: 6f28c98863d804e439d748ab5ebc218f
+AssetOrigin:
+  serializedVersion: 1
+  productId: 290678
+  packageName: KayKit - Medieval Hexagon Pack (for Unity)
+  packageVersion: 1.0.0
+  assetPath: Assets/KayKit/Packs/KayKit - Medieval Hexagon (for Unity)/Models/tiles/coast/waterless/hex_coast_B_waterless.fbx
+  uploadId: 678584
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -16,8 +23,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -32,7 +37,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -107,10 +112,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 290678
-  packageName: KayKit - Medieval Hexagon Pack (for Unity)
-  packageVersion: 1.0.0
-  assetPath: Assets/KayKit/Packs/KayKit - Medieval Hexagon (for Unity)/Models/tiles/coast/waterless/hex_coast_B_waterless.fbx
-  uploadId: 678584

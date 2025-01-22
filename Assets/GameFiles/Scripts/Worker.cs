@@ -13,8 +13,14 @@ public class Worker : Unit {
     public int lumberAmount = 100;
     public Transform home;
     public BuildingManager bm;
+
     public bool carryingLumber = false;
     public bool carryingMetal = false;
+
+    public void Start() {
+        bm = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
+        home = GameObject.Find("Base").transform;
+    }
 
     public new void Attack(Collider target) {
         return;
@@ -54,8 +60,10 @@ public class Worker : Unit {
         while (agent.remainingDistance > agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
+        animator.SetBool("isWorking", true);
         yield return new WaitForSecondsRealtime(chopTime);
         tree.ChopTree();
+        animator.SetBool("isWorking", false);
         carryingLumber = true;
         yield return Move(home.position);
         while (agent.remainingDistance >  agent.stoppingDistance) {
@@ -79,12 +87,14 @@ public class Worker : Unit {
 
     public IEnumerator Repair(Building building) {
         state = State.Working;
+        animator.SetBool("isWorking", true);
         yield return Move(building.transform.position);
         while(building.Health < building.maxHealth) {
             yield return new WaitForSecondsRealtime(1.5f);
             building.Health += 100;
         }
         building.Repaired();
+        animator.SetBool("isWorking ", false);
         state = State.Idle;
         gameObject.SetActive(false);
     }

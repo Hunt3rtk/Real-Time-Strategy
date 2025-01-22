@@ -149,6 +149,7 @@ public class GameManager : MonoBehaviour
                 //DestroyedBuilding
                 case "DestroyedBuilding":
                     foreach (Worker worker in selectedUnits) {
+                        if (worker == null) continue;
                         StartCoroutine(ActivateRepair(worker, target.transform.parent.transform.parent.GetChild(0).GetComponent<Building>()));
                         break;
                     }
@@ -164,11 +165,13 @@ public class GameManager : MonoBehaviour
                     break;
                 case "Tree":
                     foreach (Worker worker in selectedUnits) {
+                        if (worker == null) continue;
                         worker.StartChop(target.GetComponent<Tree>());
                     }
                     break;
                 case "Mine":
                     foreach (Worker worker in selectedUnits) {
+                        if (worker == null) continue;
                         worker.StartMine(target.GetComponent<Mine>());
                     }
                     break;
@@ -214,6 +217,7 @@ public class GameManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit)) {
             foreach (Unit unit in selectedUnits) {
+                if (unit == null) continue;
                 unit.MoveStandAlone(hit.point);
             }
         }
@@ -240,6 +244,7 @@ public class GameManager : MonoBehaviour
 
         Worker worker = null;
         foreach (Worker unit in selectedUnits) {
+            if (unit == null) continue;
             worker = unit;
             break;
         }

@@ -27,6 +27,7 @@ public class Unit : MonoBehaviour {
     public float damage;
     public float range;
     public float visibilityRange;
+    public Animator animator;
 
     [SerializeField]
     internal State state;
@@ -52,6 +53,7 @@ public class Unit : MonoBehaviour {
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
         guard = GetComponent<Guard>();
+        animator = GetComponent<Animator>();
         Health = maxHealth;
     }
 
@@ -67,6 +69,7 @@ public class Unit : MonoBehaviour {
 
     public IEnumerator Move(Vector3 destination) {
         state = State.Moving;
+        animator.SetBool("isWalking", true);
         // Movement logic
         agent.SetDestination(PositionNormailze(destination));
         yield return null;
@@ -74,6 +77,7 @@ public class Unit : MonoBehaviour {
             yield return new WaitForSecondsRealtime(.2f);
         }
         state = State.Idle;
+        animator.SetBool("isWalking", false);
         try {
             StartCoroutine(guard.CheckVisibility(visibilityRange));
         } catch {
@@ -100,10 +104,12 @@ public class Unit : MonoBehaviour {
 
                 if (agent.remainingDistance <= range) {
                     agent.SetDestination(agent.transform.position);
+                    animator.SetBool("isAttacking", true);
                     targetUnit.Health -= damage;
                     yield return new WaitForSecondsRealtime(cooldown);
+                } else {
+                    yield return new WaitForSecondsRealtime(.2f);
                 }
-                yield return new WaitForSecondsRealtime(.2f); 
             }
         } else {
             while (targetBuilding.Health > 0) {
@@ -113,14 +119,17 @@ public class Unit : MonoBehaviour {
 
                 if (agent.remainingDistance <= range) {
                     agent.SetDestination(agent.transform.position);
+                    animator.SetBool("isAttacking", true);
                     targetBuilding.Health -= damage;
                     yield return new WaitForSecondsRealtime(cooldown);
+                } else {
+                    yield return new WaitForSecondsRealtime(.2f); 
                 }
-                yield return new WaitForSecondsRealtime(.2f); 
             }
         }
 
         state = State.Idle;
+        animator.SetBool("isAttacking", false);
 
         try {
             StartCoroutine(guard.CheckVisibility(visibilityRange));

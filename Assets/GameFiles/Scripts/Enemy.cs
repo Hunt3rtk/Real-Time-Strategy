@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour {
 
     void Start() {
         unit = this.gameObject.GetComponent<Unit>();
-        home = GameObject.Find("Base").transform;
+        home = GameObject.Find("BaseParent").transform;
         visibilityRange = unit.visibilityRange;
         AttackBase(home.position);
     }
