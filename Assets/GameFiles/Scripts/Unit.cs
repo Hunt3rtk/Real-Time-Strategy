@@ -57,12 +57,12 @@ public class Unit : MonoBehaviour {
         Health = maxHealth;
     }
 
-    public void MoveStandAlone(Vector3 destination) {
+    public virtual void MoveStandAlone(Vector3 destination) {
         StopAllCoroutines();
         StartCoroutine(Move(destination));
     }
 
-    public void AttackStandAlone(Collider target) {
+    public virtual void AttackStandAlone(Collider target) {
         StopAllCoroutines();
         StartCoroutine(Attack(target));
     }

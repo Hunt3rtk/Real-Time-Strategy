@@ -150,7 +150,7 @@ public class GameManager : MonoBehaviour
                 case "DestroyedBuilding":
                     foreach (Worker worker in selectedUnits) {
                         if (worker == null) continue;
-                        StartCoroutine(ActivateRepair(worker, target.transform.parent.transform.parent.GetChild(0).GetComponent<Building>()));
+                        ActivateRepair(worker, target.transform.parent.transform.parent.GetChild(0).GetComponent<Building>());
                         break;
                     }
                     break;
@@ -236,11 +236,13 @@ public class GameManager : MonoBehaviour
     }
 
     //Activates Placing a Building
-    public IEnumerator ActivatePlaceBuilding(Vector3 mousePosition) {
+    public void ActivatePlaceBuilding(Vector3 mousePosition) {
 
         int id = buildingManager.GetSelectedObjectIndex();
 
-        if(!buildingManager.isAffordable(id)) yield break;
+        if(!buildingManager.isAffordable(id)) return;
+
+        if (!buildingManager.isRoadAdjacent()) return;
 
         Worker worker = null;
         foreach (Worker unit in selectedUnits) {
@@ -249,39 +251,14 @@ public class GameManager : MonoBehaviour
             break;
         }
 
-        if (!buildingManager.isRoadAdjacent()) yield break;
-
         ActivateBuildingCancel();
 
-        buildingManager.PurchaseBuilding(id);
-
-        yield return worker.Construct(mousePosition);
-
-        yield return WaitBuildTime();
-
-        yield return buildingManager.PlaceBuilding(mousePosition, id);
-
-        yield return new WaitForSecondsRealtime(.5f);
-
-        NavMeshHit hit;
-        NavMesh.SamplePosition(worker.transform.position, out hit, 10f, NavMesh.AllAreas);
-        worker.agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
-
-        worker.gameObject.SetActive(true);
+        worker.StartConstruct(mousePosition, id);
     }
 
     //Activate Repair
-    private IEnumerator ActivateRepair(Worker worker, Building building) {
-        
-        yield return worker.Repair(building);
-
-        yield return new WaitForSecondsRealtime(.5f);
-
-        NavMeshHit hit;
-        NavMesh.SamplePosition(worker.transform.position, out hit, 10f, NavMesh.AllAreas);
-        worker.agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
-
-        worker.gameObject.SetActive(true);
+    private void ActivateRepair(Worker worker, Building building) {
+        worker.StartRepair(building);
     }
 
     //Activate Unit Purchase
@@ -320,16 +297,11 @@ public class GameManager : MonoBehaviour
 
     //Toggles Ability to Place
     public void TogglePlace(int collisions) {
-        if (collisions >= 1) {
+        if (collisions > 2) {
             inputManager.DisablePlace();
         } else {
             inputManager.EnablePlace();
         }
-    }
-
-    //Waits for the Build Time of Buildings
-    private IEnumerator WaitBuildTime() {
-        yield return new WaitForSecondsRealtime(buildingManager.GetBuildTime());
     }
 
     //Waits for the Unit Time

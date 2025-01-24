@@ -33,9 +33,9 @@ public class WaveSpawnManager : MonoBehaviour {
     [System.Serializable]
     public class Batch {
 
-        public int enemySoldiers;
-        public int enemyTanks;
-        public int enemyAerials;
+        public int enemyOne;
+        public int enemyTwo;
+        public int enemyThree;
         public int spawner;
     }
 
@@ -56,13 +56,13 @@ public class WaveSpawnManager : MonoBehaviour {
 
     void SpawnWave() {
         foreach (Batch batch in waves[waveIndex].batches) {
-            for (int i = 0; i < batch.enemySoldiers; i++) {
+            for (int i = 0; i < batch.enemyOne; i++) {
                 SpawnUnit(0, spawners[batch.spawner].transform);
             }
-            for (int i = 0; i < batch.enemyTanks; i++) {
+            for (int i = 0; i < batch.enemyTwo; i++) {
                 SpawnUnit(1, spawners[batch.spawner].transform);
             }
-             for (int i = 0; i < batch.enemyAerials; i++) {
+             for (int i = 0; i < batch.enemyThree; i++) {
                 SpawnUnit(2, spawners[batch.spawner].transform);
             }
         }

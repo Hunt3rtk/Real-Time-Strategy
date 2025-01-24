@@ -25,4 +25,6 @@ public class ObjectData {
     public Vector2Int size {get; private set; }
     [field: SerializeField]
     public GameObject prefab {get; private set; }
+    [field: SerializeField]
+    public GameObject constructionPrefab {get; private set; }
 }

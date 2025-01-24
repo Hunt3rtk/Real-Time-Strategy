@@ -22,7 +22,12 @@ public class Worker : Unit {
         home = GameObject.Find("Base").transform;
     }
 
-    public new void Attack(Collider target) {
+    public override void MoveStandAlone(Vector3 destination) {
+        StopAllCoroutines();
+        StartCoroutine(Move(destination));
+    }
+
+    public override void AttackStandAlone(Collider target) {
         return;
     }
 
@@ -37,7 +42,19 @@ public class Worker : Unit {
         StartCoroutine(Chop(tree));
     }
 
-    public IEnumerator Mine(Mine mine) {
+    public void StartConstruct(Vector3 destination, int id) {
+        StopAllCoroutines();
+        state = State.Building;
+        StartCoroutine(Construct(destination, id));
+    }
+
+    public void StartRepair(Building building) {
+        StopAllCoroutines();
+        state = State.Working;
+        StartCoroutine(Repair(building));
+    }
+
+    private IEnumerator Mine(Mine mine) {
         yield return Move(mine.transform.position);
         while (agent.remainingDistance >  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
@@ -55,7 +72,7 @@ public class Worker : Unit {
         StartMine(mine);
     }
 
-    public IEnumerator Chop(Tree tree) { 
+    private IEnumerator Chop(Tree tree) { 
         yield return Move(tree.transform.position);
         while (agent.remainingDistance > agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
@@ -73,19 +90,40 @@ public class Worker : Unit {
         carryingLumber = false;
         yield return Move(tree.transform.position);
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, visibilityRange, LayerMask.GetMask("Tree"));
+        colliders = colliders.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToArray();
         if (colliders.Length <= 0) yield break;
         Tree newTree = colliders[0].gameObject.GetComponent<Tree>();
         StartChop(newTree);
     }
 
-    public IEnumerator Construct(Vector3 destination) {
+    private IEnumerator Construct(Vector3 destination, int id) {
+
         state = State.Building;
+
+        GameObject constructionSite = bm.PlaceConstructionSite(destination, id);
+
         yield return Move(destination);
-        state = State.Idle;
-        gameObject.SetActive(false);
+
+        animator.SetBool("isWorking", true);
+
+        bm.PurchaseBuilding(id);
+
+        yield return new WaitForSecondsRealtime(bm.GetBuildTime(id));
+
+        yield return bm.PlaceBuilding(destination, id);
+
+        Destroy(constructionSite, 0);
+
+        yield return new WaitForSecondsRealtime(.5f);
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas);
+        agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
+
+        animator.SetBool("isWorking", false);
     }
 
-    public IEnumerator Repair(Building building) {
+    private IEnumerator Repair(Building building) {
         state = State.Working;
         animator.SetBool("isWorking", true);
         yield return Move(building.transform.position);
@@ -97,5 +135,13 @@ public class Worker : Unit {
         animator.SetBool("isWorking ", false);
         state = State.Idle;
         gameObject.SetActive(false);
+
+        yield return new WaitForSecondsRealtime(.5f);
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas);
+        agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
+
+        gameObject.SetActive(true);
     }
 }

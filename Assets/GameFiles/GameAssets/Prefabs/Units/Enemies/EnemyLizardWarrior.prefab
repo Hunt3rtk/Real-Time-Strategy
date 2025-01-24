@@ -759,9 +759,9 @@ GameObject:
   - component: {fileID: 3273323651125488281}
   - component: {fileID: 5225830812671605796}
   - component: {fileID: 1026494424080134612}
+  - component: {fileID: 206760001096500424}
   - component: {fileID: 3704818415921504430}
   - component: {fileID: 33793732799684978}
-  - component: {fileID: 206760001096500424}
   m_Layer: 8
   m_Name: EnemyLizardWarrior
   m_TagString: EnemyUnit
@@ -830,6 +830,28 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!195 &206760001096500424
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3244548106817986489}
+  m_Enabled: 1
+  m_AgentTypeID: 1479372276
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 2
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!114 &3704818415921504430
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -866,28 +888,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e4fc2216f55634690cae498409583f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!195 &206760001096500424
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3244548106817986489}
-  m_Enabled: 1
-  m_AgentTypeID: 1479372276
-  m_Radius: 0.5
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &3527424516236632307
 GameObject:
   m_ObjectHideFlags: 0

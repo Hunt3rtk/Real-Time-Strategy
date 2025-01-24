@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class WorldToScreenFollow : MonoBehaviour
@@ -9,7 +10,7 @@ public class WorldToScreenFollow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (unit == null) Destroy(gameObject);
+        if (unit.gameObject.IsDestroyed()) Destroy(gameObject);
         
         gameObject.transform.position = Camera.main.WorldToScreenPoint(unit.gameObject.transform.position);
     }
