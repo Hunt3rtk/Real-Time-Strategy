@@ -8,10 +8,15 @@ public class Enemy : MonoBehaviour {
     private Unit unit;
     private float visibilityRange;
 
-    void Start() {
+
+
+    void Awake() {
         unit = this.gameObject.GetComponent<Unit>();
         home = GameObject.Find("BaseParent").transform;
         visibilityRange = unit.visibilityRange;
+    }
+
+    void Start() {
         AttackBase(home.position);
     }
 

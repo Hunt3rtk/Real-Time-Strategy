@@ -68,21 +68,31 @@ public class Unit : MonoBehaviour {
     }
 
     public IEnumerator Move(Vector3 destination) {
-        state = State.Moving;
-        animator.SetBool("isWalking", true);
+
         // Movement logic
         agent.SetDestination(PositionNormailze(destination));
+        while (agent.pathPending) {
+            yield return new WaitForSecondsRealtime(.1f);
+        }
+
+        state = State.Moving;
+        animator.SetBool("isWalking", true);
+
         yield return null;
+
         while (agent.remainingDistance > agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
+
         state = State.Idle;
         animator.SetBool("isWalking", false);
+
         try {
             StartCoroutine(guard.CheckVisibility(visibilityRange));
         } catch {
             Debug.Log("Guard is null");
         }
+        
     }
 
     public IEnumerator Attack(Collider target) {
