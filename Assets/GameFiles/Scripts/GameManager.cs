@@ -5,6 +5,8 @@ using Unity.AI.Navigation;
 using System.Collections;
 using UnityEngine.AI;
 using TMPro;
+using static AudioManager;
+//using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -131,6 +133,7 @@ public class GameManager : MonoBehaviour
                 //Enemy Unit
                 case "EnemyUnit":
                     foreach (Unit ally in selectedUnits) {
+                        AudioManager.Instance.Play(SoundType.Command);
                         ally.AttackStandAlone(hit.collider);
                     }
                     break;
@@ -140,23 +143,32 @@ public class GameManager : MonoBehaviour
                     panelObject = target;
                     hudm.ActivateBasePanel();
                     break;
+                //Building
+                case "Building":
+                foreach (Worker worker in selectedUnits) {
+                    if (worker == null) continue;
+                    ActivateRepair(worker, target.GetComponent<Building>());
+                    break;
+                }
+                    break;
                 //Barracks
                 case "Barracks":
                     ClearSelected();
                     panelObject = target;
                     hudm.ActivateBarracksPanel();
                     break;
-                //DestroyedBuilding
-                case "DestroyedBuilding":
+                //Construction Site
+                case "Construction":
                     foreach (Worker worker in selectedUnits) {
                         if (worker == null) continue;
-                        ActivateRepair(worker, target.transform.parent.transform.parent.GetChild(0).GetComponent<Building>());
+                        ActivateRepair(worker, target.transform.parent.GetChild(0).GetComponent<Building>());
                         break;
                     }
                     break;
                 //Unit
                 case "Unit":
                 case "Worker":
+                    AudioManager.Instance.Play(SoundType.Select);
                     unit = hit.collider.GetComponentInParent<Unit>();
                     hudm.ActivateUnitPanel(unit);
                     ClearSelected();
@@ -166,12 +178,14 @@ public class GameManager : MonoBehaviour
                 case "Tree":
                     foreach (Worker worker in selectedUnits) {
                         if (worker == null) continue;
+                        AudioManager.Instance.Play(SoundType.Command);
                         worker.StartChop(target.GetComponent<Tree>());
                     }
                     break;
                 case "Mine":
                     foreach (Worker worker in selectedUnits) {
                         if (worker == null) continue;
+                        AudioManager.Instance.Play(SoundType.Command);
                         worker.StartMine(target.GetComponent<Mine>());
                     }
                     break;
@@ -200,6 +214,7 @@ public class GameManager : MonoBehaviour
             try {
                 Unit unit = hit.collider.GetComponentInParent<Unit>();
                 if (unit.gameObject.layer != 8) {
+                    AudioManager.Instance.Play(SoundType.Select);
                     selectedUnits.Add(unit);
                     AddIndicator(unit);
                 }
@@ -218,6 +233,7 @@ public class GameManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit)) {
             foreach (Unit unit in selectedUnits) {
                 if (unit == null) continue;
+                AudioManager.Instance.Play(SoundType.Command);
                 unit.MoveStandAlone(hit.point);
             }
         }
@@ -244,6 +260,11 @@ public class GameManager : MonoBehaviour
 
         if (!buildingManager.isRoadAdjacent()) return;
 
+        if (id == 3) {
+           buildingManager.PlaceBuilding(mousePosition, id);
+           return;
+        }
+
         Worker worker = null;
         foreach (Worker unit in selectedUnits) {
             if (unit == null) continue;
@@ -253,11 +274,13 @@ public class GameManager : MonoBehaviour
 
         ActivateBuildingCancel();
 
+        AudioManager.Instance.Play(SoundType.Command);
         worker.StartConstruct(mousePosition, id);
     }
 
     //Activate Repair
     private void ActivateRepair(Worker worker, Building building) {
+        AudioManager.Instance.Play(SoundType.Command);
         worker.StartRepair(building);
     }
 

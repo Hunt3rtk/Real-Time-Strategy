@@ -4,6 +4,7 @@ using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+using static AudioManager;
 
 public class Unit : MonoBehaviour {
     public string unitName;
@@ -115,6 +116,7 @@ public class Unit : MonoBehaviour {
                 if (agent.remainingDistance <= range) {
                     agent.SetDestination(agent.transform.position);
                     animator.SetBool("isAttacking", true);
+                    AudioManager.Instance.Play(SoundType.WorkerHit);
                     targetUnit.Health -= damage;
                     yield return new WaitForSecondsRealtime(cooldown);
                 } else {
@@ -157,6 +159,8 @@ public class Unit : MonoBehaviour {
     }
 
     private void Kill() {
+        AudioManager.Instance.Play(SoundType.WorkerDeath);
+        animator.SetBool("isDead", true);
         Destroy(this.gameObject);
     }
 }

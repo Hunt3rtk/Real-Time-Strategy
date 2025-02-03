@@ -94,7 +94,7 @@ public class BuildingManager : MonoBehaviour {
     }
 
 
-    public IEnumerator PlaceBuilding(Vector3 mousePosition, int id) {
+    public GameObject PlaceBuilding(Vector3 mousePosition, int id) {
         
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         if (id == 3) {
@@ -111,7 +111,8 @@ public class BuildingManager : MonoBehaviour {
         newObject.transform.position = grid.CellToWorld(gridPosition);
         newObject.transform.SetParent(this.transform);
         gm.UpdateNavMesh();
-        yield return null;
+
+        return newObject;
     }
 
     public void CancelBuilding() {

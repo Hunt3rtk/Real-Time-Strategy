@@ -226,9 +226,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7616614893445825125}
-  m_Layer: 0
+  - component: {fileID: 5257625445950630779}
+  - component: {fileID: 7709109202764077648}
+  - component: {fileID: 1846757823090834879}
+  m_Layer: 9
   m_Name: ChaletConstructionSite
-  m_TagString: Untagged
+  m_TagString: Construction
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -253,6 +256,68 @@ Transform:
   - {fileID: 3432336617242526075}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5257625445950630779
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815049719746941754}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3, y: 1.333, z: 3}
+  m_Center: {x: 2, y: 0.68, z: 2}
+--- !u!54 &7709109202764077648
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815049719746941754}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!114 &1846757823090834879
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815049719746941754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47d7724c0af811f449c443609f851376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 1200
 --- !u!1001 &2203635817118615053
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -304,6 +369,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 3b50125df805a79458b4e75130f5b705, type: 3}
       propertyPath: m_Name
       value: building_stage_A
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 3b50125df805a79458b4e75130f5b705, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -367,6 +436,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building_scaffolding
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 07c8416d728609645b1d00049899f341, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -428,6 +501,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 354d1b08bfba3d94b82f9ebcdbcc7b9f, type: 3}
       propertyPath: m_Name
       value: building_stage_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 354d1b08bfba3d94b82f9ebcdbcc7b9f, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

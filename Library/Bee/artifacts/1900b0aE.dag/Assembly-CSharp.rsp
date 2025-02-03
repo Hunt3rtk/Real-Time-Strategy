@@ -444,6 +444,7 @@
 -analyzer:"D:/Program Files/Unity/Editor/6000.0.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 -analyzer:"D:/Program Files/Unity/Editor/6000.0.9f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.UIToolkit.SourceGenerator.dll"
 "Assets/GameFiles/Input/PlayerInput.cs"
+"Assets/GameFiles/Scripts/AudioManager.cs"
 "Assets/GameFiles/Scripts/Base.cs"
 "Assets/GameFiles/Scripts/Building.cs"
 "Assets/GameFiles/Scripts/BuildingManager.cs"
@@ -504,7 +505,6 @@
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexShakeB.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/VertexZoom.cs"
 "Assets/TextMesh Pro/Examples & Extras/Scripts/WarpTextExample.cs"
-"Assets/TutorialInfo/Scripts/Readme.cs"
 -langversion:9.0
 /deterministic
 /optimize+

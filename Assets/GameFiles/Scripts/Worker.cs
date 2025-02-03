@@ -45,7 +45,7 @@ public class Worker : Unit {
     public void StartConstruct(Vector3 destination, int id) {
         StopAllCoroutines();
         state = State.Building;
-        StartCoroutine(Construct(destination, id));
+        Construct(destination, id);
     }
 
     public void StartRepair(Building building) {
@@ -96,52 +96,64 @@ public class Worker : Unit {
         StartChop(newTree);
     }
 
-    private IEnumerator Construct(Vector3 destination, int id) {
+    private void Construct(Vector3 destination, int id) {
 
         state = State.Building;
 
-        GameObject constructionSite = bm.PlaceConstructionSite(destination, id);
-
-        yield return Move(destination);
-
-        animator.SetBool("isWorking", true);
+        //GameObject constructionSite = bm.PlaceConstructionSite(destination, id);
 
         bm.PurchaseBuilding(id);
 
-        yield return new WaitForSecondsRealtime(bm.GetBuildTime(id));
+        Building building = bm.PlaceBuilding(destination, id).transform.GetChild(0).GetComponent<Building>();
+        if (building == null) return;
+        building.Health = 1;
+        building.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(false);
+        building.gameObject.transform.parent.transform.GetChild(2).gameObject.SetActive(true);
 
-        yield return bm.PlaceBuilding(destination, id);
+        //yield return Move(destination);
 
-        Destroy(constructionSite, 0);
+        StartRepair(building);
 
-        yield return new WaitForSecondsRealtime(.5f);
+        //animator.SetBool("isWorking", true);
 
-        NavMeshHit hit;
-        NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas);
-        agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
+        //bm.PurchaseBuilding(id);
 
-        animator.SetBool("isWorking", false);
+        //yield return new WaitForSecondsRealtime(bm.GetBuildTime(id));
+
+        //yield return bm.PlaceBuilding(destination, id);
+
+        //Destroy(constructionSite, 0);
+
+        //yield return new WaitForSecondsRealtime(.5f);
+
+        // NavMeshHit hit;
+        // NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas);
+        // agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
+
+        // animator.SetBool("isWorking", false);
     }
 
     private IEnumerator Repair(Building building) {
         state = State.Working;
-        animator.SetBool("isWorking", true);
+
         yield return Move(building.transform.position);
+
+        animator.SetBool("isWorking", true);
+
         while(building.Health < building.maxHealth) {
             yield return new WaitForSecondsRealtime(1.5f);
             building.Health += 100;
         }
+
         building.Repaired();
-        animator.SetBool("isWorking ", false);
+
+        animator.SetBool("isWorking", false);
         state = State.Idle;
-        gameObject.SetActive(false);
 
         yield return new WaitForSecondsRealtime(.5f);
 
         NavMeshHit hit;
         NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas);
         agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
-
-        gameObject.SetActive(true);
     }
 }

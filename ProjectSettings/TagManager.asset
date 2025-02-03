@@ -20,6 +20,7 @@ TagManager:
   - NodeContainer
   - Enemy
   - DestroyedBuilding
+  - Construction
   layers:
   - Default
   - TransparentFX
