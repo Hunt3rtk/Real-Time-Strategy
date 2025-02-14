@@ -5,12 +5,17 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UIElements;
+using static AudioManager;
 
 public class Worker : Unit {
     public float mineTime = 2f;
     public float chopTime = 2f;
     public int metalAmount = 100;
     public int lumberAmount = 100;
+
+    private  SoundType chopSound;
+    private  SoundType constructSound;
+
     public Transform home;
     public BuildingManager bm;
 
@@ -20,6 +25,13 @@ public class Worker : Unit {
     public void Start() {
         bm = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
         home = GameObject.Find("Base").transform;
+
+        selectSound = AudioManager.SoundType.Select;
+        commandSound = AudioManager.SoundType.Command;
+        spawnSound = AudioManager.SoundType.WorkerSpawn;
+        chopSound = AudioManager.SoundType.WorkerChop;
+        constructSound = AudioManager.SoundType.WorkerConstruct;
+        deathSound = AudioManager.SoundType.WorkerDeath;
     }
 
     public override void MoveStandAlone(Vector3 destination) {
@@ -78,6 +90,7 @@ public class Worker : Unit {
             yield return new WaitForSecondsRealtime(.2f);
         }
         animator.SetBool("isWorking", true);
+        AudioManager.Instance.Play(chopSound);
         yield return new WaitForSecondsRealtime(chopTime);
         tree.ChopTree();
         animator.SetBool("isWorking", false);
@@ -141,6 +154,7 @@ public class Worker : Unit {
         animator.SetBool("isWorking", true);
 
         while(building.Health < building.maxHealth) {
+            AudioManager.Instance.Play(constructSound);
             yield return new WaitForSecondsRealtime(1.5f);
             building.Health += 100;
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
+using static AudioManager;
 
 public class WaveSpawnManager : MonoBehaviour {
 
@@ -15,6 +16,8 @@ public class WaveSpawnManager : MonoBehaviour {
     private float time;
 
     private int waveIndex = 0;
+
+    private bool musicChange = false;
 
     public GameObject victoryScreen;
 
@@ -43,9 +46,15 @@ public class WaveSpawnManager : MonoBehaviour {
         if (FindFirstObjectByType<Enemy>() == null && waves.Count <= waveIndex) {
             victoryScreen.SetActive(true);
         } else if (FindFirstObjectByType<Enemy>() == null) {
+            if (!musicChange) {
+                AudioManager.Instance.ChangeMusic(SoundType.Music_Preparation);
+                musicChange = true;
+            }
             time += Time.deltaTime;
-            timer.text = (waves[waveIndex].restTime - time).ToString();
+            timer.text = (waves[waveIndex].restTime - (int)time).ToString();
             if (time >= waves[waveIndex].restTime) {
+                AudioManager.Instance.ChangeMusic(SoundType.Music_Battle);
+                musicChange = false;
                 SpawnWave();
                 waveIndex++;
                 time = 0;

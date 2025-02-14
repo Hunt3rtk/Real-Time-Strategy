@@ -36,6 +36,12 @@ public class Unit : MonoBehaviour {
     [SerializeField]
     internal Guard guard;
 
+    internal SoundType selectSound;
+    internal SoundType commandSound;
+    internal SoundType spawnSound;
+    internal SoundType attackSound;
+    internal SoundType deathSound;
+
     [HideInInspector]
     public NavMeshAgent agent;
 
@@ -116,7 +122,7 @@ public class Unit : MonoBehaviour {
                 if (agent.remainingDistance <= range) {
                     agent.SetDestination(agent.transform.position);
                     animator.SetBool("isAttacking", true);
-                    AudioManager.Instance.Play(SoundType.WorkerHit);
+                    AudioManager.Instance.Play(attackSound);
                     targetUnit.Health -= damage;
                     yield return new WaitForSecondsRealtime(cooldown);
                 } else {
@@ -159,7 +165,7 @@ public class Unit : MonoBehaviour {
     }
 
     private void Kill() {
-        AudioManager.Instance.Play(SoundType.WorkerDeath);
+        AudioManager.Instance.Play(deathSound);
         animator.SetBool("isDead", true);
         Destroy(this.gameObject);
     }

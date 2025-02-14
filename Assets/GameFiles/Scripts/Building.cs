@@ -25,6 +25,7 @@ public class Building : MonoBehaviour
     public void Repaired() {
         this.gameObject.transform.parent.GetChild(2).gameObject.SetActive(false);
         this.gameObject.SetActive(true);
+        AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete);
     }
 
     public virtual void Kill() {

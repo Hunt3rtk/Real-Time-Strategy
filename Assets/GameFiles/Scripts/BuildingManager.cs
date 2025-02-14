@@ -99,9 +99,13 @@ public class BuildingManager : MonoBehaviour {
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         if (id == 3) {
             SetCellToRoad(gridPosition);
+            AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete);
         } else if (id == 1) {
             gm.unitSlots += 2;
             hudm.UpdateUnitSlots(gm.unitSlots);
+            AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct);
+        } else {
+            AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct);
         }
 
         gridPosition.z = 0;
@@ -111,6 +115,7 @@ public class BuildingManager : MonoBehaviour {
         newObject.transform.position = grid.CellToWorld(gridPosition);
         newObject.transform.SetParent(this.transform);
         gm.UpdateNavMesh();
+        
 
         return newObject;
     }
@@ -130,15 +135,15 @@ public class BuildingManager : MonoBehaviour {
         RemoveLumber(database.objectsData[id].cost);
     }
 
-    public GameObject PlaceConstructionSite(Vector3 mousePosition, int id) {
-        Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-        gridPosition.z = 0;
-        GameObject newObject = Instantiate(database.objectsData[id].constructionPrefab);
-        newObject.transform.position = grid.CellToWorld(gridPosition);
-        newObject.transform.SetParent(this.transform);
-        gm.UpdateNavMesh();
-        return newObject;
-    }
+    // public GameObject PlaceConstructionSite(Vector3 mousePosition, int id) {
+    //     Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+    //     gridPosition.z = 0;
+    //     GameObject newObject = Instantiate(database.objectsData[id].constructionPrefab);
+    //     newObject.transform.position = grid.CellToWorld(gridPosition);
+    //     newObject.transform.SetParent(this.transform);
+    //     gm.UpdateNavMesh();
+    //     return newObject;
+    // }
 
     public void AddLumber(int amount) {
         playerData.lumber += amount;

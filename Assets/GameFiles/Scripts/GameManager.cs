@@ -95,12 +95,12 @@ public class GameManager : MonoBehaviour
                 inputManager.DisableGameplay();
                 state = State.Building;
                 inputManager.EnableBuilding();
-                hudm.GetBuildingPanel().SetActive(true);
+                //hudm.GetBuildingPanel().SetActive(true);
                 break;
             case State.Pause:
                 state = State.Building;
                 inputManager.EnableBuilding();
-                hudm.GetBuildingPanel().SetActive(true);
+                //hudm.GetBuildingPanel().SetActive(true);
                 break;
             case State.Building:
             default:
