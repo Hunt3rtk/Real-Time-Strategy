@@ -129,6 +129,10 @@ public class GameManager : MonoBehaviour
             switch (target.tag) {
                 //Enemy Base
                 case "EnemyBase":
+                    foreach (Unit ally in selectedUnits) {
+                        AudioManager.Instance.Play(SoundType.Command);
+                        ally.AttackStandAlone(hit.collider);
+                    }
                     break;
                 //Enemy Unit
                 case "EnemyUnit":

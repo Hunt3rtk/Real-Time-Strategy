@@ -1,29 +1,27 @@
-using System;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class HUDManager : MonoBehaviour
 {
     //Unit Slots
     [SerializeField]
     private GameObject unitCountObject, unitSlotsObject;
-     private TextMeshProUGUI unitCountText, unitSlotsText;
+     private Text unitCountText, unitSlotsText;
     //Building
     [SerializeField]
     private GameObject buildingPanel, basePanel, barracksPanel;
     [SerializeField]
     private GameObject lumberObject, metalObject;
-    private TextMeshProUGUI lumberText, metalText;
+    private Text lumberText, metalText;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-        lumberText = lumberObject.GetComponent<TextMeshProUGUI>();
-        metalText = metalObject.GetComponent<TextMeshProUGUI>();
+        lumberText = lumberObject.GetComponent<Text>();
+        metalText = metalObject.GetComponent<Text>();
 
-        unitCountText = unitCountObject.GetComponent<TextMeshProUGUI>();
-        unitSlotsText = unitSlotsObject.GetComponent<TextMeshProUGUI>();
+        unitCountText = unitCountObject.GetComponent<Text>();
+        unitSlotsText = unitSlotsObject.GetComponent<Text>();
     }
     internal GameObject GetBuildingPanel() {
         return buildingPanel;
@@ -34,19 +32,19 @@ public class HUDManager : MonoBehaviour
     }
 
     internal void UpdateLumber(int amount) {
-        lumberText.SetText(amount.ToString());
+        lumberText.text = amount.ToString();
     }
 
     internal void UpdateMetal(int amount) {
-        metalText.SetText(amount.ToString());
+        metalText.text = amount.ToString();
     }
 
      internal void UpdateUnitCount(int amount) {
-        unitCountText.SetText(amount.ToString());
+        unitCountText.text = amount.ToString();
     }
 
     internal void UpdateUnitSlots(int amount) {
-        unitSlotsText.SetText(amount.ToString());
+        unitSlotsText.text = amount.ToString();
     }
 
     internal void DeactivateAllPanels() {

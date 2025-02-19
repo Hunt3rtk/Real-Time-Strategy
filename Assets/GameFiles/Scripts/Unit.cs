@@ -133,16 +133,16 @@ public class Unit : MonoBehaviour {
             while (targetBuilding.Health > 0) {
 
                 agent.SetDestination(PositionNormailze(target.transform.position));
-                yield return null;
 
-                if (agent.remainingDistance <= range) {
-                    agent.SetDestination(agent.transform.position);
-                    animator.SetBool("isAttacking", true);
-                    targetBuilding.Health -= damage;
-                    yield return new WaitForSecondsRealtime(cooldown);
-                } else {
-                    yield return new WaitForSecondsRealtime(.2f); 
+                while (agent.remainingDistance > range) {
+                    animator.SetBool("isAttacking", false);
+                    animator.SetBool("isWalking", true);
+                    yield return new WaitForSecondsRealtime(.2f);
                 }
+
+                animator.SetBool("isAttacking", true);
+                targetBuilding.Health -= damage;
+                yield return new WaitForSecondsRealtime(cooldown);
             }
         }
 
@@ -168,5 +168,7 @@ public class Unit : MonoBehaviour {
         AudioManager.Instance.Play(deathSound);
         animator.SetBool("isDead", true);
         Destroy(this.gameObject);
+        int unitCount = FindAnyObjectByType<GameManager>().unitCount -= 1;
+        FindAnyObjectByType<HUDManager>().UpdateUnitCount(unitCount);
     }
 }

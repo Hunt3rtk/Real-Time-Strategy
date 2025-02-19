@@ -58,7 +58,7 @@ public class InputManager : MonoBehaviour {
             Vector3 mousePos = Input.mousePosition;
             Ray ray = Camera.main.ScreenPointToRay(mousePos);
             RaycastHit hit;
-            if (Physics.Raycast(ray, out hit, 100, placementLayermask)) {
+            if (Physics.Raycast(ray, out hit, 500, placementLayermask)) {
                 lastPosition = hit.point;
             }
             return lastPosition;
