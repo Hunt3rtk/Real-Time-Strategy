@@ -9,7 +9,7 @@ public class HUDManager : MonoBehaviour
      private Text unitCountText, unitSlotsText;
     //Building
     [SerializeField]
-    private GameObject buildingPanel, basePanel, barracksPanel;
+    private GameObject workerPanel, soliderPanel, juggernautPanel, wizardPanel, dragonPanel, buildingPanel, basePanel, barracksPanel, menuPanel;
     [SerializeField]
     private GameObject lumberObject, metalObject;
     private Text lumberText, metalText;
@@ -23,8 +23,8 @@ public class HUDManager : MonoBehaviour
         unitCountText = unitCountObject.GetComponent<Text>();
         unitSlotsText = unitSlotsObject.GetComponent<Text>();
     }
-    internal GameObject GetBuildingPanel() {
-        return buildingPanel;
+    internal GameObject GetWorkerPanel() {
+        return workerPanel;
     }
 
     internal GameObject GetBasePanel() {
@@ -48,27 +48,61 @@ public class HUDManager : MonoBehaviour
     }
 
     internal void DeactivateAllPanels() {
-        buildingPanel.SetActive(false);
+        workerPanel.SetActive(false);
+        soliderPanel.SetActive(false);
+        juggernautPanel.SetActive(false);
+        wizardPanel.SetActive(false);
+        dragonPanel.SetActive(false);
         basePanel.SetActive(false);
         barracksPanel.SetActive(false);
+        menuPanel.SetActive(false);
     }
 
     internal void ActivateUnitPanel(Unit unit) {
+        GameObject panel = null;
         switch(unit.tag) {
             case "Worker":
-                buildingPanel.SetActive(true);
+                workerPanel.SetActive(true);
+                panel = workerPanel;
+                break;
+            case "Solider":
+                soliderPanel.SetActive(true);
+                panel = soliderPanel;
+                break;
+            case "Juggernaut":
+                juggernautPanel.SetActive(true);
+                panel = juggernautPanel;
+                break;
+            case "Wizard":
+                wizardPanel.SetActive(true);
+                panel = wizardPanel;
+                break;
+            case "Dragon":
+                dragonPanel.SetActive(true);
+                panel = dragonPanel;
                 break;
             default:
                 break;
-
         }
-        
+        panel.GetComponent<HealthBar>().unit = unit;
     }
 
     internal void DeactivateUnitPanel(Unit unit) {
         switch(unit.tag) {
             case "Worker":
-                buildingPanel.SetActive(false);
+                workerPanel.SetActive(false);
+                break;
+            case "Solider":
+                soliderPanel.SetActive(false);
+                break;
+            case "Juggernaut":
+                juggernautPanel.SetActive(false);
+                break;
+            case "Wizard":
+                wizardPanel.SetActive(false);
+                break;
+            case "Dragon":
+                dragonPanel.SetActive(false);
                 break;
             default:
                 break;
@@ -76,18 +110,37 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    internal void ActivateBarracksPanel() {
+    internal void ActivateMenuPanel() {
+        menuPanel.SetActive(true);
+    }
+
+    internal void DeactivateMenuPanel() {
+        menuPanel.SetActive(false);
+    }
+
+    internal void ActivateBarracksPanel(Building building) {
         barracksPanel.SetActive(true);
+        GetComponent<BuildingHealthBar>().building = building;
     }
     internal void DeactivateBarracksPanel() {
         barracksPanel.SetActive(false); 
     }
 
-    internal void ActivateBasePanel() {
+    internal void ActivateBasePanel(Building building) {
         basePanel.SetActive(true);
+        GetComponent<BuildingHealthBar>().building = building;
     }
 
     internal void DeactivateBasePanel() {
         basePanel.SetActive(false);
+    }
+
+    internal void ActivateBuildingPanel(Building building) {
+        buildingPanel.SetActive(true);
+        GetComponent<BuildingHealthBar>().building = building;
+    }
+
+    internal void DeactivateBuildingPanel() {
+        buildingPanel.SetActive(false);
     }
 }

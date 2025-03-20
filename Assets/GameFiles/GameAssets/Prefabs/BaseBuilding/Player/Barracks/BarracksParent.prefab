@@ -1132,6 +1132,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2309096383256386501}
     m_Modifications:
+    - target: {fileID: 1797368657294753376, guid: c02d305afd85c1045bdd1c3f8a50fe0b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 1924935157006798572, guid: c02d305afd85c1045bdd1c3f8a50fe0b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 2132616551131460334, guid: c02d305afd85c1045bdd1c3f8a50fe0b, type: 3}
       propertyPath: m_Name
       value: ConstructionSite
@@ -1139,6 +1147,18 @@ PrefabInstance:
     - target: {fileID: 2132616551131460334, guid: c02d305afd85c1045bdd1c3f8a50fe0b, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2132616551131460334, guid: c02d305afd85c1045bdd1c3f8a50fe0b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 2981606118787070414, guid: c02d305afd85c1045bdd1c3f8a50fe0b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 4117159263364753701, guid: c02d305afd85c1045bdd1c3f8a50fe0b, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 8326031360122894736, guid: c02d305afd85c1045bdd1c3f8a50fe0b, type: 3}
       propertyPath: m_LocalPosition.x

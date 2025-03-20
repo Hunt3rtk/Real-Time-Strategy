@@ -17,31 +17,53 @@ public class InputManager : MonoBehaviour {
             playerInput = new PlayerInput();
         }
 
+        public void Disable() {
+            playerInput.Disable();
+        }
+
         public void EnableGameplay() {
             playerInput.Gameplay.Enable();
+            playerInput.Universal.Enable();
             playerInput.Gameplay.MultiSelect.performed += MultiSelect;
             playerInput.Gameplay.Select.performed += Select;
             playerInput.Gameplay.Move.performed += Move;
+            playerInput.Universal.Escape.performed += Escape;
         }
 
         public void EnableBuilding() {
             playerInput.Building.Enable();
+            playerInput.Universal.Enable();
             playerInput.Building.Place.performed += Place;
             playerInput.Building.Cancel.performed += Cancel;
+            playerInput.Universal.Escape.performed += Escape;
 
+        }
+
+        public void EnablePause() {
+            playerInput.Pause.Enable();
+            playerInput.Pause.Unpause.performed += Unpause;
         }
 
         public void DisableGameplay() {
             playerInput.Gameplay.Disable();
+            playerInput.Universal.Disable();
             playerInput.Gameplay.MultiSelect.performed -= MultiSelect;
             playerInput.Gameplay.Select.performed -= Select;
             playerInput.Gameplay.Move.performed -= Move;
+            playerInput.Universal.Escape.performed -= Escape;
         }
 
         public void DisableBuilding() {
             playerInput.Building.Disable();
+            playerInput.Universal.Disable();
             playerInput.Building.Place.performed -= Place;
             playerInput.Building.Cancel.performed -= Cancel;
+            playerInput.Universal.Escape.performed -= Escape;
+        }
+
+        public void DisablePause() {
+            playerInput.Pause.Disable();
+            playerInput.Pause.Unpause.performed -= Unpause;
         }
 
         public void EnablePlace() {
@@ -88,5 +110,13 @@ public class InputManager : MonoBehaviour {
 
         public void Cancel(InputAction.CallbackContext ctx) {
             gm.ActivateBuildingCancel();
+        }
+
+        public void Escape(InputAction.CallbackContext ctx) {
+            gm.ActivateEscape();
+        }
+
+        public void Unpause(InputAction.CallbackContext ctx) {
+            gm.ActivateUnpause();
         }
     }

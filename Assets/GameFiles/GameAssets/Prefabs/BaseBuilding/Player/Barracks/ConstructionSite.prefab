@@ -118,7 +118,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8326031360122894736}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: ConstructionSite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -285,9 +285,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4677237296440866189, guid: cfab318c1da0a4245bd9f8de8459c19f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: cfab318c1da0a4245bd9f8de8459c19f, type: 3}
       propertyPath: m_Name
       value: wall_straight_gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: cfab318c1da0a4245bd9f8de8459c19f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1046628172763319773, guid: cfab318c1da0a4245bd9f8de8459c19f, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -363,6 +375,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building_scaffolding
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 07c8416d728609645b1d00049899f341, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -428,6 +444,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 354d1b08bfba3d94b82f9ebcdbcc7b9f, type: 3}
       propertyPath: m_Name
       value: building_stage_B
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 354d1b08bfba3d94b82f9ebcdbcc7b9f, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -495,6 +515,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: building_stage_B (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 354d1b08bfba3d94b82f9ebcdbcc7b9f, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -560,6 +584,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 0d19d1519d1644e4cb3b8600a158b578, type: 3}
       propertyPath: m_Name
       value: wall_straight
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 0d19d1519d1644e4cb3b8600a158b578, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

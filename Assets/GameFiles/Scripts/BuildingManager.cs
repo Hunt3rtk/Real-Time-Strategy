@@ -124,7 +124,7 @@ public class BuildingManager : MonoBehaviour {
         Destroy(visualObject, 0);
         nodes.Clear();
         cellIndicator.SetActive(false);
-        hudm.GetBuildingPanel().SetActive(false);
+        hudm.GetWorkerPanel().SetActive(false);
     }
 
     public void SetCellToRoad(Vector3Int gridPosition) {

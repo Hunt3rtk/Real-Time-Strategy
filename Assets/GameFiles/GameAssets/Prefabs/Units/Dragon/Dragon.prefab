@@ -1970,8 +1970,8 @@ GameObject:
   - component: {fileID: 6229104474753032027}
   - component: {fileID: 3809801588483268775}
   m_Layer: 10
-  m_Name: Drake
-  m_TagString: Unit
+  m_Name: Dragon
+  m_TagString: Dragon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

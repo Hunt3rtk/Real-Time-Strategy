@@ -1,10 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
  
-public class AudioManager : MonoBehaviour
-{
-    public enum SoundType
-    {
+public class AudioManager : MonoBehaviour {
+    public enum SoundType {
 
         //---Player---//
 
@@ -57,8 +55,7 @@ public class AudioManager : MonoBehaviour
     }
  
     [System.Serializable]
-    public class Sound
-    {
+    public class Sound {
         public SoundType Type;
         public AudioClip Clip;
  
@@ -79,8 +76,7 @@ public class AudioManager : MonoBehaviour
     private Dictionary<SoundType, Sound> _soundDictionary = new Dictionary<SoundType, Sound>();
     private AudioSource _musicSource;
  
-    private void Awake()
-    {
+    private void Awake() {
         //Assign singleton
         Instance = this;
  

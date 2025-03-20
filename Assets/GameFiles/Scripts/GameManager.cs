@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
 
     //On Disable Disable Gameplay state
     private void OnDisable() {
-        inputManager.DisableGameplay();
+        inputManager.Disable();
     }
     /*----------------------------------*/
 
@@ -79,6 +79,7 @@ public class GameManager : MonoBehaviour
                 inputManager.EnableGameplay();
                 break;
             case State.Pause:
+                inputManager.DisablePause();
                 state = State.Gameplay;
                 inputManager.EnableGameplay();
                 break;
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
             default:
                 break;
             }
+        Time.timeScale = 1;
     }
 
     //Set State to Building
@@ -95,17 +97,38 @@ public class GameManager : MonoBehaviour
                 inputManager.DisableGameplay();
                 state = State.Building;
                 inputManager.EnableBuilding();
-                //hudm.GetBuildingPanel().SetActive(true);
                 break;
             case State.Pause:
+                inputManager.DisablePause();
                 state = State.Building;
                 inputManager.EnableBuilding();
-                //hudm.GetBuildingPanel().SetActive(true);
                 break;
             case State.Building:
             default:
                 break;
         }
+        Time.timeScale = 1;
+    }
+
+    public void SetStatePause() {
+        switch(state) {
+            case State.Gameplay:
+                state = State.Pause;
+                inputManager.DisableGameplay();
+                inputManager.EnablePause();
+                break;
+            case State.Building:
+                state = State.Pause;
+                ActivateBuildingCancel();
+                inputManager.DisableBuilding();
+                inputManager.EnablePause();
+                break;
+            case State.Pause:
+            default:
+                break;
+        }
+        CameraControl.Instance.Disable();
+        Time.timeScale = 0;
     }
     /*----------------------------------*/
 
@@ -145,33 +168,48 @@ public class GameManager : MonoBehaviour
                 case "Base":
                     ClearSelected();
                     panelObject = target;
-                    hudm.ActivateBasePanel();
-                    break;
-                //Building
-                case "Building":
-                foreach (Worker worker in selectedUnits) {
-                    if (worker == null) continue;
-                    ActivateRepair(worker, target.GetComponent<Building>());
-                    break;
-                }
+                    hudm.ActivateBasePanel(target.GetComponent<Building>());
                     break;
                 //Barracks
                 case "Barracks":
                     ClearSelected();
                     panelObject = target;
-                    hudm.ActivateBarracksPanel();
+                    hudm.ActivateBarracksPanel(target.GetComponent<Building>());
+                    break;
+                //Chalet
+                case "Chalet":
+                    ClearSelected();
+                    panelObject = target;
+                    hudm.ActivateBuildingPanel(target.GetComponent<Building>());
                     break;
                 //Construction Site
                 case "Construction":
+                    panelObject = target;
+                    hudm.ActivateBuildingPanel(target.transform.parent.GetChild(0).GetComponent<Building>());
                     foreach (Worker worker in selectedUnits) {
                         if (worker == null) continue;
                         ActivateRepair(worker, target.transform.parent.GetChild(0).GetComponent<Building>());
                         break;
                     }
                     break;
+                //Building
+                case "Building":
+                    panelObject = target;
+                    hudm.ActivateBuildingPanel(target.GetComponent<Building>());
+                    foreach (Worker worker in selectedUnits) {
+                        if (worker == null) continue;
+                        ActivateRepair(worker, target.GetComponent<Building>());
+                        break;
+                    }
+                    ClearSelected();
+                    break;
                 //Unit
                 case "Unit":
                 case "Worker":
+                case "Solider":
+                case "Juggernaut":
+                case "Wizard":
+                case "Dragon":
                     AudioManager.Instance.Play(SoundType.Select);
                     unit = hit.collider.GetComponentInParent<Unit>();
                     hudm.ActivateUnitPanel(unit);
@@ -320,6 +358,18 @@ public class GameManager : MonoBehaviour
         }
 
         hudm.UpdateUnitCount(++unitCount);
+    }
+
+    // Activate Escape Input
+    public void ActivateEscape() {
+        hudm.ActivateMenuPanel();
+        SetStatePause();
+    }
+
+    //Activate Unpause
+    public void ActivateUnpause() {
+        hudm.DeactivateMenuPanel();
+        SetStateGameplay();
     }
 
     //Toggles Ability to Place

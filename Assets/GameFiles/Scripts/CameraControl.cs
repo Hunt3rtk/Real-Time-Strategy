@@ -1,10 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class CameraControl : MonoBehaviour {
+
+    //Singleton
+    public static CameraControl Instance;
 
     private PlayerInput cameraInput;
     private InputAction movement;
@@ -52,17 +56,25 @@ public class CameraControl : MonoBehaviour {
     //tracks where the dragging action started
     Vector3 startDrag;
 
-    private Camera camera;
+    private Camera cam;
     
     private void Awake() {
+
+        //Singleton
+        if (Instance == null) {
+            Instance = this;
+        } else {
+            Destroy(this);
+        }
+
         cameraInput = new PlayerInput();
-        camera = this.GetComponentInChildren<Camera>();
+        cam = this.GetComponentInChildren<Camera>();
         cameraTransform = this.GetComponentInChildren<Camera>().transform;
         cameraInput.Camera.Enable();
     }
 
     private void OnEnable() {
-        zoomHeight = camera.orthographicSize;
+        zoomHeight = cam.orthographicSize;
         //zoomHeight = cameraTransform.localPosition.y;
         cameraTransform.LookAt(this.transform);
         lastPosition = this.transform.position;
@@ -77,6 +89,10 @@ public class CameraControl : MonoBehaviour {
         cameraInput.Camera.ZoomCamera.performed -= ZoomCamera;
         //cameraInput.Camera.RotateCamera.performed -= RotateCamera;
         cameraInput.Disable();
+    }
+
+    public void Disable() {
+        OnDisable();
     }
 
 
@@ -139,7 +155,7 @@ public class CameraControl : MonoBehaviour {
     private void ZoomCamera(InputAction.CallbackContext ctx) {
         float value = -ctx.ReadValue<Vector2>().y;
         if(Mathf.Abs(value) > 0.1f) {
-            zoomHeight = camera.orthographicSize + value * stepSize;
+            zoomHeight = cam.orthographicSize + value * stepSize;
             //zoomHeight = cameraTransform.localPosition.y + value * stepSize;
             zoomHeight = zoomHeight % stepSize >= 2.5f ? zoomHeight = (zoomHeight - zoomHeight % stepSize) + stepSize :  zoomHeight = zoomHeight - zoomHeight % stepSize;
             
@@ -156,7 +172,7 @@ public class CameraControl : MonoBehaviour {
         zoomTarget -= zoomSpeed * (zoomHeight - cameraTransform.localPosition.y) * (Vector3.forward/2);
 
         //cameraTransform.localPosition = Vector3.Lerp(cameraTransform.localPosition, zoomTarget, Time.deltaTime * zoomDampening);
-        camera.orthographicSize = zoomHeight;
+        cam.orthographicSize = zoomHeight;
         cameraTransform.LookAt(this.transform);
     }
 

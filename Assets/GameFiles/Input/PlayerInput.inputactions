@@ -250,6 +250,62 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Universal",
+            "id": "350267ea-4201-485a-bcec-67beb7038a7c",
+            "actions": [
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "e1d67dc2-53b1-4b4a-8134-8ca5be69fad7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "ddf2b470-5e85-4d91-b01b-fc55cf2e9486",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Pause",
+            "id": "ecff74ba-ba40-4e7c-80c7-1092039d3649",
+            "actions": [
+                {
+                    "name": "Unpause",
+                    "type": "Button",
+                    "id": "5473ab4e-bf2e-4295-a8ec-abe2abf195bf",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a75cd0c8-cc60-49d3-bf90-42e34d964ac9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Unpause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []

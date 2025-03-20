@@ -21,6 +21,10 @@ TagManager:
   - Enemy
   - DestroyedBuilding
   - Construction
+  - Solider
+  - Juggernaut
+  - Wizard
+  - Dragon
   layers:
   - Default
   - TransparentFX

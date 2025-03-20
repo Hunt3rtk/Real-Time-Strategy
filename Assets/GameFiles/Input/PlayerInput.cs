@@ -273,6 +273,62 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Universal"",
+            ""id"": ""350267ea-4201-485a-bcec-67beb7038a7c"",
+            ""actions"": [
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""e1d67dc2-53b1-4b4a-8134-8ca5be69fad7"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""ddf2b470-5e85-4d91-b01b-fc55cf2e9486"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Pause"",
+            ""id"": ""ecff74ba-ba40-4e7c-80c7-1092039d3649"",
+            ""actions"": [
+                {
+                    ""name"": ""Unpause"",
+                    ""type"": ""Button"",
+                    ""id"": ""5473ab4e-bf2e-4295-a8ec-abe2abf195bf"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""a75cd0c8-cc60-49d3-bf90-42e34d964ac9"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Unpause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": []
@@ -291,6 +347,12 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         m_Building = asset.FindActionMap("Building", throwIfNotFound: true);
         m_Building_Place = m_Building.FindAction("Place", throwIfNotFound: true);
         m_Building_Cancel = m_Building.FindAction("Cancel", throwIfNotFound: true);
+        // Universal
+        m_Universal = asset.FindActionMap("Universal", throwIfNotFound: true);
+        m_Universal_Escape = m_Universal.FindAction("Escape", throwIfNotFound: true);
+        // Pause
+        m_Pause = asset.FindActionMap("Pause", throwIfNotFound: true);
+        m_Pause_Unpause = m_Pause.FindAction("Unpause", throwIfNotFound: true);
     }
 
     ~@PlayerInput()
@@ -298,6 +360,8 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         Debug.Assert(!m_Camera.enabled, "This will cause a leak and performance issues, PlayerInput.Camera.Disable() has not been called.");
         Debug.Assert(!m_Gameplay.enabled, "This will cause a leak and performance issues, PlayerInput.Gameplay.Disable() has not been called.");
         Debug.Assert(!m_Building.enabled, "This will cause a leak and performance issues, PlayerInput.Building.Disable() has not been called.");
+        Debug.Assert(!m_Universal.enabled, "This will cause a leak and performance issues, PlayerInput.Universal.Disable() has not been called.");
+        Debug.Assert(!m_Pause.enabled, "This will cause a leak and performance issues, PlayerInput.Pause.Disable() has not been called.");
     }
 
     public void Dispose()
@@ -533,6 +597,98 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         }
     }
     public BuildingActions @Building => new BuildingActions(this);
+
+    // Universal
+    private readonly InputActionMap m_Universal;
+    private List<IUniversalActions> m_UniversalActionsCallbackInterfaces = new List<IUniversalActions>();
+    private readonly InputAction m_Universal_Escape;
+    public struct UniversalActions
+    {
+        private @PlayerInput m_Wrapper;
+        public UniversalActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Escape => m_Wrapper.m_Universal_Escape;
+        public InputActionMap Get() { return m_Wrapper.m_Universal; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(UniversalActions set) { return set.Get(); }
+        public void AddCallbacks(IUniversalActions instance)
+        {
+            if (instance == null || m_Wrapper.m_UniversalActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_UniversalActionsCallbackInterfaces.Add(instance);
+            @Escape.started += instance.OnEscape;
+            @Escape.performed += instance.OnEscape;
+            @Escape.canceled += instance.OnEscape;
+        }
+
+        private void UnregisterCallbacks(IUniversalActions instance)
+        {
+            @Escape.started -= instance.OnEscape;
+            @Escape.performed -= instance.OnEscape;
+            @Escape.canceled -= instance.OnEscape;
+        }
+
+        public void RemoveCallbacks(IUniversalActions instance)
+        {
+            if (m_Wrapper.m_UniversalActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IUniversalActions instance)
+        {
+            foreach (var item in m_Wrapper.m_UniversalActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_UniversalActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public UniversalActions @Universal => new UniversalActions(this);
+
+    // Pause
+    private readonly InputActionMap m_Pause;
+    private List<IPauseActions> m_PauseActionsCallbackInterfaces = new List<IPauseActions>();
+    private readonly InputAction m_Pause_Unpause;
+    public struct PauseActions
+    {
+        private @PlayerInput m_Wrapper;
+        public PauseActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Unpause => m_Wrapper.m_Pause_Unpause;
+        public InputActionMap Get() { return m_Wrapper.m_Pause; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(PauseActions set) { return set.Get(); }
+        public void AddCallbacks(IPauseActions instance)
+        {
+            if (instance == null || m_Wrapper.m_PauseActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_PauseActionsCallbackInterfaces.Add(instance);
+            @Unpause.started += instance.OnUnpause;
+            @Unpause.performed += instance.OnUnpause;
+            @Unpause.canceled += instance.OnUnpause;
+        }
+
+        private void UnregisterCallbacks(IPauseActions instance)
+        {
+            @Unpause.started -= instance.OnUnpause;
+            @Unpause.performed -= instance.OnUnpause;
+            @Unpause.canceled -= instance.OnUnpause;
+        }
+
+        public void RemoveCallbacks(IPauseActions instance)
+        {
+            if (m_Wrapper.m_PauseActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        public void SetCallbacks(IPauseActions instance)
+        {
+            foreach (var item in m_Wrapper.m_PauseActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_PauseActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    public PauseActions @Pause => new PauseActions(this);
     public interface ICameraActions
     {
         void OnMovement(InputAction.CallbackContext context);
@@ -549,5 +705,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     {
         void OnPlace(InputAction.CallbackContext context);
         void OnCancel(InputAction.CallbackContext context);
+    }
+    public interface IUniversalActions
+    {
+        void OnEscape(InputAction.CallbackContext context);
+    }
+    public interface IPauseActions
+    {
+        void OnUnpause(InputAction.CallbackContext context);
     }
 }

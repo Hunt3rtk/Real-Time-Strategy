@@ -699,7 +699,7 @@ GameObject:
   - component: {fileID: 4751279433475975338}
   m_Layer: 10
   m_Name: FootSolider
-  m_TagString: Unit
+  m_TagString: Solider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

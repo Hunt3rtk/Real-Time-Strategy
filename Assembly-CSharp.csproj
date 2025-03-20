@@ -98,6 +98,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Unit.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeA.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\HealthBar.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Base.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Solider.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Training.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\BuildingHealthBar.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Enemy.cs" />
     <Compile Include="Assets\GameFiles\Scripts\UnitDataBase.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
@@ -126,6 +128,7 @@
     <Compile Include="Assets\GameFiles\Scripts\Drake.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Building.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\MainMenu.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Tree.cs" />
     <Compile Include="Assets\GameFiles\Scripts\CameraControl.cs" />
   </ItemGroup>
