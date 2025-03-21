@@ -298,13 +298,19 @@ public class GameManager : MonoBehaviour
 
         int id = buildingManager.GetSelectedObjectIndex();
 
-        if(!buildingManager.isAffordable(id)) return;
+        if(id == 3) {
+            ActivatePlaceRoad(mousePosition);
+            return;
+        }
 
-        if (!buildingManager.isRoadAdjacent()) return;
+        if(!buildingManager.isAffordable(id)) {
+            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            return;
+        }
 
-        if (id == 3) {
-           buildingManager.PlaceBuilding(mousePosition, id);
-           return;
+        if (!buildingManager.isRoadAdjacent()) {
+            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            return;
         }
 
         Worker worker = null;
@@ -317,7 +323,28 @@ public class GameManager : MonoBehaviour
         ActivateBuildingCancel();
 
         AudioManager.Instance.Play(SoundType.Command);
+        AudioManager.Instance.Play(SoundType.PurchaseSuccess);
         worker.StartConstruct(mousePosition, id);
+    }
+
+    //Activates Placing a Road
+    public void ActivatePlaceRoad(Vector3 mousePosition) {
+
+        int id = buildingManager.GetSelectedObjectIndex();
+
+        if(!buildingManager.isAffordable(id)) {
+            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            return;
+        }
+
+        int roadNode = buildingManager.isRoadAdjacentForRoad();
+
+        if (roadNode == -1) {
+            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            return;
+        }
+
+        buildingManager.PlaceRoad(mousePosition, id, roadNode);
     }
 
     //Activate Repair
@@ -334,11 +361,22 @@ public class GameManager : MonoBehaviour
     // Unit Purchase Coroutine
     public IEnumerator UnitPurchase(int id, Transform building) {
 
-        if(panelObject.GetComponent<Training>().isTraining()) yield break;
+        if(panelObject.GetComponent<Training>().isTraining()) {
+            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            yield break;
+        }
 
-        if(!unitAffordable(id)) yield break;
+        if(!unitAffordable(id)) {
+            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            yield break;
+        }
 
-        if(unitCount >= unitSlots) yield break;
+        if(unitCount >= unitSlots) {
+            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            yield break;
+        }
+
+        AudioManager.Instance.Play(SoundType.PurchaseSuccess);
 
         buildingManager.RemoveMetal(units.unitDatas[id].cost);
     

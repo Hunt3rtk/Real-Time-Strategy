@@ -51,7 +51,7 @@ public class BuildingManager : MonoBehaviour {
         return true;
     }
 
-    public bool isRoadAdjacent() {
+    public  bool isRoadAdjacent() {
         foreach (Transform node in nodes) {
             Vector3Int nodeCell = grid.WorldToCell(node.position);
             if (cellRoadGrid[nodeCell.x+50, nodeCell.y+50] == 1) {
@@ -59,6 +59,16 @@ public class BuildingManager : MonoBehaviour {
             }
         }
         return false;
+    }
+
+    public int isRoadAdjacentForRoad() {
+        foreach (Transform node in nodes) {
+            Vector3Int nodeCell = grid.WorldToCell(node.transform.GetChild(1).position);
+            if (cellRoadGrid[nodeCell.x+50, nodeCell.y+50] == 1) {
+                return node.GetSiblingIndex();
+            }
+        }
+        return -1;
     }
 
     public bool StartPlacement(int id) {
@@ -91,6 +101,13 @@ public class BuildingManager : MonoBehaviour {
         x.gm = gm;
 
         return true;
+    }
+
+    public GameObject PlaceRoad(Vector3 mousePosition, int id, int roadAdjacent) {
+
+        GameObject road = PlaceBuilding(mousePosition, id);
+        road.transform.GetChild(1).transform.GetChild(roadAdjacent).gameObject.SetActive(true);
+        return road;
     }
 
 

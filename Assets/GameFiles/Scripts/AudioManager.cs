@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour {
 
         Select,
         Command,
+
         //Units
         WorkerSpawn,
         WorkerDeath,
@@ -26,6 +27,7 @@ public class AudioManager : MonoBehaviour {
         DrakeSpawn,
         DrakeDeath,
         DrakeAttack,
+
         //Resources and Buildings
         BuildingConstruct,
         BuildingComplete,
@@ -33,6 +35,10 @@ public class AudioManager : MonoBehaviour {
         LumberRemoved,
         MetalAdded,
         MetalRemoved,
+
+        //Purchase
+        PurchaseSuccess,
+        PurchaseFail,
 
         //---Enemies---//
 
