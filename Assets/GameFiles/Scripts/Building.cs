@@ -22,14 +22,12 @@ public class Building : MonoBehaviour
         Health = maxHealth;
     }
 
-    public void Repaired() {
+    public virtual void Repaired() {
         this.gameObject.SetActive(true);
         AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete);
     }
 
     public virtual void Kill() {
         this.gameObject.SetActive(false);
-        int unitSlots = FindAnyObjectByType<GameManager>().unitSlots -= 2;
-        FindAnyObjectByType<HUDManager>().UpdateUnitSlots(unitSlots);
     }
 }

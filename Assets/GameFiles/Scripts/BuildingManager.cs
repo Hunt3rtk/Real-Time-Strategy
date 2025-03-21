@@ -118,8 +118,6 @@ public class BuildingManager : MonoBehaviour {
             SetCellToRoad(gridPosition);
             AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete);
         } else if (id == 1) {
-            gm.unitSlots += 2;
-            hudm.UpdateUnitSlots(gm.unitSlots);
             AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct);
         } else {
             AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct);

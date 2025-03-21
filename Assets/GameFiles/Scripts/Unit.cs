@@ -168,7 +168,9 @@ public class Unit : MonoBehaviour {
         AudioManager.Instance.Play(deathSound);
         animator.SetBool("isDead", true);
         Destroy(this.gameObject);
-        int unitCount = FindAnyObjectByType<GameManager>().unitCount -= 1;
-        FindAnyObjectByType<HUDManager>().UpdateUnitCount(unitCount);
+        if(gameObject.tag == "Unit") {
+            int unitCount = FindAnyObjectByType<GameManager>().unitCount -= 1;
+            FindAnyObjectByType<HUDManager>().UpdateUnitCount(unitCount);
+        }
     }
 }

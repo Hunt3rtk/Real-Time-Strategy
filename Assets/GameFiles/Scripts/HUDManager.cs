@@ -120,7 +120,7 @@ public class HUDManager : MonoBehaviour
 
     internal void ActivateBarracksPanel(Building building) {
         barracksPanel.SetActive(true);
-        GetComponent<BuildingHealthBar>().building = building;
+        barracksPanel.GetComponent<BuildingHealthBar>().building = building;
     }
     internal void DeactivateBarracksPanel() {
         barracksPanel.SetActive(false); 
@@ -128,7 +128,7 @@ public class HUDManager : MonoBehaviour
 
     internal void ActivateBasePanel(Building building) {
         basePanel.SetActive(true);
-        GetComponent<BuildingHealthBar>().building = building;
+        basePanel.GetComponent<BuildingHealthBar>().building = building;
     }
 
     internal void DeactivateBasePanel() {
@@ -137,7 +137,7 @@ public class HUDManager : MonoBehaviour
 
     internal void ActivateBuildingPanel(Building building) {
         buildingPanel.SetActive(true);
-        GetComponent<BuildingHealthBar>().building = building;
+        buildingPanel.GetComponent<BuildingHealthBar>().building = building;
     }
 
     internal void DeactivateBuildingPanel() {

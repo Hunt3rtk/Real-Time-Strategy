@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 24176229996584357}
   - component: {fileID: 2643960049586967878}
   - component: {fileID: 5417435299193071894}
-  - component: {fileID: 3345420132634066475}
+  - component: {fileID: 5144135441667924864}
   m_Layer: 9
   m_Name: Chalet
   m_TagString: Building
@@ -310,7 +310,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &3345420132634066475
+--- !u!114 &5144135441667924864
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -319,7 +319,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1969507174092373104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47d7724c0af811f449c443609f851376, type: 3}
+  m_Script: {fileID: 11500000, guid: 5063fa11096fc8e4d98f48380185be5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0

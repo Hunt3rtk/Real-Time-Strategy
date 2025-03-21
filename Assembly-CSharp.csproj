@@ -76,6 +76,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Juggernaut.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Mine.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\Chalet.cs" />
     <Compile Include="Assets\GameFiles\Scripts\ObjectsDataBaseSO.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
