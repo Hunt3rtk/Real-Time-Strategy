@@ -9,7 +9,7 @@ public class HUDManager : MonoBehaviour
      private Text unitCountText, unitSlotsText;
     //Building
     [SerializeField]
-    private GameObject workerPanel, soliderPanel, juggernautPanel, wizardPanel, dragonPanel, buildingPanel, basePanel, barracksPanel, menuPanel;
+    private GameObject workerPanel, soliderPanel, juggernautPanel, wizardPanel, dragonPanel, enemyUnitPanel, buildingPanel, enemyBuildingPanel, basePanel, barracksPanel, menuPanel;
     [SerializeField]
     private GameObject lumberObject, metalObject;
     private Text lumberText, metalText;
@@ -53,6 +53,9 @@ public class HUDManager : MonoBehaviour
         juggernautPanel.SetActive(false);
         wizardPanel.SetActive(false);
         dragonPanel.SetActive(false);
+        enemyUnitPanel.SetActive(false);
+        buildingPanel.SetActive(false);
+        enemyBuildingPanel.SetActive(false);
         basePanel.SetActive(false);
         barracksPanel.SetActive(false);
         menuPanel.SetActive(false);
@@ -81,6 +84,11 @@ public class HUDManager : MonoBehaviour
                 dragonPanel.SetActive(true);
                 panel = dragonPanel;
                 break;
+            case "EnemyUnit":
+                enemyUnitPanel.SetActive(true);
+                unit.name = enemyUnitPanel.transform.GetChild(0).transform.GetChild(0).GetComponent<Text>().text;
+                panel = enemyUnitPanel;
+                break;
             default:
                 break;
         }
@@ -103,6 +111,9 @@ public class HUDManager : MonoBehaviour
                 break;
             case "Dragon":
                 dragonPanel.SetActive(false);
+                break;
+            case "EnemyUnit":
+                enemyUnitPanel.SetActive(false);
                 break;
             default:
                 break;
@@ -142,5 +153,14 @@ public class HUDManager : MonoBehaviour
 
     internal void DeactivateBuildingPanel() {
         buildingPanel.SetActive(false);
+    }
+
+    internal void ActivateEnemyBuildingPanel(Building building) {
+        enemyBuildingPanel.SetActive(true);
+        enemyBuildingPanel.GetComponent<BuildingHealthBar>().building = building;
+    }
+
+    internal void DeactivateEnemyBuildingPanel() {
+        enemyBuildingPanel.SetActive(false);
     }
 }

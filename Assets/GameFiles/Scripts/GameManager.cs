@@ -145,13 +145,15 @@ public class GameManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit, roadLayerMask)) {
 
             GameObject target = hit.collider.gameObject;
-            Unit unit;
+            //Unit unit;
 
             hudm.DeactivateAllPanels();
 
             switch (target.tag) {
                 //Enemy Base
                 case "EnemyBase":
+                    panelObject = target;
+                    hudm.ActivateEnemyBuildingPanel(target.GetComponent<Building>());
                     foreach (Unit ally in selectedUnits) {
                         AudioManager.Instance.Play(SoundType.Command);
                         ally.AttackStandAlone(hit.collider);
@@ -159,6 +161,8 @@ public class GameManager : MonoBehaviour
                     break;
                 //Enemy Unit
                 case "EnemyUnit":
+                    panelObject = target;
+                    hudm.ActivateUnitPanel(target.GetComponent<Unit>());
                     foreach (Unit ally in selectedUnits) {
                         AudioManager.Instance.Play(SoundType.Command);
                         ally.AttackStandAlone(hit.collider);
@@ -211,11 +215,11 @@ public class GameManager : MonoBehaviour
                 case "Wizard":
                 case "Dragon":
                     AudioManager.Instance.Play(SoundType.Select);
-                    unit = hit.collider.GetComponentInParent<Unit>();
-                    hudm.ActivateUnitPanel(unit);
+                    //unit = hit.collider.GetComponentInParent<Unit>();
+                    hudm.ActivateUnitPanel(target.GetComponent<Unit>());
                     ClearSelected();
-                    selectedUnits.Add(unit);
-                    AddIndicator(unit);
+                    selectedUnits.Add(target.GetComponent<Unit>());
+                    AddIndicator(target.GetComponent<Unit>());
                     break;
                 case "Tree":
                     foreach (Worker worker in selectedUnits) {
