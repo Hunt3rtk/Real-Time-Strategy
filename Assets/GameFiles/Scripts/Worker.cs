@@ -10,7 +10,7 @@ using static AudioManager;
 public class Worker : Unit {
     public float mineTime = 2f;
     public float chopTime = 2f;
-    public int metalAmount = 100;
+    public int goldAmount = 100;      // Changed from metalAmount
     public int lumberAmount = 100;
 
     private  SoundType chopSound;
@@ -20,7 +20,7 @@ public class Worker : Unit {
     public BuildingManager bm;
 
     public bool carryingLumber = false;
-    public bool carryingMetal = false;
+    public bool carryingGold = false; // Changed from carryingMetal
 
     public void Start() {
         bm = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
@@ -72,15 +72,15 @@ public class Worker : Unit {
             yield return new WaitForSecondsRealtime(.2f);
         }
         yield return new WaitForSecondsRealtime(mineTime);
-        if(mine.metalRemaining < metalAmount) yield break;
-        mine.Deduct(metalAmount);
-        carryingMetal = true;
+        if(mine.Gold < goldAmount) yield break;
+        mine.Deduct(goldAmount);
+        carryingGold = true;
         yield return Move(home.position);
         while (agent.remainingDistance >  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
-        carryingMetal = false;
-        bm.AddMetal(metalAmount);
+        carryingGold = false;
+        bm.AddGold(goldAmount);       // Changed from AddMetal
         StartMine(mine);
     }
 

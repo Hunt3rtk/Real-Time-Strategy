@@ -30,7 +30,7 @@ public class BuildingManager : MonoBehaviour {
 
     void Start() {
         hudm.UpdateLumber(GetLumber());
-        hudm.UpdateMetal(GetMetal());
+        hudm.UpdateGold(GetGold());
     }
 
     void Update() {
@@ -165,9 +165,9 @@ public class BuildingManager : MonoBehaviour {
         hudm.UpdateLumber(playerData.lumber);
     }
 
-    public void AddMetal(int amount) {
-        playerData.metal += amount;
-        hudm.UpdateMetal(playerData.metal);
+    public void AddGold(int amount) {        // Changed from AddMetal
+        playerData.gold += amount;           // Changed from metal
+        hudm.UpdateGold(playerData.gold);    // Changed from UpdateMetal
     }
 
     public void RemoveLumber(int amount) {
@@ -175,17 +175,17 @@ public class BuildingManager : MonoBehaviour {
         hudm.UpdateLumber(playerData.lumber);
     }
 
-    public void RemoveMetal(int amount) {
-        playerData.metal -= amount;
-        hudm.UpdateMetal(playerData.metal);
+    public void RemoveGold(int amount) {     // Changed from RemoveMetal
+        playerData.gold -= amount;           // Changed from metal
+        hudm.UpdateGold(playerData.gold);    // Changed from UpdateMetal
     }
 
     public int GetLumber() {
         return playerData.lumber;
     }
 
-    public int GetMetal() {
-        return playerData.metal;
+    public int GetGold() {                   // Changed from GetMetal
+        return playerData.gold;              // Changed from metal
     }
 
     public float GetBuildTime(int id) {

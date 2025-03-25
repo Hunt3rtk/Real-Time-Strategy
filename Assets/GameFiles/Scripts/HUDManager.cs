@@ -1,24 +1,23 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HUDManager : MonoBehaviour
-{
+public class HUDManager : MonoBehaviour {
     //Unit Slots
     [SerializeField]
     private GameObject unitCountObject, unitSlotsObject;
-     private Text unitCountText, unitSlotsText;
+    private Text unitCountText, unitSlotsText;
     //Building
     [SerializeField]
-    private GameObject workerPanel, soliderPanel, juggernautPanel, wizardPanel, dragonPanel, enemyUnitPanel, buildingPanel, enemyBuildingPanel, basePanel, barracksPanel, menuPanel;
+    private GameObject workerPanel, soliderPanel, juggernautPanel, wizardPanel, dragonPanel, enemyUnitPanel, buildingPanel, enemyBuildingPanel, basePanel, barracksPanel, minePanel, menuPanel;
     [SerializeField]
-    private GameObject lumberObject, metalObject;
-    private Text lumberText, metalText;
+    private GameObject lumberObject, goldObject;
+    private Text lumberText, goldText;
 
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
         lumberText = lumberObject.GetComponent<Text>();
-        metalText = metalObject.GetComponent<Text>();
+        goldText = goldObject.GetComponent<Text>();
 
         unitCountText = unitCountObject.GetComponent<Text>();
         unitSlotsText = unitSlotsObject.GetComponent<Text>();
@@ -35,11 +34,11 @@ public class HUDManager : MonoBehaviour
         lumberText.text = amount.ToString();
     }
 
-    internal void UpdateMetal(int amount) {
-        metalText.text = amount.ToString();
+    internal void UpdateGold(int amount) {
+        goldText.text = amount.ToString();
     }
 
-     internal void UpdateUnitCount(int amount) {
+    internal void UpdateUnitCount(int amount) {
         unitCountText.text = amount.ToString();
     }
 
@@ -59,6 +58,7 @@ public class HUDManager : MonoBehaviour
         basePanel.SetActive(false);
         barracksPanel.SetActive(false);
         menuPanel.SetActive(false);
+        minePanel.SetActive(false);
     }
 
     internal void ActivateUnitPanel(Unit unit) {
@@ -137,9 +137,19 @@ public class HUDManager : MonoBehaviour
         barracksPanel.SetActive(false); 
     }
 
-    internal void ActivateBasePanel(Building building) {
+    internal void ActivateBasePanel(Building building, Training training) {
         basePanel.SetActive(true);
         basePanel.GetComponent<BuildingHealthBar>().building = building;
+        basePanel.GetComponent<TrainingProgressBar>().training = training;
+    }
+
+    public void ActivateBaseProgressBar(Texture headshot) {
+        basePanel.GetComponent<TrainingProgressBar>().unitHeadshot = headshot;
+        basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+    }
+
+        public void DeactivateBaseProgressBar(Texture headshot) {
+        basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
     }
 
     internal void DeactivateBasePanel() {
@@ -162,5 +172,14 @@ public class HUDManager : MonoBehaviour
 
     internal void DeactivateEnemyBuildingPanel() {
         enemyBuildingPanel.SetActive(false);
+    }
+
+    internal void ActivateMinePanel(Mine mine) {
+        minePanel.SetActive(true);
+        minePanel.GetComponent<MineGoldBar>().mine = mine;
+    }
+
+    internal void DeactivateMinePanel() {
+        minePanel.SetActive(false);
     }
 }

@@ -22,6 +22,9 @@ public class UnitData {
 
     [field: SerializeField]
     public int time {get; private set; }
+    
+    [field: SerializeField]
+    public Texture headshot {get; private set; }
 
     [field: SerializeField]
     public GameObject prefab {get; private set; }

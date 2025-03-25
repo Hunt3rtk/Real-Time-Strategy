@@ -4,5 +4,5 @@ using UnityEngine;
 public class PlayerData : ScriptableObject {
     public int lumber = 0;
 
-    public int metal = 0;
+    public int gold = 0;
 }

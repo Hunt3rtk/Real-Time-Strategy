@@ -17,24 +17,29 @@ MonoBehaviour:
     <id>k__BackingField: 0
     <cost>k__BackingField: 100
     <time>k__BackingField: 8
+    <headshot>k__BackingField: {fileID: 2800000, guid: 4f9dba5539a1bd6418eb5377c4bc2ede, type: 3}
     <prefab>k__BackingField: {fileID: 4097602841801809070, guid: 185fe989aa9d77842bfadaf4779670b5, type: 3}
   - <name>k__BackingField: Foot Soldier
     <id>k__BackingField: 1
     <cost>k__BackingField: 250
     <time>k__BackingField: 12
+    <headshot>k__BackingField: {fileID: 2800000, guid: 40ac989b563a84443b36bb568f48a834, type: 3}
     <prefab>k__BackingField: {fileID: 3107188385635177870, guid: acabbd8d53ccb214bba77b4655310011, type: 3}
   - <name>k__BackingField: Juggernaut
     <id>k__BackingField: 2
     <cost>k__BackingField: 400
     <time>k__BackingField: 15
+    <headshot>k__BackingField: {fileID: 2800000, guid: 276161bf7217d3140bfb8ab5708e8905, type: 3}
     <prefab>k__BackingField: {fileID: 8460176383309678666, guid: d5d5ab56e09596a4598f363e223a07b4, type: 3}
   - <name>k__BackingField: Wizard
     <id>k__BackingField: 3
     <cost>k__BackingField: 600
     <time>k__BackingField: 15
+    <headshot>k__BackingField: {fileID: 2800000, guid: 7b2b37afdaa493b4c97035fb4431b30e, type: 3}
     <prefab>k__BackingField: {fileID: 3659409694744942944, guid: 194ba7ffc2f5ed243b37bc801fbed47e, type: 3}
   - <name>k__BackingField: Drake
     <id>k__BackingField: 4
     <cost>k__BackingField: 800
     <time>k__BackingField: 20
+    <headshot>k__BackingField: {fileID: 2800000, guid: 2f5cd8f42130f814ab66b8eb67f9a863, type: 3}
     <prefab>k__BackingField: {fileID: 6960100091995132077, guid: 9a66ecf813bcd0e45b4b5e92ebf4e8b6, type: 3}

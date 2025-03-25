@@ -9,7 +9,7 @@ public class BuildingHealthBar : MonoBehaviour {
     private Slider healthBar;
 
     void Update() {
-        if (this.gameObject.activeSelf) {
+        if (this.gameObject.activeSelf && building != null) {
 
             //Update Health Bar
             healthBar.value = (float)building.Health / (float)building.maxHealth;

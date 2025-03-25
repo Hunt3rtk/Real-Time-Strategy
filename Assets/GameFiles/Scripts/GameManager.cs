@@ -172,7 +172,7 @@ public class GameManager : MonoBehaviour
                 case "Base":
                     ClearSelected();
                     panelObject = target;
-                    hudm.ActivateBasePanel(target.GetComponent<Building>());
+                    hudm.ActivateBasePanel(target.GetComponent<Building>(), target.GetComponent<Training>());
                     break;
                 //Barracks
                 case "Barracks":
@@ -229,6 +229,7 @@ public class GameManager : MonoBehaviour
                     }
                     break;
                 case "Mine":
+                hudm.ActivateMinePanel(target.GetComponent<Mine>());
                     foreach (Worker worker in selectedUnits) {
                         if (worker == null) continue;
                         AudioManager.Instance.Play(SoundType.Command);
@@ -382,13 +383,12 @@ public class GameManager : MonoBehaviour
 
         AudioManager.Instance.Play(SoundType.PurchaseSuccess);
 
-        buildingManager.RemoveMetal(units.unitDatas[id].cost);
-    
+        buildingManager.RemoveGold(units.unitDatas[id].cost);
+
         yield return WaitUnitTime(id);
 
         GameObject newUnit = Instantiate(units.unitDatas[id].prefab);
         Unit unit = newUnit.GetComponent<Unit>();
-
         NavMeshHit hit;
         NavMesh.SamplePosition(building.position, out hit, 100f, NavMesh.AllAreas);
         unit.agent.Warp(new Vector3(hit.position.x, hit.position.y+1f, hit.position.z));
@@ -423,13 +423,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    //Waits for the Unit Time
+    //Waits for the Unit Time and activates the progress bar
     private IEnumerator WaitUnitTime(int id) {
+        hudm.ActivateBaseProgressBar(units.unitDatas[id].headshot);
         yield return panelObject.GetComponent<Training>().StartTraining(units.unitDatas[id].time);
+        hudm.DeactivateBaseProgressBar(units.unitDatas[id].headshot);
     }
 
     private bool unitAffordable(int id) {
-        if(units.unitDatas[id].cost > buildingManager.GetMetal()) return false;
+        if(units.unitDatas[id].cost > buildingManager.GetGold()) return false;
         return true;
     }
 
