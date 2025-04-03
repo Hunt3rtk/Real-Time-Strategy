@@ -8,12 +8,13 @@ public class Training : MonoBehaviour {
     private float progressTime;
     private float progressTimeTotal;
 
-    void Update() {
-        while (training) {
+    void FixedUpdate() {
+        if (training) {
             if (progressTime < progressTimeTotal) {
-                progressTime += Time.deltaTime;
+                progressTime +=   Time.deltaTime;
             } else {
                 training = false;
+                progressTime = progressTimeTotal;
             }
         }
     }

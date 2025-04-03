@@ -25,6 +25,6 @@ public class Guard : MonoBehaviour {
 
         yield return unit.Attack(hitColliders[0]);
         
-        yield return CheckVisibility(visibilityRange);
+        StartCoroutine(CheckVisibility(visibilityRange));
     }
 }

@@ -823,8 +823,8 @@ MonoBehaviour:
   speed: 3
   cooldown: 1
   damage: 40
-  range: 10
-  visibilityRange: 20
+  range: 15
+  visibilityRange: 15
   animator: {fileID: 0}
   state: 0
   guard: {fileID: 0}

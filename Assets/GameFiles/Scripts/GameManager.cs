@@ -6,7 +6,6 @@ using System.Collections;
 using UnityEngine.AI;
 using TMPro;
 using static AudioManager;
-//using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -366,7 +365,7 @@ public class GameManager : MonoBehaviour
     // Unit Purchase Coroutine
     public IEnumerator UnitPurchase(int id, Transform building) {
 
-        if(panelObject.GetComponent<Training>().isTraining()) {
+        if(building.GetComponent<Training>().isTraining()) {
             AudioManager.Instance.Play(SoundType.PurchaseFail);
             yield break;
         }
@@ -385,6 +384,8 @@ public class GameManager : MonoBehaviour
 
         buildingManager.RemoveGold(units.unitDatas[id].cost);
 
+        hudm.UpdateUnitCount(++unitCount);
+
         yield return WaitUnitTime(id);
 
         GameObject newUnit = Instantiate(units.unitDatas[id].prefab);
@@ -398,12 +399,10 @@ public class GameManager : MonoBehaviour
             newWorker.home = this.home;
             newWorker.bm = buildingManager;
         }
-
-        hudm.UpdateUnitCount(++unitCount);
     }
 
     // Activate Escape Input
-    public void ActivateEscape() {
+    public void ActivatePause() {
         hudm.ActivateMenuPanel();
         SetStatePause();
     }

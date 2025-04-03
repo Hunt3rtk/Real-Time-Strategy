@@ -1973,7 +1973,7 @@ MonoBehaviour:
   speed: 3
   cooldown: 1.5
   damage: 40
-  range: 2
+  range: 6
   visibilityRange: 10
   animator: {fileID: 0}
   state: 0

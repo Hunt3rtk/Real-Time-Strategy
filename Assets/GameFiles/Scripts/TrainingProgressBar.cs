@@ -9,9 +9,8 @@ public class TrainingProgressBar : MonoBehaviour {
     [SerializeField]
     private Slider progressBar;
 
-    void Update() {
+    void FixedUpdate() {
         if (this.gameObject.activeSelf && training != null) {
-            Debug.Log(training.GetProgress());
             // Update Gold Bar to show remaining percentage
             progressBar.value = training.GetProgress();
         }

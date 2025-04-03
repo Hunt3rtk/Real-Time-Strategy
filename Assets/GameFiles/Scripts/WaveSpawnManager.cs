@@ -44,6 +44,7 @@ public class WaveSpawnManager : MonoBehaviour {
 
     void FixedUpdate() {
         if (FindFirstObjectByType<Enemy>() == null && waves.Count <= waveIndex) {
+            Time.timeScale = 0;
             victoryScreen.SetActive(true);
         } else if (FindFirstObjectByType<Enemy>() == null) {
             if (!musicChange) {
@@ -65,6 +66,9 @@ public class WaveSpawnManager : MonoBehaviour {
 
     void SpawnWave() {
         foreach (Batch batch in waves[waveIndex].batches) {
+            if (batch.spawner >= spawners.Length || spawners[batch.spawner].activeSelf == false) {
+                continue;
+            }
             for (int i = 0; i < batch.enemyOne; i++) {
                 SpawnUnit(0, spawners[batch.spawner].transform);
             }

@@ -146,9 +146,11 @@ public class HUDManager : MonoBehaviour {
     public void ActivateBaseProgressBar(Texture headshot) {
         basePanel.GetComponent<TrainingProgressBar>().unitHeadshot = headshot;
         basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
+        basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
     }
 
         public void DeactivateBaseProgressBar(Texture headshot) {
+        basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
         basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
     }
 

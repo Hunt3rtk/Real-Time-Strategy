@@ -123,6 +123,7 @@ public class Unit : MonoBehaviour {
                     agent.SetDestination(agent.transform.position);
                     animator.SetBool("isAttacking", true);
                     AudioManager.Instance.Play(attackSound);
+                    Debug.Log("Attacking " + targetUnit.unitName + " at time " + Time.time);
                     targetUnit.Health -= damage;
                     yield return new WaitForSecondsRealtime(cooldown);
                 } else {
@@ -148,12 +149,6 @@ public class Unit : MonoBehaviour {
 
         state = State.Idle;
         animator.SetBool("isAttacking", false);
-
-        try {
-            StartCoroutine(guard.CheckVisibility(visibilityRange));
-        } catch {
-            Debug.Log("Guard is null");
-        }
     }
 
     public Vector3 PositionNormailze(Vector3 destination) {

@@ -151,6 +151,14 @@
       "version": "2.0.0",
       "source": "builtin"
     },
+    "com.unity.visualeffectgraph@17.0.3": {
+      "name": "com.unity.visualeffectgraph",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.visualeffectgraph",
+      "fingerprint": "2f1a0614887f23118a565e0ecff45661c0d5b5fe",
+      "editorCompatibility": "6000.0.0a1",
+      "version": "17.0.3",
+      "source": "builtin"
+    },
     "com.unity.visualscripting@1.9.4": {
       "name": "com.unity.visualscripting",
       "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.visualscripting",
@@ -369,14 +377,6 @@
       "version": "1.0.0",
       "source": "builtin"
     },
-    "com.unity.ext.nunit@2.0.5": {
-      "name": "com.unity.ext.nunit",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.ext.nunit",
-      "fingerprint": "60ef35ffd3cd5e2f5c8887a4a4ca6148854cd092",
-      "editorCompatibility": "2019.4.0a1",
-      "version": "2.0.5",
-      "source": "registry"
-    },
     "com.unity.render-pipelines.core@17.0.3": {
       "name": "com.unity.render-pipelines.core",
       "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.render-pipelines.core",
@@ -384,6 +384,14 @@
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
       "source": "builtin"
+    },
+    "com.unity.ext.nunit@2.0.5": {
+      "name": "com.unity.ext.nunit",
+      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.ext.nunit",
+      "fingerprint": "60ef35ffd3cd5e2f5c8887a4a4ca6148854cd092",
+      "editorCompatibility": "2019.4.0a1",
+      "version": "2.0.5",
+      "source": "registry"
     },
     "com.unity.searcher@4.9.2": {
       "name": "com.unity.searcher",
@@ -397,14 +405,6 @@
       "name": "com.unity.render-pipelines.universal-config",
       "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.render-pipelines.universal-config",
       "fingerprint": "fa63c96d3e1af317d84d171cd6c0e0658ab159df",
-      "editorCompatibility": "6000.0.0a1",
-      "version": "17.0.3",
-      "source": "builtin"
-    },
-    "com.unity.visualeffectgraph@17.0.3": {
-      "name": "com.unity.visualeffectgraph",
-      "resolvedPath": "D:\\Users\\Hunter Klassen\\Unity Projects\\RTS\\Real-Time-Strategy\\Library\\PackageCache\\com.unity.visualeffectgraph",
-      "fingerprint": "2f1a0614887f23118a565e0ecff45661c0d5b5fe",
       "editorCompatibility": "6000.0.0a1",
       "version": "17.0.3",
       "source": "builtin"

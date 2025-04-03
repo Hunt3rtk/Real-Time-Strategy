@@ -27,7 +27,7 @@ public class InputManager : MonoBehaviour {
             playerInput.Gameplay.MultiSelect.performed += MultiSelect;
             playerInput.Gameplay.Select.performed += Select;
             playerInput.Gameplay.Move.performed += Move;
-            playerInput.Universal.Escape.performed += Escape;
+            playerInput.Universal.Escape.performed += Pause;
         }
 
         public void EnableBuilding() {
@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour {
             playerInput.Universal.Enable();
             playerInput.Building.Place.performed += Place;
             playerInput.Building.Cancel.performed += Cancel;
-            playerInput.Universal.Escape.performed += Escape;
+            playerInput.Universal.Escape.performed += Pause;
 
         }
 
@@ -50,7 +50,7 @@ public class InputManager : MonoBehaviour {
             playerInput.Gameplay.MultiSelect.performed -= MultiSelect;
             playerInput.Gameplay.Select.performed -= Select;
             playerInput.Gameplay.Move.performed -= Move;
-            playerInput.Universal.Escape.performed -= Escape;
+            playerInput.Universal.Escape.performed -= Pause;
         }
 
         public void DisableBuilding() {
@@ -58,7 +58,7 @@ public class InputManager : MonoBehaviour {
             playerInput.Universal.Disable();
             playerInput.Building.Place.performed -= Place;
             playerInput.Building.Cancel.performed -= Cancel;
-            playerInput.Universal.Escape.performed -= Escape;
+            playerInput.Universal.Escape.performed -= Pause;
         }
 
         public void DisablePause() {
@@ -112,8 +112,8 @@ public class InputManager : MonoBehaviour {
             gm.ActivateBuildingCancel();
         }
 
-        public void Escape(InputAction.CallbackContext ctx) {
-            gm.ActivateEscape();
+        public void Pause(InputAction.CallbackContext ctx) {
+            gm.ActivatePause();
         }
 
         public void Unpause(InputAction.CallbackContext ctx) {

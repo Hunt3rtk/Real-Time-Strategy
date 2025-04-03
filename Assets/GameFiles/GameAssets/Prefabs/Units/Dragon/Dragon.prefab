@@ -2073,11 +2073,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Drake
   health: 0
-  maxHealth: 600
+  maxHealth: 500
   speed: 5
   cooldown: 1
-  damage: 80
-  range: 8
+  damage: 60
+  range: 6
   visibilityRange: 15
   animator: {fileID: 0}
   state: 0

@@ -115,3 +115,29 @@ Update Mode: mergeDefaultDependencies
 
 The following packages were added:
   com.unity.postprocessing@3.4.0
+
+=== Wed Apr  2 20:02:44 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.render-pipelines.universal from version 14.0.10 to 17.0.3
+  com.unity.shadergraph from version 14.0.10 to 17.0.3
+  com.unity.visualeffectgraph from version 14.0.10 to 17.0.3
+
+=== Wed Apr  2 20:02:44 2025
+
+Packages were changed.
+Update Mode: mergeDefaultDependencies
+
+The following packages were added:
+  com.unity.visualeffectgraph@17.0.3
+
+=== Wed Apr  2 20:04:24 2025
+
+Packages were changed.
+Update Mode: updateDependencies
+
+The following packages were updated:
+  com.unity.shadergraph from version 14.0.11 to 17.0.3

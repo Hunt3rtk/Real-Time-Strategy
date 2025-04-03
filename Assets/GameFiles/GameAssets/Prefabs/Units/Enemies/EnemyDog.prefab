@@ -2112,8 +2112,8 @@ MonoBehaviour:
   maxHealth: 100
   speed: 5
   cooldown: 1
-  damage: 5
-  range: 2
+  damage: 15
+  range: 4
   visibilityRange: 10
   animator: {fileID: 0}
   state: 0

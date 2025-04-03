@@ -19564,10 +19564,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5867677698685074518, guid: b79c5ed0162ba84488a7ff870f5604ab, type: 3}
-      propertyPath: m_TagString
-      value: DestroyedBuilding
-      objectReference: {fileID: 0}
     - target: {fileID: 5871953840664908331, guid: b79c5ed0162ba84488a7ff870f5604ab, type: 3}
       propertyPath: m_Name
       value: TreeParent
@@ -30171,6 +30167,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1967659924}
     - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
       propertyPath: 'spawners.Array.data[0]'
       value: 
       objectReference: {fileID: 919132148184357899}
@@ -30184,7 +30184,43 @@ PrefabInstance:
       objectReference: {fileID: 650467933}
     - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
       propertyPath: waves.Array.data[0].restTime
-      value: 120
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.data[0].batches.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.data[0].batches.Array.data[0].spawner
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.data[0].batches.Array.data[1].spawner
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.data[0].batches.Array.data[0].enemyOne
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.data[0].batches.Array.data[0].enemyTwo
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.data[0].batches.Array.data[1].enemyOne
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.data[0].batches.Array.data[1].enemyTwo
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.data[1].batches.Array.data[1].enemyOne
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5584589284321219256, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
+      propertyPath: waves.Array.data[1].batches.Array.data[1].enemyTwo
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5696669022266692081, guid: 90782e56fd0c08f4a8b02d73f4481b86, type: 3}
       propertyPath: m_LocalPosition.x
@@ -30271,10 +30307,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoldTitle
       objectReference: {fileID: 0}
+    - target: {fileID: 1599665735365874601, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1599665735365874601, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1645081139569684058, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 428744009}
+    - target: {fileID: 2028795364282995054, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066692959504481443, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066692959504481443, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2066692959504481443, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2632974679696211700, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
       propertyPath: m_Name
       value: 'GoldCount '
@@ -30375,6 +30435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GoldTitlePanel
       objectReference: {fileID: 0}
+    - target: {fileID: 4755069564560821517, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5111822443251187661, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
       propertyPath: m_Value
       value: 0
@@ -30403,6 +30467,10 @@ PrefabInstance:
       propertyPath: goldObject
       value: 
       objectReference: {fileID: 805624332}
+    - target: {fileID: 7881012991869304554, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8437398646019669705, guid: 0fa40178807006f48903ac2a5ab03922, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
