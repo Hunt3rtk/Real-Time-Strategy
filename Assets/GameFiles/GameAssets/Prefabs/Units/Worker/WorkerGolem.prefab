@@ -1089,6 +1089,7 @@ GameObject:
   - component: {fileID: 9205529005019812373}
   - component: {fileID: 8625091880169725383}
   - component: {fileID: 7084603908505937756}
+  - component: {fileID: -3414357777157953326}
   m_Layer: 10
   m_Name: WorkerGolem
   m_TagString: Worker
@@ -1199,18 +1200,40 @@ MonoBehaviour:
   damage: 0
   range: 4
   visibilityRange: 15
-  animator: {fileID: 0}
   state: 0
-  guard: {fileID: 0}
   agent: {fileID: 0}
   mineTime: 2
   chopTime: 2
-  metalAmount: 100
+  goldAmount: 100
   lumberAmount: 100
   home: {fileID: 0}
   bm: {fileID: 0}
   carryingLumber: 0
-  carryingMetal: 0
+  carryingGold: 0
+--- !u!114 &-3414357777157953326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097602841801809070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91870b0bd549872489dac3cae1c49b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
+  WalkEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
+  WorkEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
+  DeathEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
 --- !u!1 &4438692658498888823
 GameObject:
   m_ObjectHideFlags: 0

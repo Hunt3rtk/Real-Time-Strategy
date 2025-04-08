@@ -19,7 +19,7 @@ public class Unit : MonoBehaviour {
         set {
             health = value;
             if (health > maxHealth) health = maxHealth;
-            if (health <= 0) Kill();
+            if (health <= 0) StartCoroutine(Kill());
         }
     }
     public float maxHealth;
@@ -28,13 +28,12 @@ public class Unit : MonoBehaviour {
     public float damage;
     public float range;
     public float visibilityRange;
-    public Animator animator;
+    internal UnitAnimationPlayer animationPlayer;
 
     [SerializeField]
     internal State state;
 
-    [SerializeField]
-    internal Guard guard;
+    private Guard guard;
 
     internal SoundType selectSound;
     internal SoundType commandSound;
@@ -44,6 +43,8 @@ public class Unit : MonoBehaviour {
 
     [HideInInspector]
     public NavMeshAgent agent;
+
+    private bool iscooldown = false;
 
 
     public enum State {
@@ -60,16 +61,51 @@ public class Unit : MonoBehaviour {
     void Awake() {
         agent = GetComponent<NavMeshAgent>();
         guard = GetComponent<Guard>();
-        animator = GetComponent<Animator>();
+        animationPlayer = GetComponent<UnitAnimationPlayer>();
         Health = maxHealth;
     }
 
+    public virtual void SetStateIdle() {
+        state = State.Idle;
+        agent.isStopped = true;
+        //agent.ResetPath();
+        animationPlayer.StopWalk();
+    }
+
+    public virtual void SetStateMoving() {
+        state = State.Moving;
+        agent.isStopped = false;
+        animationPlayer.PlayWalk();
+    }
+
+    public virtual void SetStateDead() {
+        state = State.Dead;
+        agent.isStopped = true;
+        animationPlayer.PlayDeath();
+    }
+
+    public void SetStateAttack( Unit targetUnit, Building targetBuilding = null) {
+        this.transform.LookAt((targetBuilding != null) ? targetBuilding.transform.position : targetUnit.transform.position);
+        animationPlayer.PlayAttack();
+        StartCoroutine(AudioManager.Instance.Play(attackSound));
+        if (targetBuilding != null) {
+            targetBuilding.Health -= damage;
+        } else {
+            targetUnit.Health -= damage;
+        }
+    }
+    
+
     public virtual void MoveStandAlone(Vector3 destination) {
+
         StopAllCoroutines();
         StartCoroutine(Move(destination));
     }
 
     public virtual void AttackStandAlone(Collider target) {
+
+        if (iscooldown) return;
+
         StopAllCoroutines();
         StartCoroutine(Attack(target));
     }
@@ -82,8 +118,7 @@ public class Unit : MonoBehaviour {
             yield return new WaitForSecondsRealtime(.1f);
         }
 
-        state = State.Moving;
-        animator.SetBool("isWalking", true);
+        SetStateMoving();
 
         yield return null;
 
@@ -91,8 +126,7 @@ public class Unit : MonoBehaviour {
             yield return new WaitForSecondsRealtime(.2f);
         }
 
-        state = State.Idle;
-        animator.SetBool("isWalking", false);
+        SetStateIdle();
 
         try {
             StartCoroutine(guard.CheckVisibility(visibilityRange));
@@ -103,69 +137,74 @@ public class Unit : MonoBehaviour {
     }
 
     public IEnumerator Attack(Collider target) {
-        state = State.Attacking;
         Unit targetUnit = target.GetComponent<Unit>();
-        Building targetBuilding;
-
-        try {
-            targetBuilding = target.GetComponent<Building>();
-        } catch {
-            targetBuilding = null;
-        }
+        Building targetBuilding = target.GetComponent<Building>();
 
         if (targetBuilding == null) {
             while (targetUnit.Health > 0) {
 
-                agent.SetDestination(PositionNormailze(target.transform.position));
-                yield return null;
+                yield return agent.SetDestination(PositionNormailze(target.transform.position));
+                SetStateMoving();
 
-                if (agent.remainingDistance <= range) {
-                    agent.SetDestination(agent.transform.position);
-                    animator.SetBool("isAttacking", true);
-                    AudioManager.Instance.Play(attackSound);
-                    Debug.Log("Attacking " + targetUnit.unitName + " at time " + Time.time);
-                    targetUnit.Health -= damage;
-                    yield return new WaitForSecondsRealtime(cooldown);
-                } else {
-                    yield return new WaitForSecondsRealtime(.2f);
+                while (agent.remainingDistance <= range) {
+                    
+                    SetStateIdle();
+
+                    SetStateAttack(targetUnit);
+
+                    yield return CooldownTimer(cooldown);
                 }
+
+                yield return new WaitForSeconds(.2f);
             }
         } else {
             while (targetBuilding.Health > 0) {
 
-                agent.SetDestination(PositionNormailze(target.transform.position));
+                yield return agent.SetDestination(PositionNormailze(target.transform.position));
 
-                while (agent.remainingDistance > range) {
-                    animator.SetBool("isAttacking", false);
-                    animator.SetBool("isWalking", true);
-                    yield return new WaitForSecondsRealtime(.2f);
+                while (agent.remainingDistance <= range) {
+
+                    SetStateIdle();
+                    
+                    SetStateAttack(null, targetBuilding);
+
+                    yield return CooldownTimer(cooldown);
                 }
 
-                animator.SetBool("isAttacking", true);
-                targetBuilding.Health -= damage;
-                yield return new WaitForSecondsRealtime(cooldown);
+                SetStateMoving();
+                yield return new WaitForSecondsRealtime(.2f);
             }
         }
 
-        state = State.Idle;
-        animator.SetBool("isAttacking", false);
+        SetStateIdle();
     }
 
     public Vector3 PositionNormailze(Vector3 destination) {
         NavMeshHit hit;
-        if (NavMesh.SamplePosition(destination, out hit, 10f, NavMesh.AllAreas)) {
+        if (NavMesh.SamplePosition(destination, out hit, 50f, NavMesh.AllAreas)) {
             return hit.position;
         }
-        return Vector3.zero;
+        return Vector3.one * 1000f;
     }
 
-    private void Kill() {
-        AudioManager.Instance.Play(deathSound);
-        animator.SetBool("isDead", true);
-        Destroy(this.gameObject);
+    public IEnumerator CooldownTimer(float cooldown) {
+        iscooldown = true;
+        yield return new WaitForSecondsRealtime(cooldown);
+        iscooldown = false;
+    }
+
+    private IEnumerator Kill() {
+        StartCoroutine(AudioManager.Instance.Play(deathSound));
+        //TODO death animation
+        SetStateDead();
+
         if(gameObject.tag == "Unit") {
             int unitCount = FindAnyObjectByType<GameManager>().unitCount -= 1;
             FindAnyObjectByType<HUDManager>().UpdateUnitCount(unitCount);
         }
+        this.gameObject.tag = "Dead";
+        //yield return new WaitForSecondsRealtime(30f);
+        Destroy(this.gameObject);
+        yield return null;
     }
 }

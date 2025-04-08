@@ -116,11 +116,11 @@ public class BuildingManager : MonoBehaviour {
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
         if (id == 3) {
             SetCellToRoad(gridPosition);
-            AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete);
+            StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete));
         } else if (id == 1) {
-            AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct);
+            StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct));
         } else {
-            AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct);
+            StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct));
         }
 
         gridPosition.z = 0;

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
- 
+using System.Collections;
+
 public class AudioManager : MonoBehaviour {
     public enum SoundType {
 
@@ -64,6 +65,8 @@ public class AudioManager : MonoBehaviour {
     public class Sound {
         public SoundType Type;
         public AudioClip Clip;
+
+        public float delay = 0f;
  
         [Range(0f, 1f)]
         public float Volume = 1f;
@@ -97,12 +100,12 @@ public class AudioManager : MonoBehaviour {
  
  
     //Call this method to play a sound
-    public void Play(SoundType type) {
+    public IEnumerator Play(SoundType type) {
         //Make sure there's a sound assigned to your specified type
         if (!_soundDictionary.TryGetValue(type, out Sound s))
         {
             Debug.LogWarning($"Sound type {type} not found!");
-            return;
+            yield return null;
         }
 
         //Creates a new sound object
@@ -112,6 +115,8 @@ public class AudioManager : MonoBehaviour {
         //Assigns your sound properties
         audioSrc.clip = s.Clip;
         audioSrc.volume = s.Volume;
+
+        yield return new WaitForSecondsRealtime(s.delay);
 
         //Play the sound
         audioSrc.Play();

@@ -154,7 +154,7 @@ public class GameManager : MonoBehaviour
                     panelObject = target;
                     hudm.ActivateEnemyBuildingPanel(target.GetComponent<Building>());
                     foreach (Unit ally in selectedUnits) {
-                        AudioManager.Instance.Play(SoundType.Command);
+                        StartCoroutine(AudioManager.Instance.Play(SoundType.Command));
                         ally.AttackStandAlone(hit.collider);
                     }
                     break;
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
                     panelObject = target;
                     hudm.ActivateUnitPanel(target.GetComponent<Unit>());
                     foreach (Unit ally in selectedUnits) {
-                        AudioManager.Instance.Play(SoundType.Command);
+                        StartCoroutine(AudioManager.Instance.Play(SoundType.Command));
                         ally.AttackStandAlone(hit.collider);
                     }
                     break;
@@ -213,7 +213,7 @@ public class GameManager : MonoBehaviour
                 case "Juggernaut":
                 case "Wizard":
                 case "Dragon":
-                    AudioManager.Instance.Play(SoundType.Select);
+                    StartCoroutine(AudioManager.Instance.Play(SoundType.Select));
                     //unit = hit.collider.GetComponentInParent<Unit>();
                     hudm.ActivateUnitPanel(target.GetComponent<Unit>());
                     ClearSelected();
@@ -223,7 +223,7 @@ public class GameManager : MonoBehaviour
                 case "Tree":
                     foreach (Worker worker in selectedUnits) {
                         if (worker == null) continue;
-                        AudioManager.Instance.Play(SoundType.Command);
+                        StartCoroutine(AudioManager.Instance.Play(SoundType.Command));
                         worker.StartChop(target.GetComponent<Tree>());
                     }
                     break;
@@ -231,7 +231,7 @@ public class GameManager : MonoBehaviour
                 hudm.ActivateMinePanel(target.GetComponent<Mine>());
                     foreach (Worker worker in selectedUnits) {
                         if (worker == null) continue;
-                        AudioManager.Instance.Play(SoundType.Command);
+                        StartCoroutine(AudioManager.Instance.Play(SoundType.Command));
                         worker.StartMine(target.GetComponent<Mine>());
                     }
                     break;
@@ -260,7 +260,7 @@ public class GameManager : MonoBehaviour
             try {
                 Unit unit = hit.collider.GetComponentInParent<Unit>();
                 if (unit.gameObject.layer != 8) {
-                    AudioManager.Instance.Play(SoundType.Select);
+                    StartCoroutine(AudioManager.Instance.Play(SoundType.Select));
                     selectedUnits.Add(unit);
                     AddIndicator(unit);
                 }
@@ -279,7 +279,7 @@ public class GameManager : MonoBehaviour
         if (Physics.Raycast(ray, out hit)) {
             foreach (Unit unit in selectedUnits) {
                 if (unit == null) continue;
-                AudioManager.Instance.Play(SoundType.Command);
+                StartCoroutine(AudioManager.Instance.Play(SoundType.Command));
                 unit.MoveStandAlone(hit.point);
             }
         }
@@ -308,12 +308,12 @@ public class GameManager : MonoBehaviour
         }
 
         if(!buildingManager.isAffordable(id)) {
-            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             return;
         }
 
         if (!buildingManager.isRoadAdjacent()) {
-            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             return;
         }
 
@@ -326,8 +326,8 @@ public class GameManager : MonoBehaviour
 
         ActivateBuildingCancel();
 
-        AudioManager.Instance.Play(SoundType.Command);
-        AudioManager.Instance.Play(SoundType.PurchaseSuccess);
+        StartCoroutine(AudioManager.Instance.Play(SoundType.Command));
+        StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseSuccess));
         worker.StartConstruct(mousePosition, id);
     }
 
@@ -337,14 +337,14 @@ public class GameManager : MonoBehaviour
         int id = buildingManager.GetSelectedObjectIndex();
 
         if(!buildingManager.isAffordable(id)) {
-            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             return;
         }
 
         int roadNode = buildingManager.isRoadAdjacentForRoad();
 
         if (roadNode == -1) {
-            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             return;
         }
 
@@ -353,7 +353,7 @@ public class GameManager : MonoBehaviour
 
     //Activate Repair
     private void ActivateRepair(Worker worker, Building building) {
-        AudioManager.Instance.Play(SoundType.Command);
+        StartCoroutine(AudioManager.Instance.Play(SoundType.Command));
         worker.StartRepair(building);
     }
 
@@ -366,21 +366,21 @@ public class GameManager : MonoBehaviour
     public IEnumerator UnitPurchase(int id, Transform building) {
 
         if(building.GetComponent<Training>().isTraining()) {
-            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             yield break;
         }
 
         if(!unitAffordable(id)) {
-            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             yield break;
         }
 
         if(unitCount >= unitSlots) {
-            AudioManager.Instance.Play(SoundType.PurchaseFail);
+            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             yield break;
         }
 
-        AudioManager.Instance.Play(SoundType.PurchaseSuccess);
+        StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseSuccess));
 
         buildingManager.RemoveGold(units.unitDatas[id].cost);
 

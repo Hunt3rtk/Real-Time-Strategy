@@ -2005,6 +2005,7 @@ GameObject:
   - component: {fileID: 8002700620377639887}
   - component: {fileID: 6014525812511980357}
   - component: {fileID: 8598138636469471101}
+  - component: {fileID: 6262113687737183099}
   m_Layer: 8
   m_Name: EnemyDog
   m_TagString: EnemyUnit
@@ -2111,13 +2112,11 @@ MonoBehaviour:
   health: 0
   maxHealth: 100
   speed: 5
-  cooldown: 1
+  cooldown: 1.2
   damage: 15
   range: 4
   visibilityRange: 10
-  animator: {fileID: 0}
   state: 0
-  guard: {fileID: 0}
   agent: {fileID: 0}
 --- !u!114 &8598138636469471101
 MonoBehaviour:
@@ -2131,6 +2130,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e4fc2216f55634690cae498409583f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6262113687737183099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075505829792904198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91870b0bd549872489dac3cae1c49b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
+  WalkEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
+  WorkEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
+  DeathEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
 --- !u!1 &9165347011315982463
 GameObject:
   m_ObjectHideFlags: 0

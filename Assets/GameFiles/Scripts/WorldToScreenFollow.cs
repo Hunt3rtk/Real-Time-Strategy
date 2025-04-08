@@ -8,10 +8,11 @@ public class WorldToScreenFollow : MonoBehaviour
     public Unit unit;
 
     // Update is called once per frame
-    void Update()
-    {
-        if (unit.gameObject.IsDestroyed()) Destroy(gameObject);
-        
-        gameObject.transform.position = Camera.main.WorldToScreenPoint(unit.gameObject.transform.position);
+    void Update() {
+        if (unit == null) {
+            Destroy(gameObject);
+        } else {
+            gameObject.transform.position = Camera.main.WorldToScreenPoint(unit.gameObject.transform.position);
+        }
     }
 }

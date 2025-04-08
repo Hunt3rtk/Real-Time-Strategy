@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour {
     }
 
     private void AttackBase(Vector3 homePosition) {
+        //StopAllCoroutines();
         StartCoroutine(unit.Move(homePosition));
         StartCoroutine(CheckVisibility(visibilityRange));
     }

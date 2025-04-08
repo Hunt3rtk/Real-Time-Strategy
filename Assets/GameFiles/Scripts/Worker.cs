@@ -89,11 +89,11 @@ public class Worker : Unit {
         while (agent.remainingDistance > agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
-        animator.SetBool("isWorking", true);
-        AudioManager.Instance.Play(chopSound);
+        animationPlayer.PlayWork();
+        StartCoroutine(AudioManager.Instance.Play(chopSound));
         yield return new WaitForSecondsRealtime(chopTime);
         tree.ChopTree();
-        animator.SetBool("isWorking", false);
+        animationPlayer.StopWork();
         carryingLumber = true;
         yield return Move(home.position);
         while (agent.remainingDistance >  agent.stoppingDistance) {
@@ -151,17 +151,17 @@ public class Worker : Unit {
 
         yield return Move(building.transform.position);
 
-        animator.SetBool("isWorking", true);
+        animationPlayer.PlayWork();
 
         while(building.Health < building.maxHealth) {
-            AudioManager.Instance.Play(constructSound);
+            StartCoroutine(AudioManager.Instance.Play(constructSound));
             yield return new WaitForSecondsRealtime(1.5f);
             building.Health += 100;
         }
 
         building.Repaired();
 
-        animator.SetBool("isWorking", false);
+        animationPlayer.StopWork();
         state = State.Idle;
 
         yield return new WaitForSecondsRealtime(.5f);

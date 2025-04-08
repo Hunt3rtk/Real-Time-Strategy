@@ -715,6 +715,7 @@ GameObject:
   - component: {fileID: 6343016123174104064}
   - component: {fileID: 5304000791197462211}
   - component: {fileID: 5188968245828771852}
+  - component: {fileID: 2790657109023042926}
   m_Layer: 10
   m_Name: Wizard
   m_TagString: Wizard
@@ -821,13 +822,11 @@ MonoBehaviour:
   health: 0
   maxHealth: 150
   speed: 3
-  cooldown: 1
+  cooldown: 1.2
   damage: 40
   range: 15
   visibilityRange: 15
-  animator: {fileID: 0}
   state: 0
-  guard: {fileID: 0}
   agent: {fileID: 0}
 --- !u!114 &5188968245828771852
 MonoBehaviour:
@@ -841,6 +840,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0703d62339808d84990ec5dcbca384f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2790657109023042926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3659409694744942944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91870b0bd549872489dac3cae1c49b40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AttackEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
+  WalkEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
+  WorkEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
+  DeathEffect:
+    particleSystem: {fileID: 0}
+    delay: 0
 --- !u!1 &3918885240970858336
 GameObject:
   m_ObjectHideFlags: 0

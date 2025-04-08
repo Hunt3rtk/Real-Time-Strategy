@@ -25,6 +25,7 @@ TagManager:
   - Juggernaut
   - Wizard
   - Dragon
+  - Dead
   layers:
   - Default
   - TransparentFX
