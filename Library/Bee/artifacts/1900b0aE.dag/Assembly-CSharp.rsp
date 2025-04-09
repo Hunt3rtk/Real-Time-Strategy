@@ -460,6 +460,7 @@
 "Assets/GameFiles/Scripts/BuildingManager.cs"
 "Assets/GameFiles/Scripts/CameraControl.cs"
 "Assets/GameFiles/Scripts/Chalet.cs"
+"Assets/GameFiles/Scripts/Dog.cs"
 "Assets/GameFiles/Scripts/Drake.cs"
 "Assets/GameFiles/Scripts/Enemy.cs"
 "Assets/GameFiles/Scripts/FPSCounter.cs"

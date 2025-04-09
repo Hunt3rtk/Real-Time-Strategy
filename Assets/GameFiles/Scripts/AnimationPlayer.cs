@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class AnimationPlayer : MonoBehaviour {
 
@@ -13,11 +14,15 @@ public class AnimationPlayer : MonoBehaviour {
 [System.Serializable]
 public class VisualEffect {
     public ParticleSystem particleSystem;
+
     public float delay;
 
-    public IEnumerator Play() {
+    public IEnumerator Play(Transform transform = null) {
         if (particleSystem != null) {
             yield return new WaitForSeconds(delay);
+            if (transform != null) {
+                particleSystem.transform.position = transform.position;
+            }
             particleSystem.Play();
         }
     }

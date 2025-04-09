@@ -100,7 +100,7 @@ MonoBehaviour:
   - '{}'
   - '{}'
   - '{}'
-  - '{"m_ShowAlternatingRowBackgrounds":0,"serializedVirtualizationData":{"scrollOffset":{"x":0.0,"y":132.0},"firstVisibleIndex":5,"contentPadding":110.0,"contentHeight":1037.0,"anchoredItemIndex":5,"anchorOffset":22.0},"m_SelectedIds":[]}'
+  - '{"m_ShowAlternatingRowBackgrounds":0,"serializedVirtualizationData":{"scrollOffset":{"x":0.0,"y":168.0},"firstVisibleIndex":7,"contentPadding":154.0,"contentHeight":1081.0,"anchoredItemIndex":7,"anchorOffset":14.0},"m_SelectedIds":[10]}'
   - '{"m_Value":0.0,"m_LowValue":0.0,"m_HighValue":0.0}'
   - '{}'
   - '{}'

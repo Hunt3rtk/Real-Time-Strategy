@@ -19,11 +19,11 @@ public class UnitAnimationPlayer : AnimationPlayer {
 
 
     // Function to play attack animation
-    public void PlayAttack() {
+    public void PlayAttack(Transform transform = null) {
         if (animator != null)
         {
             if (AttackEffect != null) {
-                StartCoroutine(AttackEffect.Play());
+                StartCoroutine(AttackEffect.Play(transform));
             }
             animator.ResetTrigger("Attack");
             animator.SetTrigger("Attack");

@@ -760,7 +760,7 @@ GameObject:
   - component: {fileID: 5225830812671605796}
   - component: {fileID: 1026494424080134612}
   - component: {fileID: 206760001096500424}
-  - component: {fileID: 3704818415921504430}
+  - component: {fileID: -8279984998895336698}
   - component: {fileID: 33793732799684978}
   - component: {fileID: 4593996001081804630}
   m_Layer: 8
@@ -854,7 +854,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3704818415921504430
+--- !u!114 &-8279984998895336698
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -863,7 +863,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3244548106817986489}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f9e421161ae0914b859e9df2e2f5b41, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a06b6754e8ba1e4b9abce3b678d4a95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   unitName: LizardWarrior

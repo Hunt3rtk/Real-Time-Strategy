@@ -8,4 +8,16 @@ public class Wizard : Unit {
         attackSound = AudioManager.SoundType.WizardAttack;
         deathSound = AudioManager.SoundType.WizardDeath;
     }
+
+    public override void SetStateAttack( Unit targetUnit, Building targetBuilding = null) {
+        this.transform.LookAt((targetBuilding != null) ? targetBuilding.transform.position : targetUnit.transform.position);
+        StartCoroutine(AudioManager.Instance.Play(attackSound));
+        if (targetBuilding != null) {
+            animationPlayer.PlayAttack(targetBuilding.transform);
+            targetBuilding.Health -= damage;
+        } else {
+            animationPlayer.PlayAttack(targetUnit.transform);
+            targetUnit.Health -= damage;
+        }
+    }
 }

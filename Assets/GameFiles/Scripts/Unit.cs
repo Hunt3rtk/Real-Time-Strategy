@@ -68,7 +68,7 @@ public class Unit : MonoBehaviour {
     public virtual void SetStateIdle() {
         state = State.Idle;
         agent.isStopped = true;
-        //agent.ResetPath();
+        agent.ResetPath();
         animationPlayer.StopWalk();
     }
 
@@ -84,7 +84,7 @@ public class Unit : MonoBehaviour {
         animationPlayer.PlayDeath();
     }
 
-    public void SetStateAttack( Unit targetUnit, Building targetBuilding = null) {
+    public virtual void SetStateAttack( Unit targetUnit, Building targetBuilding = null) {
         this.transform.LookAt((targetBuilding != null) ? targetBuilding.transform.position : targetUnit.transform.position);
         animationPlayer.PlayAttack();
         StartCoroutine(AudioManager.Instance.Play(attackSound));
@@ -146,7 +146,7 @@ public class Unit : MonoBehaviour {
                 yield return agent.SetDestination(PositionNormailze(target.transform.position));
                 SetStateMoving();
 
-                while (agent.remainingDistance <= range) {
+                if (agent.remainingDistance <= range) {
                     
                     SetStateIdle();
 
