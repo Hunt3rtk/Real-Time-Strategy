@@ -51,11 +51,11 @@ ExportedObj/
 *.VC.db
 
 # Unity3D generated meta files
-*.meta
-*.fbx.meta
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
+#*.meta
+#*.fbx.meta
+#*.pidb.meta
+#*.pdb.meta
+#*.mdb.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
@@ -83,3 +83,4 @@ Thumbs.db.meta
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+Library/ArtifactDB

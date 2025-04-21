@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 8404e328da8763440926e1d8723f9e55
+timeCreated: 1500949926
+licenseType: Store
+AudioImporter:
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 96359
+  packageName: Retro 8 Bit Sounds
+  packageVersion: 1.0
+  assetPath: Assets/Gamemaster Audio - Retro 8Bit Sounds/Weapons/retro_missle_bomb_drop_fall_03.wav
+  uploadId: 191839

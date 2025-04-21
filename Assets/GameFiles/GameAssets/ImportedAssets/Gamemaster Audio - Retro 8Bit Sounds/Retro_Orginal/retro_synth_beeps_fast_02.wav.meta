@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 062d6308a29ebc44b8d40d03599f0634
+timeCreated: 1500949890
+licenseType: Store
+AudioImporter:
+  serializedVersion: 6
+  defaultSettings:
+    loadType: 0
+    sampleRateSetting: 0
+    sampleRateOverride: 44100
+    compressionFormat: 1
+    quality: 1
+    conversionMode: 0
+  platformSettingOverrides: {}
+  forceToMono: 0
+  normalize: 1
+  preloadAudioData: 1
+  loadInBackground: 0
+  3D: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 96359
+  packageName: Retro 8 Bit Sounds
+  packageVersion: 1.0
+  assetPath: Assets/Gamemaster Audio - Retro 8Bit Sounds/Retro_Orginal/retro_synth_beeps_fast_02.wav
+  uploadId: 191839
