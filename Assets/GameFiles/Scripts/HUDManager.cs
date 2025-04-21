@@ -144,14 +144,38 @@ public class HUDManager : MonoBehaviour {
     }
 
     public void ActivateBaseProgressBar(Texture headshot) {
-        basePanel.GetComponent<TrainingProgressBar>().unitHeadshot = headshot;
-        basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(true);
-        basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(true);
+        ActivateProgressBar(headshot, basePanel);
     }
 
-        public void DeactivateBaseProgressBar(Texture headshot) {
-        basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).transform.GetChild(0).gameObject.SetActive(false);
-        basePanel.transform.GetChild(1).transform.GetChild(0).transform.GetChild(1).gameObject.SetActive(false);
+    public void DeactivateBaseProgressBar() {
+        DeactivateProgressBar(basePanel);
+    }
+
+    public void ActivateBarracksProgressBar(Texture headshot) {
+        ActivateProgressBar(headshot, barracksPanel);
+    }
+
+    public void DeactivateBarracksProgressBar() {
+        DeactivateProgressBar(barracksPanel);
+    }
+
+    private void ActivateProgressBar(Texture headshot, GameObject panel) {
+
+        TrainingProgressBar trainingProgressBar = panel.GetComponent<TrainingProgressBar>();
+
+        trainingProgressBar.unitHeadshot = headshot;
+
+        trainingProgressBar.progressBar.transform.parent.gameObject.SetActive(true);
+    }
+
+        private void DeactivateProgressBar(GameObject panel) {
+        TrainingProgressBar trainingProgressBar = panel.GetComponent<TrainingProgressBar>();
+
+        trainingProgressBar.progressBar.transform.parent.gameObject.SetActive(false);
+        trainingProgressBar.training = null;
+        trainingProgressBar.unitHeadshot = null;
+        trainingProgressBar.progressBar.value = 0;
+        
     }
 
     internal void DeactivateBasePanel() {

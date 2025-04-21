@@ -10,7 +10,7 @@ using static AudioManager;
 public class Worker : Unit {
     public float mineTime = 2f;
     public float chopTime = 2f;
-    public int goldAmount = 100;      // Changed from metalAmount
+    public int goldAmount = 100;
     public int lumberAmount = 100;
 
     private  SoundType chopSound;
@@ -20,7 +20,7 @@ public class Worker : Unit {
     public BuildingManager bm;
 
     public bool carryingLumber = false;
-    public bool carryingGold = false; // Changed from carryingMetal
+    public bool carryingGold = false;
 
     public void Start() {
         bm = GameObject.Find("BuildingManager").GetComponent<BuildingManager>();
@@ -75,11 +75,13 @@ public class Worker : Unit {
         if(mine.Gold < goldAmount) yield break;
         mine.Deduct(goldAmount);
         carryingGold = true;
+        animationPlayer.animator.SetBool("isCarryingGold", true);
         yield return Move(home.position);
         while (agent.remainingDistance >  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
         carryingGold = false;
+        animationPlayer.animator.SetBool("isCarryingGold", false);
         bm.AddGold(goldAmount);       // Changed from AddMetal
         StartMine(mine);
     }
@@ -95,12 +97,15 @@ public class Worker : Unit {
         tree.ChopTree();
         animationPlayer.StopWork();
         carryingLumber = true;
+        animationPlayer.animator.SetBool("isCarryingLumber", true);
+        StartCoroutine(AudioManager.Instance.Play(chopSound));
         yield return Move(home.position);
         while (agent.remainingDistance >  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
         bm.AddLumber(lumberAmount);
         carryingLumber = false;
+        animationPlayer.animator.SetBool("isCarryingLumber", false);
         yield return Move(tree.transform.position);
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, visibilityRange, LayerMask.GetMask("Tree"));
         colliders = colliders.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToArray();
@@ -113,8 +118,6 @@ public class Worker : Unit {
 
         state = State.Building;
 
-        //GameObject constructionSite = bm.PlaceConstructionSite(destination, id);
-
         bm.PurchaseBuilding(id);
 
         Building building = bm.PlaceBuilding(destination, id).transform.GetChild(0).GetComponent<Building>();
@@ -123,27 +126,7 @@ public class Worker : Unit {
         building.gameObject.transform.parent.transform.GetChild(0).gameObject.SetActive(false);
         building.gameObject.transform.parent.transform.GetChild(2).gameObject.SetActive(true);
 
-        //yield return Move(destination);
-
         StartRepair(building);
-
-        //animator.SetBool("isWorking", true);
-
-        //bm.PurchaseBuilding(id);
-
-        //yield return new WaitForSecondsRealtime(bm.GetBuildTime(id));
-
-        //yield return bm.PlaceBuilding(destination, id);
-
-        //Destroy(constructionSite, 0);
-
-        //yield return new WaitForSecondsRealtime(.5f);
-
-        // NavMeshHit hit;
-        // NavMesh.SamplePosition(transform.position, out hit, 10f, NavMesh.AllAreas);
-        // agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
-
-        // animator.SetBool("isWorking", false);
     }
 
     private IEnumerator Repair(Building building) {

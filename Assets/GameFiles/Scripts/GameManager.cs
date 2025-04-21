@@ -425,9 +425,9 @@ public class GameManager : MonoBehaviour
 
     //Waits for the Unit Time and activates the progress bar
     private IEnumerator WaitUnitTime(int id) {
-        //hudm.ActivateBaseProgressBar(units.unitDatas[id].headshot);
+        hudm.ActivateBaseProgressBar(units.unitDatas[id].headshot);
         yield return panelObject.GetComponent<Training>().StartTraining(units.unitDatas[id].time);
-        //hudm.DeactivateBaseProgressBar(units.unitDatas[id].headshot);
+        hudm.DeactivateBaseProgressBar();
     }
 
     private bool unitAffordable(int id) {

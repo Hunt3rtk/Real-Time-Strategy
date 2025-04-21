@@ -7,10 +7,10 @@ public class TrainingProgressBar : MonoBehaviour {
     public Texture unitHeadshot;
 
     [SerializeField]
-    private Slider progressBar;
+    public Slider progressBar;
 
     void FixedUpdate() {
-        if (this.gameObject.activeSelf && training != null) {
+        if (training != null) {
             // Update Gold Bar to show remaining percentage
             progressBar.value = training.GetProgress();
         }
