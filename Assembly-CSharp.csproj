@@ -84,6 +84,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_ExampleScript_01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMPro_InstructionOverlay.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\BuildingFlash.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Viewport.cs" />
     <Compile Include="Assets\GameFiles\GameAssets\ImportedAssets\Free Slash VFX\Demo\Scripts\Projectile.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Guard.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="Assets\GameFiles\GameAssets\ImportedAssets\Free Slash VFX\Demo\Scripts\CameraOrbit.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\DropdownSample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexColorCycler.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\DamageFlash.cs" />
     <Compile Include="Assets\GameFiles\GameAssets\ImportedAssets\Free Slash VFX\Demo\Scripts\ElementsShowCase.cs" />
     <Compile Include="Assets\GameFiles\Scripts\AnimationPlayer.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ObjectSpin.cs" />
@@ -137,6 +139,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextConsoleSimulator.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TeleType.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextEventCheck.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\BuildingAnimationPlayer.cs" />
     <Compile Include="Assets\GameFiles\Scripts\WaveSpawnManager.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Drake.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TextMeshProFloatingText.cs" />
@@ -163,7 +166,6 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\GameFiles\GameAssets\ImportedAssets\Free Slash VFX\Model\Katana\Katana License.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\SDFFunctions.hlsl" />
-    <None Include="Assets\Vefects\Zap VFX URP\Demo\Scene\Shaders\SH_Vefects_Grid_01.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Vefects\Zap VFX URP\_ Extra\Shaders\SH_Vefects_Extra_Billboard_01.shader" />
     <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
@@ -175,7 +177,6 @@
     <None Include="Assets\FX_Kandol_Pack\FX_lightning_II\Shaders\built-in\Flipbook_Effects_built-in.shader" />
     <None Include="Assets\GameFiles\GameAssets\ImportedAssets\RPGMonsterBundlePBR\HowToTestHDRP_URP.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\Vefects\Zap VFX URP\Demo\Resources\Shaders\SH_Vefects_URP_VFX_Character_Showoff.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\GameFiles\GameAssets\ImportedAssets\Fonts\OFL.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />

@@ -2269,6 +2269,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5977361873858336045}
     m_Modifications:
+    - target: {fileID: 457859927407456365, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.386832
+      objectReference: {fileID: 0}
+    - target: {fileID: 457859927407456365, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 753623866153647324, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.386832
+      objectReference: {fileID: 0}
+    - target: {fileID: 753623866153647324, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1030847346933751705, guid: d63ab59905def76478890340e405c2a4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2312,6 +2328,46 @@ PrefabInstance:
     - target: {fileID: 1079626333443190409, guid: d63ab59905def76478890340e405c2a4, type: 3}
       propertyPath: m_Name
       value: SlashVariant VFX
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919684810012566863, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.386832
+      objectReference: {fileID: 0}
+    - target: {fileID: 4919684810012566863, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469605628681064534, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.386832
+      objectReference: {fileID: 0}
+    - target: {fileID: 5469605628681064534, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7907424943063394927, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7907424943063394927, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 0.386832
+      objectReference: {fileID: 0}
+    - target: {fileID: 7907424943063394927, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8049406477978217064, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8049406477978217064, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8049406477978217064, guid: d63ab59905def76478890340e405c2a4, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

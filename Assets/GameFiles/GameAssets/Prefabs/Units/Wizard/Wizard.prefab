@@ -97,7 +97,6 @@ Transform:
   - {fileID: 5709552257256157964}
   - {fileID: 6964453156688067124}
   - {fileID: 3327787185872211963}
-  - {fileID: 4308803655260250060}
   m_Father: {fileID: 667302346981506732}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: -90}
 --- !u!1 &701434219714281190
@@ -126,8 +125,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701434219714281190}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -15, z: 0}
+  m_LocalRotation: {x: -0.5, y: 0.5, z: -0.5, w: 0.5}
+  m_LocalPosition: {x: 0, y: 0, z: 15}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -139,7 +138,7 @@ Transform:
   - {fileID: 4383841985332212685}
   - {fileID: 1139605607072131214}
   - {fileID: 222030126688745805}
-  m_Father: {fileID: 5185491877150682641}
+  m_Father: {fileID: 667302346981506732}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &3592967832124629731
 ParticleSystem:
@@ -5226,8 +5225,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.15
+      minMaxState: 0
+      scalar: 0.5
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -15092,8 +15091,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 4308803655260250060}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15179,8 +15178,8 @@ ParticleSystem:
     enabled: 1
     startLifetime:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 0.15
+      minMaxState: 0
+      scalar: 0.75
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -20284,6 +20283,7 @@ Transform:
   - {fileID: 5185491877150682641}
   - {fileID: 3681753856330373610}
   - {fileID: 5348904520824993214}
+  - {fileID: 4308803655260250060}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &75576721588958840
@@ -30503,7 +30503,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7106155191540662261
 Transform:
   m_ObjectHideFlags: 0
@@ -30575,7 +30575,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 5.68e-43, y: 3.1310165e+12, z: 5.68e-43, w: NaN}
+  m_BoundingSphereOverride: {x: 0, y: NaN, z: 4.5911e-41, w: -1.0301346e+11}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0

@@ -17,20 +17,30 @@ public class BuildingManager : MonoBehaviour {
     //Building Variables
     [SerializeField]
     private GameObject cellIndicator;
-    private GameObject visualObject;
+    public GameObject visualObject;
     [SerializeField]
     internal Grid grid;
     private byte [,] cellRoadGrid = new byte [100,100]; // 0 = not road, 1 = road
     private int selectedObjectIndex = -1;
     public Material transparent;
+    public Material flashColor;
+
     [SerializeField]
     private ObjectsDataBaseSO database;
 
+    private BuildingAnimationPlayer buildingAnimationPlayer;
+
     private List<Transform> nodes = new List<Transform>();
 
+    void Awake() {
+        //hudm.UpdateLumber(GetLumber());
+        //hudm.UpdateGold(GetGold());
+
+        buildingAnimationPlayer = GetComponent<BuildingAnimationPlayer>();
+    }
+
     void Start() {
-        hudm.UpdateLumber(GetLumber());
-        hudm.UpdateGold(GetGold());
+
     }
 
     void Update() {
@@ -88,7 +98,13 @@ public class BuildingManager : MonoBehaviour {
         cellIndicator.SetActive(true);
         visualObject = Instantiate(database.objectsData[selectedObjectIndex].prefab, cellIndicator.transform);
         visualObject.transform.localPosition = Vector3.zero;
-        visualObject.GetComponentInChildren<MeshRenderer>().material = transparent;
+        List<Material> mats = new List<Material>
+        {
+            transparent,
+            flashColor
+        };
+        visualObject.GetComponentInChildren<MeshRenderer>().SetMaterials(mats);
+        visualObject.AddComponent<BuildingFlash>();
         Transform obj = visualObject.transform.GetChild(0);
 
         // Getting the nodes cell position from the building so that we can check if the cells contain a road and therefore placeable
@@ -114,13 +130,19 @@ public class BuildingManager : MonoBehaviour {
     public GameObject PlaceBuilding(Vector3 mousePosition, int id) {
         
         Vector3Int gridPosition = grid.WorldToCell(mousePosition);
+
         if (id == 3) {
             SetCellToRoad(gridPosition);
-            StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete));
+            StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingPlaced));
+
         } else if (id == 1) {
+            StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingPlaced));
             StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct));
+
         } else {
+            StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingPlaced));
             StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingConstruct));
+
         }
 
         gridPosition.z = 0;
@@ -130,7 +152,10 @@ public class BuildingManager : MonoBehaviour {
         newObject.transform.position = grid.CellToWorld(gridPosition);
         newObject.transform.SetParent(this.transform);
         gm.UpdateNavMesh();
-        
+
+        buildingAnimationPlayer.PlaceEffect.particleSystem = newObject.transform.Find("BuildingPlaced").GetComponent<ParticleSystem>();
+
+        buildingAnimationPlayer.PlayPlace();
 
         return newObject;
     }
@@ -150,24 +175,14 @@ public class BuildingManager : MonoBehaviour {
         RemoveLumber(database.objectsData[id].cost);
     }
 
-    // public GameObject PlaceConstructionSite(Vector3 mousePosition, int id) {
-    //     Vector3Int gridPosition = grid.WorldToCell(mousePosition);
-    //     gridPosition.z = 0;
-    //     GameObject newObject = Instantiate(database.objectsData[id].constructionPrefab);
-    //     newObject.transform.position = grid.CellToWorld(gridPosition);
-    //     newObject.transform.SetParent(this.transform);
-    //     gm.UpdateNavMesh();
-    //     return newObject;
-    // }
-
     public void AddLumber(int amount) {
         playerData.lumber += amount;
         hudm.UpdateLumber(playerData.lumber);
     }
 
-    public void AddGold(int amount) {        // Changed from AddMetal
-        playerData.gold += amount;           // Changed from metal
-        hudm.UpdateGold(playerData.gold);    // Changed from UpdateMetal
+    public void AddGold(int amount) {
+        playerData.gold += amount;
+        hudm.UpdateGold(playerData.gold);
     }
 
     public void RemoveLumber(int amount) {
@@ -175,17 +190,17 @@ public class BuildingManager : MonoBehaviour {
         hudm.UpdateLumber(playerData.lumber);
     }
 
-    public void RemoveGold(int amount) {     // Changed from RemoveMetal
-        playerData.gold -= amount;           // Changed from metal
-        hudm.UpdateGold(playerData.gold);    // Changed from UpdateMetal
+    public void RemoveGold(int amount) {
+        playerData.gold -= amount;
+        hudm.UpdateGold(playerData.gold);
     }
 
     public int GetLumber() {
         return playerData.lumber;
     }
 
-    public int GetGold() {                   // Changed from GetMetal
-        return playerData.gold;              // Changed from metal
+    public int GetGold() {
+        return playerData.gold;
     }
 
     public float GetBuildTime(int id) {

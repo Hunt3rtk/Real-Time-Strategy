@@ -17,6 +17,9 @@ public class Unit : MonoBehaviour {
         }
 
         set {
+            if (value < health && damageFlash != null) {
+                StartCoroutine(damageFlash.Flash(strikeDelay));
+            }
             health = value;
             if (health > maxHealth) health = maxHealth;
             if (health <= 0) StartCoroutine(Kill());
@@ -46,6 +49,10 @@ public class Unit : MonoBehaviour {
 
     private bool iscooldown = false;
 
+    private DamageFlash damageFlash;
+
+    private float strikeDelay = 0f;
+
 
     public enum State {
         Idle,
@@ -62,24 +69,29 @@ public class Unit : MonoBehaviour {
         agent = GetComponent<NavMeshAgent>();
         guard = GetComponent<Guard>();
         animationPlayer = GetComponent<UnitAnimationPlayer>();
+        damageFlash = GetComponent<DamageFlash>();
         Health = maxHealth;
     }
 
+    void Update() {
+        
+    }
+
     public virtual void SetStateIdle() {
-        state = State.Idle;
+        //state = State.Idle;
         agent.isStopped = true;
         agent.ResetPath();
-        animationPlayer.StopWalk();
+        animationPlayer.PlayIdle();
     }
 
     public virtual void SetStateMoving() {
-        state = State.Moving;
+        //state = State.Moving;
         agent.isStopped = false;
         animationPlayer.PlayWalk();
     }
 
     public virtual void SetStateDead() {
-        state = State.Dead;
+        //state = State.Dead;
         agent.isStopped = true;
         animationPlayer.PlayDeath();
     }
@@ -91,6 +103,7 @@ public class Unit : MonoBehaviour {
         if (targetBuilding != null) {
             targetBuilding.Health -= damage;
         } else {
+            targetUnit.strikeDelay = AudioManager.Instance.GetStrikeDelay(attackSound);
             targetUnit.Health -= damage;
         }
     }
@@ -99,6 +112,7 @@ public class Unit : MonoBehaviour {
     public virtual void MoveStandAlone(Vector3 destination) {
 
         StopAllCoroutines();
+        state = State.Moving;
         StartCoroutine(Move(destination));
     }
 
@@ -106,6 +120,7 @@ public class Unit : MonoBehaviour {
 
         if (iscooldown) return;
 
+        state = State.Attacking;
         StopAllCoroutines();
         StartCoroutine(Attack(target));
     }

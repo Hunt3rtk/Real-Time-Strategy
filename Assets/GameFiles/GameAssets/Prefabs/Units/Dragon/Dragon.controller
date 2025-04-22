@@ -35,7 +35,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isAttacking
+    m_ConditionEvent: Attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6298560443297530944}
@@ -43,9 +43,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.48073104
   m_TransitionOffset: 0
-  m_ExitTime: 0.1
+  m_ExitTime: 0.48120025
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -60,7 +60,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isDead
+    m_ConditionEvent: Dead
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8782176740434526660}
@@ -110,7 +110,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 2
-    m_ConditionEvent: isAttacking
+    m_ConditionEvent: isWalking
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 3992010854620442650}
@@ -135,7 +135,7 @@ AnimatorController:
   m_Name: Dragon
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: isAttacking
+  - m_Name: isWorking
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
@@ -147,8 +147,14 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
-  - m_Name: isDead
-    m_Type: 4
+  - m_Name: Attack
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
+  - m_Name: Dead
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -175,7 +181,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isDead
+    m_ConditionEvent: Dead
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8782176740434526660}
@@ -225,7 +231,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isDead
+    m_ConditionEvent: Dead
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8782176740434526660}
@@ -252,9 +258,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: isWalking
     m_EventTreshold: 0
-  - m_ConditionMode: 2
-    m_ConditionEvent: isAttacking
-    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 7422320581726312872}
   m_Solo: 0
@@ -278,7 +281,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: isAttacking
+    m_ConditionEvent: Attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 6298560443297530944}
@@ -286,7 +289,7 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
+  m_TransitionDuration: 0.5890334
   m_TransitionOffset: 0
   m_ExitTime: 0.75
   m_HasExitTime: 0
@@ -337,13 +340,13 @@ AnimatorStateMachine:
     m_Position: {x: 370, y: 20, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6298560443297530944}
-    m_Position: {x: 260, y: 100, z: 0}
+    m_Position: {x: 250, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 7422320581726312872}
-    m_Position: {x: 500, y: 100, z: 0}
+    m_Position: {x: 490, y: 100, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8782176740434526660}
-    m_Position: {x: 370, y: -120, z: 0}
+    m_Position: {x: 370, y: 190, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

@@ -16703,9 +16703,29 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5770690607090075777, guid: 78b9ad4b7d3b4cd4e80920ed31462db1, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5770690607090075777, guid: 78b9ad4b7d3b4cd4e80920ed31462db1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145991462543013204, guid: 78b9ad4b7d3b4cd4e80920ed31462db1, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 215
+      objectReference: {fileID: 0}
+    - target: {fileID: 6145991462543013204, guid: 78b9ad4b7d3b4cd4e80920ed31462db1, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 75
+      objectReference: {fileID: 0}
     - target: {fileID: 6799570197038128117, guid: 78b9ad4b7d3b4cd4e80920ed31462db1, type: 3}
       propertyPath: m_Name
       value: BasePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7121416875308178959, guid: 78b9ad4b7d3b4cd4e80920ed31462db1, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

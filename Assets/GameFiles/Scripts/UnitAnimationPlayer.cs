@@ -20,8 +20,7 @@ public class UnitAnimationPlayer : AnimationPlayer {
 
     // Function to play attack animation
     public void PlayAttack(Transform transform = null) {
-        if (animator != null)
-        {
+        if (animator != null) {
             if (AttackEffect != null) {
                 StartCoroutine(AttackEffect.Play(transform));
             }
@@ -36,7 +35,8 @@ public class UnitAnimationPlayer : AnimationPlayer {
             if (WalkEffect != null) {
                 StartCoroutine(WalkEffect.Play());
             }
-           animator.SetBool("isWalking", true);
+            animator.SetBool("isWalking", true);
+            animator.SetBool("isWorking", false);
         }
     }
 
@@ -47,6 +47,7 @@ public class UnitAnimationPlayer : AnimationPlayer {
                 StartCoroutine(WorkEffect.Play());
             }
             animator.SetBool("isWorking", true);
+            animator.SetBool("isWalking", false);
         }
     }
 
@@ -61,12 +62,13 @@ public class UnitAnimationPlayer : AnimationPlayer {
     }
 
     // Function to stop walk animation
-    public void StopWalk() {
+    public void PlayIdle() {
         if (animator != null) {
             if (WalkEffect != null) {
                 WalkEffect.Stop();
             }
             animator.SetBool("isWalking", false);
+            animator.SetBool("isWorking", false);
         }
     }
 

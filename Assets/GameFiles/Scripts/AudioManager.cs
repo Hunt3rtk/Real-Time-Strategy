@@ -30,6 +30,7 @@ public class AudioManager : MonoBehaviour {
         DrakeAttack,
 
         //Resources and Buildings
+        BuildingPlaced,
         BuildingConstruct,
         BuildingComplete,
         LumberAdded,
@@ -67,6 +68,8 @@ public class AudioManager : MonoBehaviour {
         public AudioClip Clip;
 
         public float delay = 0f;
+
+        public float strikeDelay = 0f;
  
         [Range(0f, 1f)]
         public float Volume = 1f;
@@ -124,6 +127,15 @@ public class AudioManager : MonoBehaviour {
         //Destroy the sound object after the clip has finished playing
         Destroy(soundObj, s.Clip.length);
  
+    }
+
+    public float GetStrikeDelay(SoundType type) {
+        if (!_soundDictionary.TryGetValue(type, out Sound s))
+        {
+            Debug.LogWarning($"Sound type {type} not found!");
+            return 0f;
+        }
+        return s.strikeDelay;
     }
  
     //Call this method to change music tracks

@@ -289,6 +289,7 @@ public class GameManager : MonoBehaviour
     //Activates Building
     public void ActivateBuilding(int id) {
         if (!buildingManager.StartPlacement(id)) return;
+        StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseSuccess));
         SetStateBuilding();
     }
 
@@ -310,11 +311,13 @@ public class GameManager : MonoBehaviour
 
         if(!buildingManager.isAffordable(id)) {
             StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
+            StartCoroutine(buildingManager.visualObject.GetComponent<BuildingFlash>().Flash());
             return;
         }
 
         if (!buildingManager.isRoadAdjacent()) {
             StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
+            StartCoroutine(buildingManager.visualObject.GetComponent<BuildingFlash>().Flash());
             return;
         }
 
@@ -328,7 +331,7 @@ public class GameManager : MonoBehaviour
         ActivateBuildingCancel();
 
         StartCoroutine(AudioManager.Instance.Play(SoundType.Command));
-        StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseSuccess));
+        //StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseSuccess));
         worker.StartConstruct(mousePosition, id);
     }
 
@@ -339,6 +342,7 @@ public class GameManager : MonoBehaviour
 
         if(!buildingManager.isAffordable(id)) {
             StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
+            StartCoroutine(buildingManager.visualObject.GetComponent<BuildingFlash>().Flash());
             return;
         }
 
@@ -346,6 +350,7 @@ public class GameManager : MonoBehaviour
 
         if (roadNode == -1) {
             StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
+            StartCoroutine(buildingManager.visualObject.GetComponent<BuildingFlash>().Flash());
             return;
         }
 
