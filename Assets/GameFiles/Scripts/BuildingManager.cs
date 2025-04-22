@@ -71,14 +71,15 @@ public class BuildingManager : MonoBehaviour {
         return false;
     }
 
-    public int isRoadAdjacentForRoad() {
+    public List<int> isRoadAdjacentForRoad() {
+        List<int> adjacentIndices = new List<int>();
         foreach (Transform node in nodes) {
             Vector3Int nodeCell = grid.WorldToCell(node.transform.GetChild(1).position);
             if (cellRoadGrid[nodeCell.x+50, nodeCell.y+50] == 1) {
-                return node.GetSiblingIndex();
+                adjacentIndices.Add(node.GetSiblingIndex());
             }
         }
-        return -1;
+        return adjacentIndices;
     }
 
     public bool StartPlacement(int id) {
@@ -119,10 +120,14 @@ public class BuildingManager : MonoBehaviour {
         return true;
     }
 
-    public GameObject PlaceRoad(Vector3 mousePosition, int id, int roadAdjacent) {
+    public GameObject PlaceRoad(Vector3 mousePosition, int id, List<int> roadAdjacents) {
 
         GameObject road = PlaceBuilding(mousePosition, id);
-        road.transform.GetChild(1).transform.GetChild(roadAdjacent).gameObject.SetActive(true);
+
+        foreach (int roadAdjacent in roadAdjacents) {
+            road.transform.Find("Nodes").transform.GetChild(roadAdjacent).gameObject.SetActive(true);
+        }
+        
         return road;
     }
 
@@ -154,7 +159,6 @@ public class BuildingManager : MonoBehaviour {
         gm.UpdateNavMesh();
 
         buildingAnimationPlayer.PlaceEffect.particleSystem = newObject.transform.Find("BuildingPlaced").GetComponent<ParticleSystem>();
-
         buildingAnimationPlayer.PlayPlace();
 
         return newObject;

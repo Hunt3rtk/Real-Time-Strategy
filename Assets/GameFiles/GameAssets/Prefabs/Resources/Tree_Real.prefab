@@ -151,6 +151,10 @@ PrefabInstance:
       value: Tree
       objectReference: {fileID: 0}
     - target: {fileID: 4993149912950423741, guid: a90bc75212a7dce42b961e277b470f8e, type: 3}
+      propertyPath: m_Size.y
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4993149912950423741, guid: a90bc75212a7dce42b961e277b470f8e, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}

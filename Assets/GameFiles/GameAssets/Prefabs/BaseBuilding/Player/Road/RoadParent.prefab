@@ -355,6 +355,9 @@ GameObject:
   - component: {fileID: 1316864437921319756}
   - component: {fileID: 1210402368043111819}
   - component: {fileID: 8317630679621066156}
+  - component: {fileID: 6163294058040797316}
+  - component: {fileID: 9005357478043548526}
+  - component: {fileID: 2916075839988830276}
   m_Layer: 13
   m_Name: RoadE01
   m_TagString: Road
@@ -417,13 +420,69 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: -179393741545503174, guid: 669b6028781de8f4197153555461cbab, type: 3}
+  m_Mesh: {fileID: -1633821710574564935, guid: 669b6028781de8f4197153555461cbab, type: 3}
+--- !u!111 &6163294058040797316
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805276692153192950}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: efdfa9f855c0cea40bb00f50ef809ae4, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: efdfa9f855c0cea40bb00f50ef809ae4, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
+--- !u!114 &9005357478043548526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805276692153192950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b4cd72d5b3ab3458269c1c45b5803a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &2916075839988830276
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1805276692153192950}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1862305599357117632
 GameObject:
   m_ObjectHideFlags: 0
@@ -1861,15 +1920,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2669775994765652879, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2669775994765652879, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2669775994765652879, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2669775994765652879, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1877,7 +1936,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2669775994765652879, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2669775994765652879, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1920,8 +1979,32 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: ShapeModule.m_Position.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
       propertyPath: ShapeModule.radiusThickness
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 5361793380333862868, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
       propertyPath: m_Name

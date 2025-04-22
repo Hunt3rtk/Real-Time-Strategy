@@ -100,6 +100,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
     <Compile Include="Assets\GameFiles\Scripts\WorldToScreenFollow.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Worker.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\AnimateOnStart.cs" />
     <Compile Include="Assets\GameFiles\Scripts\PlacementValidity.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextInfoDebugTool.cs" />
     <Compile Include="Assets\GameFiles\Scripts\MineGoldBar.cs" />

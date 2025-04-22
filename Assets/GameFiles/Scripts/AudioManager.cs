@@ -108,7 +108,7 @@ public class AudioManager : MonoBehaviour {
         if (!_soundDictionary.TryGetValue(type, out Sound s))
         {
             Debug.LogWarning($"Sound type {type} not found!");
-            yield return null;
+            yield break;
         }
 
         //Creates a new sound object

@@ -40,6 +40,12 @@ public class GameManager : MonoBehaviour
 
     private GameObject panelObject;
 
+    [HideInInspector]
+    public bool validPlacement = true;
+
+    [HideInInspector]
+    public Collider stump = null;
+
     [SerializeField]
     private LayerMask roadLayerMask;
 
@@ -304,14 +310,20 @@ public class GameManager : MonoBehaviour
 
         int id = buildingManager.GetSelectedObjectIndex();
 
-        if(id == 3) {
-            ActivatePlaceRoad(mousePosition);
-            return;
-        }
-
         if(!buildingManager.isAffordable(id)) {
             StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             StartCoroutine(buildingManager.visualObject.GetComponent<BuildingFlash>().Flash());
+            return;
+        }
+
+        if (!validPlacement) {
+            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
+            StartCoroutine(buildingManager.visualObject.GetComponent<BuildingFlash>().Flash());
+            return;
+        }
+
+        if(id == 3) {
+            ActivatePlaceRoad(mousePosition);
             return;
         }
 
@@ -319,6 +331,10 @@ public class GameManager : MonoBehaviour
             StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             StartCoroutine(buildingManager.visualObject.GetComponent<BuildingFlash>().Flash());
             return;
+        }
+
+        if (stump != null) {
+            Destroy(stump.gameObject);
         }
 
         Worker worker = null;
@@ -338,23 +354,21 @@ public class GameManager : MonoBehaviour
     //Activates Placing a Road
     public void ActivatePlaceRoad(Vector3 mousePosition) {
 
-        int id = buildingManager.GetSelectedObjectIndex();
+        //int id = buildingManager.GetSelectedObjectIndex();
 
-        if(!buildingManager.isAffordable(id)) {
+        List<int> roadNodes = buildingManager.isRoadAdjacentForRoad();
+
+        if (roadNodes.Count == 0) {
             StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             StartCoroutine(buildingManager.visualObject.GetComponent<BuildingFlash>().Flash());
             return;
         }
 
-        int roadNode = buildingManager.isRoadAdjacentForRoad();
-
-        if (roadNode == -1) {
-            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
-            StartCoroutine(buildingManager.visualObject.GetComponent<BuildingFlash>().Flash());
-            return;
+        if (stump != null) {
+            Destroy(stump.gameObject);
         }
 
-        buildingManager.PlaceRoad(mousePosition, id, roadNode);
+        buildingManager.PlaceRoad(mousePosition, 3, roadNodes);
     }
 
     //Activate Repair

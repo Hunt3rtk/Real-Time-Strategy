@@ -19494,6 +19494,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: TreeParent
       objectReference: {fileID: 0}
+    - target: {fileID: 7959748457950810319, guid: b79c5ed0162ba84488a7ff870f5604ab, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242378007930504114, guid: b79c5ed0162ba84488a7ff870f5604ab, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242378007930504114, guid: b79c5ed0162ba84488a7ff870f5604ab, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8242378007930504114, guid: b79c5ed0162ba84488a7ff870f5604ab, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -21332,6 +21348,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 462479358}
     m_Modifications:
+    - target: {fileID: 2571983504786998392, guid: f44f9cfa7a45d5046bff3edab5a0bb78, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8354036746474456636, guid: f44f9cfa7a45d5046bff3edab5a0bb78, type: 3}
       propertyPath: m_LocalPosition.x
       value: -14.723934
@@ -29977,10 +29997,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 955902962}
     m_Modifications:
-    - target: {fileID: 1924665416721528513, guid: a2a67abaf72a45e439dbf247cf1cfa1d, type: 3}
-      propertyPath: AllSounds.Array.data[18].Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6571439627701463963, guid: a2a67abaf72a45e439dbf247cf1cfa1d, type: 3}
       propertyPath: m_Name
       value: AudioManager
@@ -30228,6 +30244,10 @@ PrefabInstance:
       propertyPath: hudm
       value: 
       objectReference: {fileID: 5759407403646172471}
+    - target: {fileID: 2016541254858976711, guid: a7f10d538fcbbda4f9c05cbb8a5c563a, type: 3}
+      propertyPath: PlaceEffect.delay
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4088383600115019993, guid: a7f10d538fcbbda4f9c05cbb8a5c563a, type: 3}
       propertyPath: gameOver
       value: 

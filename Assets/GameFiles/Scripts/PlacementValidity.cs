@@ -10,14 +10,36 @@ public class PlacementValidity : MonoBehaviour {
      }
 
     void OnTriggerEnter(Collider other) {
-        collidingCount += 1;
-        Debug.Log($"Collision Enter Detection with count: {collidingCount} from: {other}");
-        gm.TogglePlace(collidingCount);
+        if (other.name != "NavMeshBuffer" && other.name != "Prism") {
+            ++collidingCount;
+            Debug.Log($"Collision Enter Detection with count: {collidingCount} from: {other}");
+        }
+
+        if (other.name == "TreeStump") {
+            --collidingCount;
+            Debug.Log($"Collision Undo with count: {collidingCount} from: {other}");
+            gm.stump = other;
+        }
+
+        if (collidingCount > 0) gm.validPlacement = false;
+
+        //gm.TogglePlace(collidingCount);
     }
 
     void OnTriggerExit(Collider other) {
-        collidingCount -= 1;
-        Debug.Log($"Collision Exit Detection with count: {collidingCount} from: {other}");
-        gm.TogglePlace(collidingCount);
+        if (other.name != "NavMeshBuffer" && other.name != "Prism") {
+            --collidingCount;
+            Debug.Log($"Collision Exit Detection with count: {collidingCount} from: {other}");
+        }
+
+        if (other.name == "TreeStump") {
+            ++collidingCount;
+            Debug.Log($"Collision Undo with count: {collidingCount} from: {other}");
+            gm.stump = null;
+        }
+        
+        if (collidingCount == 0) gm.validPlacement = true;
+
+        //gm.TogglePlace(collidingCount);
     }
 }

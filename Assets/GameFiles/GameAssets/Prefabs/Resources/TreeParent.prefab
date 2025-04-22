@@ -131,7 +131,7 @@ BoxCollider:
   m_ProvidesContacts: 1
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.7771916, y: 3.2727544, z: 2.5892193}
+  m_Size: {x: 2.7771916, y: 3.5, z: 2.5892193}
   m_Center: {x: 0.034176588, y: 1.7344705, z: -0.008544087}
 --- !u!114 &2235351743243184937
 MonoBehaviour:
@@ -203,7 +203,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8916968888482058028, guid: a0adec37576c4c941857686854a52dd0, type: 3}
       propertyPath: m_Name
-      value: TreeStump01
+      value: TreeStump
       objectReference: {fileID: 0}
     - target: {fileID: 8916968888482058028, guid: a0adec37576c4c941857686854a52dd0, type: 3}
       propertyPath: m_Layer

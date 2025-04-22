@@ -5226,7 +5226,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 0.25
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -15179,7 +15179,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.75
+      scalar: 0.5
       minScalar: 0.1
       maxCurve:
         serializedVersion: 2
@@ -20399,15 +20399,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackEffect:
     particleSystem: {fileID: 3592967832124629731}
+    visualEffect: {fileID: 0}
     delay: 0
   WalkEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
   WorkEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
   DeathEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
 --- !u!1 &3918885240970858336
 GameObject:

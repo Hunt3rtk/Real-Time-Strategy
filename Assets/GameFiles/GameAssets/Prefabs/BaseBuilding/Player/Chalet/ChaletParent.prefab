@@ -186,6 +186,8 @@ GameObject:
   - component: {fileID: 2643960049586967878}
   - component: {fileID: 5417435299193071894}
   - component: {fileID: 5144135441667924864}
+  - component: {fileID: 3125622366013518936}
+  - component: {fileID: 2324246499656919609}
   m_Layer: 9
   m_Name: Chalet
   m_TagString: Building
@@ -324,6 +326,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 1200
+--- !u!111 &3125622366013518936
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969507174092373104}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
+--- !u!114 &2324246499656919609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969507174092373104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b4cd72d5b3ab3458269c1c45b5803a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3264820324412759367
 GameObject:
   m_ObjectHideFlags: 0
@@ -796,6 +826,8 @@ GameObject:
   - component: {fileID: 8525378628657275490}
   - component: {fileID: 2951902108010498769}
   - component: {fileID: 4054194198290972860}
+  - component: {fileID: 4044668879363442468}
+  - component: {fileID: 1042579299046398045}
   m_Layer: 9
   m_Name: ChaletConstructionSite
   m_TagString: Construction
@@ -869,6 +901,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
+--- !u!114 &4044668879363442468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6929074548382643617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36b4cd72d5b3ab3458269c1c45b5803a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!111 &1042579299046398045
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6929074548382643617}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Animation: {fileID: 7400000, guid: 113c8f25843fa704b8cbba9343960ec0, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: 113c8f25843fa704b8cbba9343960ec0, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_UpdateMode: 0
+  m_CullingType: 0
 --- !u!1001 &403933558927259947
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -984,8 +1045,56 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
-      propertyPath: lengthInSec
-      value: 0.5
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].time
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].value
+      value: 0.34030914
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].value
+      value: 0.5602093
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].countCurve.scalar
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].inSlope
+      value: 0.21990013
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].inSlope
+      value: 0.21990013
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[0].outSlope
+      value: 0.21990013
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: SizeModule.curve.maxCurve.m_Curve.Array.data[1].outSlope
+      value: 0.21990013
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: VelocityModule.radial.maxCurve.m_Curve.Array.data[1].time
+      value: 0.5113972
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: VelocityModule.radial.maxCurve.m_Curve.Array.data[1].value
+      value: -0.9464035
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: VelocityModule.radial.maxCurve.m_Curve.Array.data[1].inSlope
+      value: -0.07934583
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: VelocityModule.radial.maxCurve.m_Curve.Array.data[1].inWeight
+      value: 0.32692993
+      objectReference: {fileID: 0}
+    - target: {fileID: 5219588600930114411, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
+      propertyPath: VelocityModule.radial.maxCurve.m_Curve.Array.data[1].outSlope
+      value: -0.07934583
       objectReference: {fileID: 0}
     - target: {fileID: 5361793380333862868, guid: 0e3d526200caf1d4a859ca509019f41b, type: 3}
       propertyPath: m_Name
