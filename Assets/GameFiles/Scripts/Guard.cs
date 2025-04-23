@@ -21,7 +21,7 @@ public class Guard : MonoBehaviour {
 
         if (hitColliders.Length > 0) {
             hitColliders = hitColliders.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToArray();
-            yield return unit.Attack(hitColliders[0]);
+            unit.AttackStandAlone(hitColliders[0]);
         }
 
         StartCoroutine(CheckVisibility(visibilityRange));

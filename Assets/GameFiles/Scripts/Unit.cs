@@ -159,6 +159,11 @@ public class Unit : MonoBehaviour {
             while (targetUnit.Health > 0) {
 
                 yield return agent.SetDestination(PositionNormailze(target.transform.position));
+
+                while (agent.pathPending) {
+                     yield return new WaitForSecondsRealtime(.1f);
+                }
+                
                 SetStateMoving();
 
                 if (agent.remainingDistance <= range) {
@@ -176,6 +181,12 @@ public class Unit : MonoBehaviour {
             while (targetBuilding.Health > 0) {
 
                 yield return agent.SetDestination(PositionNormailze(target.transform.position));
+
+                while (agent.pathPending) {
+                    yield return new WaitForSecondsRealtime(.1f);
+                }
+
+                SetStateMoving();
 
                 while (agent.remainingDistance <= range) {
 

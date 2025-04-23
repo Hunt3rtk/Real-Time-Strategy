@@ -10,7 +10,7 @@ public class Wizard : Unit {
     }
 
     public override void SetStateAttack( Unit targetUnit, Building targetBuilding = null) {
-        this.transform.LookAt((targetBuilding != null) ? targetBuilding.transform.position : targetUnit.transform.position);
+        transform.LookAt((targetBuilding != null) ? targetBuilding.transform.position : targetUnit.transform.position);
         StartCoroutine(AudioManager.Instance.Play(attackSound));
         if (targetBuilding != null) {
             animationPlayer.PlayAttack(targetBuilding.transform);
