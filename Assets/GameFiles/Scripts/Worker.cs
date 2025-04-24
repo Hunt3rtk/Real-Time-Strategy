@@ -41,11 +41,6 @@ public class Worker : Unit {
         animationPlayer.PlayWork();
     }
 
-    public override void MoveStandAlone(Vector3 destination) {
-        StopAllCoroutines();
-        StartCoroutine(Move(destination));
-    }
-
     public override void AttackStandAlone(Collider target) {
         return;
     }
@@ -71,11 +66,6 @@ public class Worker : Unit {
 
     public void StartRepair(Building building) {
 
-        if (building == null || carryingLumber || carryingGold) {
-            StartCoroutine(ReturnResources());
-            return;
-        }
-
         StopAllCoroutines();
         state = State.Working;
         StartCoroutine(Repair(building));
@@ -87,7 +77,7 @@ public class Worker : Unit {
             yield return ReturnResources();
         }
 
-        yield return Move(mine.transform.position);
+        yield return Move(DestinationCalculation(mine.GetComponent<Collider>()));
         while (agent.remainingDistance >  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
@@ -112,7 +102,7 @@ public class Worker : Unit {
             yield return ReturnResources();
         }
 
-        yield return Move(tree.transform.position);
+        yield return Move(DestinationCalculation(tree.GetComponent<Collider>()));
         while (agent.remainingDistance > agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
@@ -127,11 +117,12 @@ public class Worker : Unit {
 
         carryingLumber = true;
         animationPlayer.animator.SetBool("isCarryingLumber", true);
-        StartCoroutine(AudioManager.Instance.Play(chopSound));
+        //StartCoroutine(AudioManager.Instance.Play(chopSound));
 
         yield return ReturnResources();
 
-        yield return Move(tree.transform.position);
+        yield return Move(DestinationCalculation(tree.GetComponent<Collider>()));
+
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, visibilityRange, LayerMask.GetMask("Tree"));
         colliders = colliders.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToArray();
         if (colliders.Length <= 0) yield break;
@@ -158,7 +149,7 @@ public class Worker : Unit {
             yield return ReturnResources();
         }
 
-        yield return Move(building.transform.position);
+        yield return Move(DestinationCalculation(building.transform.parent.Find("ConstructionSite").GetComponent<Collider>()));
 
         SetStateWorking();
 
@@ -167,10 +158,6 @@ public class Worker : Unit {
             yield return new WaitForSecondsRealtime(1.5f);
             building.Health += 100;
         }
-
-        building.Health = building.maxHealth;
-
-        building.Repaired();
 
         SetStateIdle();
 
@@ -183,7 +170,7 @@ public class Worker : Unit {
 
     private IEnumerator ReturnResources() {
 
-        yield return Move(home.position);
+        yield return Move(DestinationCalculation(home.GetComponent<Collider>()));
 
         while (agent.remainingDistance >  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);

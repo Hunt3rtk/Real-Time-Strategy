@@ -73,10 +73,6 @@ public class Unit : MonoBehaviour {
         Health = maxHealth;
     }
 
-    void Update() {
-        
-    }
-
     public virtual void SetStateIdle() {
         //state = State.Idle;
         agent.isStopped = true;
@@ -128,7 +124,7 @@ public class Unit : MonoBehaviour {
     public IEnumerator Move(Vector3 destination) {
 
         // Movement logic
-        agent.SetDestination(PositionNormailze(destination));
+        agent.SetDestination(NearestDestination(destination));
         while (agent.pathPending) {
             yield return new WaitForSecondsRealtime(.1f);
         }
@@ -158,7 +154,7 @@ public class Unit : MonoBehaviour {
         if (targetBuilding == null) {
             while (targetUnit.Health > 0) {
 
-                yield return agent.SetDestination(PositionNormailze(target.transform.position));
+                yield return agent.SetDestination(DestinationCalculation(target));
 
                 while (agent.pathPending) {
                      yield return new WaitForSecondsRealtime(.1f);
@@ -180,7 +176,7 @@ public class Unit : MonoBehaviour {
         } else {
             while (targetBuilding.Health > 0) {
 
-                yield return agent.SetDestination(PositionNormailze(target.transform.position));
+                yield return agent.SetDestination(DestinationCalculation(target));
 
                 while (agent.pathPending) {
                     yield return new WaitForSecondsRealtime(.1f);
@@ -205,7 +201,11 @@ public class Unit : MonoBehaviour {
         SetStateIdle();
     }
 
-    public Vector3 PositionNormailze(Vector3 destination) {
+    public Vector3 DestinationCalculation(Collider target) {
+        return NearestDestination(target.ClosestPoint(this.transform.position));
+    }
+
+    public Vector3 NearestDestination(Vector3 destination) {
         NavMeshHit hit;
         if (NavMesh.SamplePosition(destination, out hit, 50f, NavMesh.AllAreas)) {
             return hit.position;

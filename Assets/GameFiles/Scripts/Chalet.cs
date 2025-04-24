@@ -6,6 +6,9 @@ public class Chalet : Building {
         AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete);
         int unitSlots = FindAnyObjectByType<GameManager>().unitSlots += 2;
         FindAnyObjectByType<HUDManager>().UpdateUnitSlots(unitSlots);
+
+        buildingAnimationPlayer = transform.parent.GetComponentInParent<BuildingAnimationPlayer>();
+        buildingAnimationPlayer.PlayFinished(transform);
     }
 
     public override void Kill() {
