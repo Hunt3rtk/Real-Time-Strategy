@@ -6,9 +6,15 @@ public class Base : Building {
         public GameObject gameOver;
 
         public override void Kill() {
-        this.gameObject.transform.parent.GetChild(2).gameObject.SetActive(true);
-        this.gameObject.SetActive(false);
-        gameOver.SetActive(true);
+            //StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingDestroyed));
+            this.gameObject.SetActive(false);
+            this.transform.parent.Find("ConstructionSite").gameObject.SetActive(true);
+            this.transform.parent.Find("ConstructionSite").GetComponent<AnimateOnStart>().PlayDestroyed();
+
+            buildingAnimationPlayer = transform.parent.GetComponentInParent<BuildingAnimationPlayer>();
+            buildingAnimationPlayer.PlayDestroyed(transform);
+
+            gameOver.SetActive(true);
     }
 
 }

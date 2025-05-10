@@ -52,6 +52,13 @@ public class GameManager : MonoBehaviour
     //State
     public State state;
 
+    //Singleton
+    public static GameManager Instance;
+
+    public void Awake() {
+        Instance = this;
+    }
+
     /* Enable Disable */
 
     //On Enable Set selected units and enable gameplay state
@@ -452,6 +459,10 @@ public class GameManager : MonoBehaviour
     private bool unitAffordable(int id) {
         if(units.unitDatas[id].cost > buildingManager.GetGold()) return false;
         return true;
+    }
+
+    public void RemoveSelectedUnit(Unit unit) {
+        selectedUnits.Remove(unit);
     }
 
     /*----------------------------------*/

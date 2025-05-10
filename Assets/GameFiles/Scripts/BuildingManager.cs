@@ -108,6 +108,12 @@ public class BuildingManager : MonoBehaviour {
         visualObject.AddComponent<BuildingFlash>();
         Transform obj = visualObject.transform.GetChild(0);
 
+        if (id == 1) {
+            int unitSlots = FindAnyObjectByType<GameManager>().unitSlots -= 2;
+            FindAnyObjectByType<HUDManager>().UpdateUnitSlots(unitSlots);
+        }
+        
+
         // Getting the nodes cell position from the building so that we can check if the cells contain a road and therefore placeable
         for(int i = 0; i < visualObject.transform.GetChild(1).childCount; i++) {
             nodes.Add(visualObject.transform.GetChild(1).GetChild(i));
@@ -163,6 +169,10 @@ public class BuildingManager : MonoBehaviour {
         
         if (newObject.transform.Find("SparkleParticleEffect") != null) {
             buildingAnimationPlayer.FinishedEffect.particleSystem = newObject.transform.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
+        }
+
+        if (newObject.transform.Find("BuildingDestroyed") != null) {
+            buildingAnimationPlayer.DestroyedEffect.particleSystem = newObject.transform.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
         }
 
         return newObject;

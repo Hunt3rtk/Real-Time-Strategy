@@ -13,7 +13,13 @@ public class DamageFlash : MonoBehaviour {
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start() {
-        flashMaterial = GetComponentInChildren<SkinnedMeshRenderer>().materials[1]; // Get the material of the object
+
+        if (!GetComponentInChildren<SkinnedMeshRenderer>()) {
+            flashMaterial = GetComponent<MeshRenderer>().materials[1];
+        } else {
+            flashMaterial = GetComponentInChildren<SkinnedMeshRenderer>().materials[1]; // Get the material of the object
+        }
+
         flashMaterial.SetColor("_Color", flashColor); // Set the color of the material to the flash color
     }
 

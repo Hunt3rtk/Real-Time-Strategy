@@ -344,6 +344,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
+  - {fileID: 2100000, guid: 87f1e7cde7c13f143898b1527c04242c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2006,6 +2007,7 @@ GameObject:
   - component: {fileID: 8598138636469471101}
   - component: {fileID: 4892857425543615808}
   - component: {fileID: 6262113687737183099}
+  - component: {fileID: 2494767642088439190}
   m_Layer: 8
   m_Name: EnemyDog
   m_TagString: EnemyUnit
@@ -2145,16 +2147,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackEffect:
     particleSystem: {fileID: 4164424406087090876}
+    visualEffect: {fileID: 0}
     delay: 0.05
   WalkEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
   WorkEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
   DeathEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
+--- !u!114 &2494767642088439190
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9075505829792904198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6656fa15b75024a47a319426d12613e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.4292453, b: 0.4292453, a: 1}
+  flashTime: 0.15
 --- !u!1 &9165347011315982463
 GameObject:
   m_ObjectHideFlags: 0

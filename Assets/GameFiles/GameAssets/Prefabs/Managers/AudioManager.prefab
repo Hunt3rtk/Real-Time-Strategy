@@ -124,7 +124,7 @@ MonoBehaviour:
     Volume: 0.5
     Source: {fileID: 0}
   - Type: 35
-    Clip: {fileID: 8300000, guid: ad80608a55017a2408802c6fb3ffc349, type: 3}
+    Clip: {fileID: 8300000, guid: 4e93cfdc83bac8340a306327a3a0bd39, type: 3}
     delay: 0
     strikeDelay: 0
     Volume: 0.5
@@ -147,14 +147,20 @@ MonoBehaviour:
     strikeDelay: 0
     Volume: 0.5
     Source: {fileID: 0}
-  - Type: 26
+  - Type: 27
     Clip: {fileID: 8300000, guid: 9dbb192a520dcf442aa3b6c2df996536, type: 3}
     delay: 0
     strikeDelay: 0
     Volume: 0.5
     Source: {fileID: 0}
-  - Type: 27
+  - Type: 28
     Clip: {fileID: 8300000, guid: 4354d3dd0edf87d4a99f3beb13296365, type: 3}
+    delay: 0
+    strikeDelay: 0
+    Volume: 1
+    Source: {fileID: 0}
+  - Type: 22
+    Clip: {fileID: 8300000, guid: c123145e7d7a9044180a91b6d05f2c4c, type: 3}
     delay: 0
     strikeDelay: 0
     Volume: 1

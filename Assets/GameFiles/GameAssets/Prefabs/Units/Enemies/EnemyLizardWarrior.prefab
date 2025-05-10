@@ -763,6 +763,7 @@ GameObject:
   - component: {fileID: -8279984998895336698}
   - component: {fileID: 33793732799684978}
   - component: {fileID: 4593996001081804630}
+  - component: {fileID: 7170442201717029942}
   m_Layer: 8
   m_Name: EnemyLizardWarrior
   m_TagString: EnemyUnit
@@ -902,16 +903,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackEffect:
     particleSystem: {fileID: 4658873312585932595}
+    visualEffect: {fileID: 0}
     delay: 0.5
   WalkEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
   WorkEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
   DeathEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
+--- !u!114 &7170442201717029942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3244548106817986489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6656fa15b75024a47a319426d12613e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.4292453, b: 0.4292453, a: 1}
+  flashTime: 0.15
 --- !u!1 &3527424516236632307
 GameObject:
   m_ObjectHideFlags: 0
@@ -1664,6 +1683,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
+  - {fileID: 2100000, guid: 87f1e7cde7c13f143898b1527c04242c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

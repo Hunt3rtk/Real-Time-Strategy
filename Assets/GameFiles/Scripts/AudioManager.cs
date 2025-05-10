@@ -33,6 +33,7 @@ public class AudioManager : MonoBehaviour {
         BuildingPlaced,
         BuildingConstruct,
         BuildingComplete,
+        BuildingDestroyed,
         LumberAdded,
         LumberRemoved,
         MetalAdded,

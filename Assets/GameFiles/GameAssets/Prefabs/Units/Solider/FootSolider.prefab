@@ -442,6 +442,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 9ac568da7528418fafca2a9973f3b34e, type: 2}
+  - {fileID: 2100000, guid: 87f1e7cde7c13f143898b1527c04242c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -698,6 +699,7 @@ GameObject:
   - component: {fileID: 2297966226740706251}
   - component: {fileID: -5453615099676156195}
   - component: {fileID: 6643396893350438167}
+  - component: {fileID: 4874637880756552455}
   m_Layer: 10
   m_Name: FootSolider
   m_TagString: Solider
@@ -837,16 +839,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackEffect:
     particleSystem: {fileID: 1414019504528654067}
+    visualEffect: {fileID: 0}
     delay: 0.45
   WalkEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
   WorkEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
   DeathEffect:
     particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
     delay: 0
+--- !u!114 &4874637880756552455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3107188385635177870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6656fa15b75024a47a319426d12613e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.4292453, b: 0.4292453, a: 1}
+  flashTime: 0.15
 --- !u!1 &3212512765257935419
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Linq;
-using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 using static AudioManager;
 
 public class Unit : MonoBehaviour {
@@ -20,7 +17,9 @@ public class Unit : MonoBehaviour {
             if (value < health && damageFlash != null) {
                 StartCoroutine(damageFlash.Flash(strikeDelay));
             }
+
             health = value;
+
             if (health > maxHealth) health = maxHealth;
             if (health <= 0) StartCoroutine(Kill());
         }
@@ -88,6 +87,9 @@ public class Unit : MonoBehaviour {
 
     public virtual void SetStateDead() {
         //state = State.Dead;
+        StopAllCoroutines();
+        Destroy(GetComponent<Guard>());
+        Destroy(GetComponent<Enemy>());
         agent.isStopped = true;
         animationPlayer.PlayDeath();
     }
@@ -97,6 +99,7 @@ public class Unit : MonoBehaviour {
         animationPlayer.PlayAttack();
         StartCoroutine(AudioManager.Instance.Play(attackSound));
         if (targetBuilding != null) {
+            targetBuilding.strikeDelay = AudioManager.Instance.GetStrikeDelay(attackSound);
             targetBuilding.Health -= damage;
         } else {
             targetUnit.strikeDelay = AudioManager.Instance.GetStrikeDelay(attackSound);
@@ -116,13 +119,12 @@ public class Unit : MonoBehaviour {
 
         if (iscooldown) return;
 
-        state = State.Attacking;
         StopAllCoroutines();
+        state = State.Attacking;
         StartCoroutine(Attack(target));
     }
 
     public IEnumerator Move(Vector3 destination) {
-
         // Movement logic
         agent.SetDestination(NearestDestination(destination));
         while (agent.pathPending) {
@@ -142,12 +144,13 @@ public class Unit : MonoBehaviour {
         try {
             StartCoroutine(guard.CheckVisibility(visibilityRange));
         } catch {
-            Debug.Log("Guard is null");
+            //Debug.Log("Guard is null");
         }
         
     }
 
     public IEnumerator Attack(Collider target) {
+
         Unit targetUnit = target.GetComponent<Unit>();
         Building targetBuilding = target.GetComponent<Building>();
 
@@ -184,7 +187,7 @@ public class Unit : MonoBehaviour {
 
                 SetStateMoving();
 
-                while (agent.remainingDistance <= range) {
+                if (agent.remainingDistance <= range) {
 
                     SetStateIdle();
                     
@@ -192,8 +195,6 @@ public class Unit : MonoBehaviour {
 
                     yield return CooldownTimer(cooldown);
                 }
-
-                SetStateMoving();
                 yield return new WaitForSecondsRealtime(.2f);
             }
         }
@@ -220,16 +221,21 @@ public class Unit : MonoBehaviour {
     }
 
     private IEnumerator Kill() {
+
         StartCoroutine(AudioManager.Instance.Play(deathSound));
-        //TODO death animation
+        
         SetStateDead();
 
         if(gameObject.tag == "Unit") {
             int unitCount = FindAnyObjectByType<GameManager>().unitCount -= 1;
             FindAnyObjectByType<HUDManager>().UpdateUnitCount(unitCount);
         }
+
         this.gameObject.tag = "Dead";
-        //yield return new WaitForSecondsRealtime(30f);
+
+        GameManager.Instance.RemoveSelectedUnit(this);
+
+        yield return new WaitForSecondsRealtime(30f);
         Destroy(this.gameObject);
         yield return null;
     }

@@ -1090,6 +1090,7 @@ GameObject:
   - component: {fileID: 8625091880169725383}
   - component: {fileID: 7084603908505937756}
   - component: {fileID: -3414357777157953326}
+  - component: {fileID: 6610699357945504361}
   m_Layer: 10
   m_Name: WorkerGolem
   m_TagString: Worker
@@ -1238,6 +1239,20 @@ MonoBehaviour:
     particleSystem: {fileID: 0}
     visualEffect: {fileID: 0}
     delay: 0
+--- !u!114 &6610699357945504361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4097602841801809070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6656fa15b75024a47a319426d12613e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 0.4292453, b: 0.4292453, a: 1}
+  flashTime: 0.15
 --- !u!1 &4438692658498888823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1619,6 +1634,7 @@ SkinnedMeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 02169a29bc93499d91fdd5dd16ead51a, type: 2}
+  - {fileID: 2100000, guid: 87f1e7cde7c13f143898b1527c04242c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

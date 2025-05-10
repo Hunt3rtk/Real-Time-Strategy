@@ -10,4 +10,8 @@ public class AnimateOnStart : MonoBehaviour {
         
         if (a != null) a.Play();
     }
+
+    public void PlayDestroyed() {
+        StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingDestroyed));
+    }
 }
