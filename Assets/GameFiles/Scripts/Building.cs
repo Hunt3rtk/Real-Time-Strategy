@@ -29,34 +29,40 @@ public class Building : MonoBehaviour {
 
     internal BuildingAnimationPlayer buildingAnimationPlayer;
 
-    private DamageFlash damageFlash;
+    public DamageFlash damageFlash;
 
     [HideInInspector]
     public float strikeDelay = 0;
 
-    void Start() {
+    void Start()
+    {
         Health = maxHealth;
 
-        damageFlash = GetComponent<DamageFlash>();;
+        damageFlash = GetComponent<DamageFlash>();
+        
+        buildingAnimationPlayer = transform.parent.GetComponentInParent<BuildingAnimationPlayer>();
+        
+        if (transform.Find("SparkleParticleEffect") != null)
+        {
+            buildingAnimationPlayer.FinishedEffect.particleSystem = transform.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
+        }
+
+        if (transform.Find("BuildingDestroyed") != null) {
+            buildingAnimationPlayer.DestroyedEffect.particleSystem = transform.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
+        }
     }
 
     public virtual void Repaired() {
         this.gameObject.SetActive(true);
         this.transform.parent.Find("ConstructionSite").gameObject.SetActive(false);
-        StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete));
-
-
-        buildingAnimationPlayer = transform.parent.GetComponentInParent<BuildingAnimationPlayer>();
+        
         buildingAnimationPlayer.PlayFinished(transform);
     }
 
     public virtual void Kill() {
-        //StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingDestroyed));
         this.gameObject.SetActive(false);
         this.transform.parent.Find("ConstructionSite").gameObject.SetActive(true);
-        this.transform.parent.Find("ConstructionSite").GetComponent<AnimateOnStart>().PlayDestroyed();
 
-        buildingAnimationPlayer = transform.parent.GetComponentInParent<BuildingAnimationPlayer>();
         buildingAnimationPlayer.PlayDestroyed(transform);
         
     }

@@ -66,7 +66,7 @@ public class WaveSpawnManager : MonoBehaviour {
 
     void SpawnWave() {
         foreach (Batch batch in waves[waveIndex].batches) {
-            if (batch.spawner >= spawners.Length || spawners[batch.spawner].activeSelf == false) {
+            if (batch.spawner >= spawners.Length || spawners[batch.spawner].GetComponentInChildren<Building>() == null) {
                 continue;
             }
             for (int i = 0; i < batch.enemyOne; i++) {

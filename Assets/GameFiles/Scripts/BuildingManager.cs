@@ -167,13 +167,13 @@ public class BuildingManager : MonoBehaviour {
         buildingAnimationPlayer.PlaceEffect.particleSystem = newObject.transform.Find("BuildingPlaced").GetComponent<ParticleSystem>();
         buildingAnimationPlayer.PlayPlace();
         
-        if (newObject.transform.Find("SparkleParticleEffect") != null) {
-            buildingAnimationPlayer.FinishedEffect.particleSystem = newObject.transform.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
-        }
+        // if (newObject.transform.Find("SparkleParticleEffect") != null) {
+        //     buildingAnimationPlayer.FinishedEffect.particleSystem = newObject.transform.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
+        // }
 
-        if (newObject.transform.Find("BuildingDestroyed") != null) {
-            buildingAnimationPlayer.DestroyedEffect.particleSystem = newObject.transform.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
-        }
+        // if (newObject.transform.Find("BuildingDestroyed") != null) {
+        //     buildingAnimationPlayer.DestroyedEffect.particleSystem = newObject.transform.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
+        // }
 
         return newObject;
     }

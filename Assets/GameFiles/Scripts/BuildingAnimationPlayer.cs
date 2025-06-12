@@ -18,13 +18,17 @@ public class BuildingAnimationPlayer : AnimationPlayer {
     }
 
     public void PlayFinished(Transform transform = null) {
-        if (FinishedEffect != null) {
+        StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete));
+        if (FinishedEffect != null)
+        {
             StartCoroutine(FinishedEffect.Play(transform));
         }
     }
 
     public void PlayDestroyed(Transform transform = null) {
-        if (DestroyedEffect != null) {
+        StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingDestroyed));
+        if (DestroyedEffect != null)
+        {
             StartCoroutine(DestroyedEffect.Play(transform));
         }
     }

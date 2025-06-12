@@ -21,7 +21,7 @@ public class Unit : MonoBehaviour {
             health = value;
 
             if (health > maxHealth) health = maxHealth;
-            if (health <= 0) StartCoroutine(Kill());
+            if (health <= 0) Kill();
         }
     }
     public float maxHealth;
@@ -64,29 +64,35 @@ public class Unit : MonoBehaviour {
         Dead
     }
 
-    void Awake() {
+    void Awake()
+    {
         agent = GetComponent<NavMeshAgent>();
         guard = GetComponent<Guard>();
         animationPlayer = GetComponent<UnitAnimationPlayer>();
         damageFlash = GetComponent<DamageFlash>();
         Health = maxHealth;
+        SetStateIdle();
+        if (guard != null) {
+            guard.StartSearch();
+        }
     }
 
-    public virtual void SetStateIdle() {
-        //state = State.Idle;
+    public virtual void SetStateIdle()
+    {
+        state = State.Idle;
         agent.isStopped = true;
         agent.ResetPath();
         animationPlayer.PlayIdle();
     }
 
     public virtual void SetStateMoving() {
-        //state = State.Moving;
+        state = State.Moving;
         agent.isStopped = false;
         animationPlayer.PlayWalk();
     }
 
     public virtual void SetStateDead() {
-        //state = State.Dead;
+        state = State.Dead;
         StopAllCoroutines();
         Destroy(GetComponent<Guard>());
         Destroy(GetComponent<Enemy>());
@@ -124,10 +130,12 @@ public class Unit : MonoBehaviour {
         StartCoroutine(Attack(target));
     }
 
-    public IEnumerator Move(Vector3 destination) {
+    public IEnumerator Move(Vector3 destination)
+    {
         // Movement logic
         agent.SetDestination(NearestDestination(destination));
-        while (agent.pathPending) {
+        while (agent.pathPending)
+        {
             yield return new WaitForSecondsRealtime(.1f);
         }
 
@@ -135,38 +143,41 @@ public class Unit : MonoBehaviour {
 
         yield return null;
 
-        while (agent.remainingDistance > agent.stoppingDistance) {
+        while (agent.remainingDistance > agent.stoppingDistance)
+        {
             yield return new WaitForSecondsRealtime(.2f);
         }
 
         SetStateIdle();
-
-        try {
-            StartCoroutine(guard.CheckVisibility(visibilityRange));
-        } catch {
-            //Debug.Log("Guard is null");
-        }
         
+        if (guard != null) {
+            guard.StartSearch();
+        }
     }
 
-    public IEnumerator Attack(Collider target) {
+    public IEnumerator Attack(Collider target)
+    {
 
         Unit targetUnit = target.GetComponent<Unit>();
         Building targetBuilding = target.GetComponent<Building>();
 
-        if (targetBuilding == null) {
-            while (targetUnit.Health > 0) {
+        if (targetUnit != null)
+        {
+            while (targetUnit.Health > 0)
+            {
 
                 yield return agent.SetDestination(DestinationCalculation(target));
 
-                while (agent.pathPending) {
-                     yield return new WaitForSecondsRealtime(.1f);
+                while (agent.pathPending)
+                {
+                    yield return new WaitForSecondsRealtime(.1f);
                 }
-                
+
                 SetStateMoving();
 
-                if (agent.remainingDistance <= range) {
-                    
+                if (agent.remainingDistance <= range)
+                {
+
                     SetStateIdle();
 
                     SetStateAttack(targetUnit);
@@ -176,21 +187,26 @@ public class Unit : MonoBehaviour {
 
                 yield return new WaitForSeconds(.2f);
             }
-        } else {
-            while (targetBuilding.Health > 0) {
+        }
+        else if (targetBuilding != null)
+        {
+            while (targetBuilding.Health > 0)
+            {
 
                 yield return agent.SetDestination(DestinationCalculation(target));
 
-                while (agent.pathPending) {
+                while (agent.pathPending)
+                {
                     yield return new WaitForSecondsRealtime(.1f);
                 }
 
                 SetStateMoving();
 
-                if (agent.remainingDistance <= range) {
+                if (agent.remainingDistance <= range)
+                {
 
                     SetStateIdle();
-                    
+
                     SetStateAttack(null, targetBuilding);
 
                     yield return CooldownTimer(cooldown);
@@ -200,6 +216,12 @@ public class Unit : MonoBehaviour {
         }
 
         SetStateIdle();
+
+        if (guard != null)
+        {
+            guard.StartSearch();
+        }
+        yield return null;
     }
 
     public Vector3 DestinationCalculation(Collider target) {
@@ -220,23 +242,22 @@ public class Unit : MonoBehaviour {
         iscooldown = false;
     }
 
-    private IEnumerator Kill() {
+    private void Kill() {
 
         StartCoroutine(AudioManager.Instance.Play(deathSound));
         
         SetStateDead();
 
-        if(gameObject.tag == "Unit") {
+        if (gameObject.tag == "Unit")
+        {
             int unitCount = FindAnyObjectByType<GameManager>().unitCount -= 1;
             FindAnyObjectByType<HUDManager>().UpdateUnitCount(unitCount);
+            GameManager.Instance.RemoveSelectedUnit(this);
         }
 
         this.gameObject.tag = "Dead";
+        this.gameObject.layer = LayerMask.NameToLayer("DeadUnit");
 
-        GameManager.Instance.RemoveSelectedUnit(this);
-
-        yield return new WaitForSecondsRealtime(30f);
-        Destroy(this.gameObject);
-        yield return null;
+        Destroy(this.gameObject, 20f);
     }
 }

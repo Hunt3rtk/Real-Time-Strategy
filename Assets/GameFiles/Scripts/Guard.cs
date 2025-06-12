@@ -13,17 +13,26 @@ public class Guard : MonoBehaviour {
         home = GameObject.Find("Base").transform;
     }
 
-    public IEnumerator CheckVisibility(float visibilityRange) {
+    public void StartSearch() {
+        if (unit.state == Unit.State.Idle) {
+            StopAllCoroutines();
+            StartCoroutine(CheckVisibility(unit.visibilityRange));
+        }
+    }
+
+    private IEnumerator CheckVisibility(float visibilityRange) {
 
         yield return new WaitForSeconds(.5f);
 
         Collider[] hitColliders = Physics.OverlapSphere(this.transform.position, visibilityRange, LayerMask.GetMask("EnemyUnits"));
 
-        if (hitColliders.Length > 0) {
+        if (hitColliders.Length > 0)
+        {
             hitColliders = hitColliders.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToArray();
             unit.AttackStandAlone(hitColliders[0]);
+            yield break;
         }
 
-        StartCoroutine(CheckVisibility(visibilityRange));
+        StartSearch();
     }
 }
