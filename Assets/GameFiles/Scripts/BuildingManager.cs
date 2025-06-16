@@ -2,6 +2,7 @@ using UnityEngine;
 using States;
 using System.Collections;
 using System.Collections.Generic;
+using static AudioManager;
 
 public class BuildingManager : MonoBehaviour {
     //Game Manager
@@ -32,15 +33,11 @@ public class BuildingManager : MonoBehaviour {
 
     private List<Transform> nodes = new List<Transform>();
 
-    void Awake() {
-        //hudm.UpdateLumber(GetLumber());
-        //hudm.UpdateGold(GetGold());
+    void Start() {
+        hudm.UpdateLumber(GetLumber());
+        hudm.UpdateGold(GetGold());
 
         buildingAnimationPlayer = GetComponent<BuildingAnimationPlayer>();
-    }
-
-    void Start() {
-
     }
 
     void Update() {
@@ -92,6 +89,12 @@ public class BuildingManager : MonoBehaviour {
         selectedObjectIndex = database.objectsData.FindIndex(data => data.id == id);
         if (selectedObjectIndex < 0) {
             Debug.LogError($"No ID found {id}");
+            return false;
+        }
+
+        //Checking if the player can afford the building
+        if (!isAffordable(id)) {
+            StartCoroutine(AudioManager.Instance.Play(SoundType.PurchaseFail));
             return false;
         }
 
@@ -166,14 +169,6 @@ public class BuildingManager : MonoBehaviour {
 
         buildingAnimationPlayer.PlaceEffect.particleSystem = newObject.transform.Find("BuildingPlaced").GetComponent<ParticleSystem>();
         buildingAnimationPlayer.PlayPlace();
-        
-        // if (newObject.transform.Find("SparkleParticleEffect") != null) {
-        //     buildingAnimationPlayer.FinishedEffect.particleSystem = newObject.transform.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
-        // }
-
-        // if (newObject.transform.Find("BuildingDestroyed") != null) {
-        //     buildingAnimationPlayer.DestroyedEffect.particleSystem = newObject.transform.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
-        // }
 
         return newObject;
     }

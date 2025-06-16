@@ -34,21 +34,20 @@ public class Building : MonoBehaviour {
     [HideInInspector]
     public float strikeDelay = 0;
 
-    void Start()
-    {
-        Health = maxHealth;
+    void Start() {
 
         damageFlash = GetComponent<DamageFlash>();
         
         buildingAnimationPlayer = transform.parent.GetComponentInParent<BuildingAnimationPlayer>();
+
+         Health = maxHealth;
         
-        if (transform.Find("SparkleParticleEffect") != null)
-        {
-            buildingAnimationPlayer.FinishedEffect.particleSystem = transform.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
+        if (transform.parent.Find("SparkleParticleEffect") != null){
+            buildingAnimationPlayer.FinishedEffect.particleSystem = transform.parent.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
         }
 
-        if (transform.Find("BuildingDestroyed") != null) {
-            buildingAnimationPlayer.DestroyedEffect.particleSystem = transform.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
+        if (transform.parent.Find("BuildingDestroyed") != null) {
+            buildingAnimationPlayer.DestroyedEffect.particleSystem = transform.parent.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
         }
     }
 

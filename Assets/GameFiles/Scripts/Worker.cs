@@ -103,7 +103,7 @@ public class Worker : Unit {
         }
 
         yield return Move(DestinationCalculation(tree.GetComponent<Collider>()));
-        while (agent.remainingDistance > agent.stoppingDistance) {
+        while (agent.remainingDistance >= agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
 
@@ -117,7 +117,6 @@ public class Worker : Unit {
 
         carryingLumber = true;
         animationPlayer.animator.SetBool("isCarryingLumber", true);
-        //StartCoroutine(AudioManager.Instance.Play(chopSound));
 
         yield return ReturnResources();
 
@@ -172,7 +171,7 @@ public class Worker : Unit {
 
         yield return Move(DestinationCalculation(home.GetComponent<Collider>()));
 
-        while (agent.remainingDistance >  agent.stoppingDistance) {
+        while (agent.remainingDistance >=  agent.stoppingDistance) {
             yield return new WaitForSecondsRealtime(.2f);
         }
 

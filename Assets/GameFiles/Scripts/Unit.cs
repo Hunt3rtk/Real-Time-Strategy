@@ -143,7 +143,7 @@ public class Unit : MonoBehaviour {
 
         yield return null;
 
-        while (agent.remainingDistance > agent.stoppingDistance)
+        while (agent.remainingDistance >= agent.stoppingDistance)
         {
             yield return new WaitForSecondsRealtime(.2f);
         }
@@ -248,6 +248,7 @@ public class Unit : MonoBehaviour {
         
         SetStateDead();
 
+        // If it was a player unit, update the unit count and hud
         if (gameObject.tag == "Unit")
         {
             int unitCount = FindAnyObjectByType<GameManager>().unitCount -= 1;
@@ -255,9 +256,15 @@ public class Unit : MonoBehaviour {
             GameManager.Instance.RemoveSelectedUnit(this);
         }
 
+        //Setting dead unit tag and layer to reflect dead state
         this.gameObject.tag = "Dead";
         this.gameObject.layer = LayerMask.NameToLayer("DeadUnit");
 
+        // Disabling collider so units can pass through dead units
+        GetComponent<Collider>().enabled = false;
+        GetComponent<NavMeshAgent>().enabled = false;
+
+        // Destroy game object after 20 seconds
         Destroy(this.gameObject, 20f);
     }
 }
