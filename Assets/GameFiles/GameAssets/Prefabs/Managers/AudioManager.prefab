@@ -129,7 +129,7 @@ MonoBehaviour:
     strikeDelay: 0
     Volume: 0.5
     Source: {fileID: 0}
-  - Type: 36
+  - Type: 39
     Clip: {fileID: 8300000, guid: 3e7823c9df8bf5e47ad59d82f7563700, type: 3}
     delay: 0
     strikeDelay: 0
@@ -161,6 +161,12 @@ MonoBehaviour:
     Source: {fileID: 0}
   - Type: 22
     Clip: {fileID: 8300000, guid: c123145e7d7a9044180a91b6d05f2c4c, type: 3}
+    delay: 0
+    strikeDelay: 0
+    Volume: 1
+    Source: {fileID: 0}
+  - Type: 21
+    Clip: {fileID: 8300000, guid: 26ed1ee25fd61284688d72c9236d38f3, type: 3}
     delay: 0
     strikeDelay: 0
     Volume: 1

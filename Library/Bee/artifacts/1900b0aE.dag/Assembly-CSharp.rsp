@@ -488,6 +488,7 @@
 "Assets/GameFiles/Scripts/Tree.cs"
 "Assets/GameFiles/Scripts/Unit.cs"
 "Assets/GameFiles/Scripts/UnitAnimationPlayer.cs"
+"Assets/GameFiles/Scripts/UnitCollide.cs"
 "Assets/GameFiles/Scripts/UnitDataBase.cs"
 "Assets/GameFiles/Scripts/Viewport.cs"
 "Assets/GameFiles/Scripts/WaveSpawnManager.cs"

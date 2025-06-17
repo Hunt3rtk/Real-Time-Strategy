@@ -53,7 +53,8 @@ public class Unit : MonoBehaviour {
     private float strikeDelay = 0f;
 
 
-    public enum State {
+    public enum State
+    {
         Idle,
         Moving,
         Attacking,
@@ -249,7 +250,7 @@ public class Unit : MonoBehaviour {
         SetStateDead();
 
         // If it was a player unit, update the unit count and hud
-        if (gameObject.tag == "Unit")
+        if (gameObject.layer == LayerMask.GetMask("Units"))
         {
             int unitCount = FindAnyObjectByType<GameManager>().unitCount -= 1;
             FindAnyObjectByType<HUDManager>().UpdateUnitCount(unitCount);

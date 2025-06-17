@@ -99,6 +99,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\SkewTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ShaderPropAnimator.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\UnitCollide.cs" />
     <Compile Include="Assets\GameFiles\Scripts\WorldToScreenFollow.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Worker.cs" />
     <Compile Include="Assets\GameFiles\Scripts\AnimateOnStart.cs" />

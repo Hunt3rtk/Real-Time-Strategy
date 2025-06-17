@@ -118,7 +118,7 @@ public class BuildingManager : MonoBehaviour {
         
 
         // Getting the nodes cell position from the building so that we can check if the cells contain a road and therefore placeable
-        for(int i = 0; i < visualObject.transform.GetChild(1).childCount; i++) {
+        for (int i = 0; i < visualObject.transform.GetChild(1).childCount; i++) {
             nodes.Add(visualObject.transform.GetChild(1).GetChild(i));
         }
 
@@ -169,6 +169,8 @@ public class BuildingManager : MonoBehaviour {
 
         buildingAnimationPlayer.PlaceEffect.particleSystem = newObject.transform.Find("BuildingPlaced").GetComponent<ParticleSystem>();
         buildingAnimationPlayer.PlayPlace();
+
+        PurchaseBuilding(id);
 
         return newObject;
     }

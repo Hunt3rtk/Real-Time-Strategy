@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bc6d79386e4ea8448b2ef095fb8fdab, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  lumber: 100
-  gold: 300
+  lumber: 1600
+  gold: 2850

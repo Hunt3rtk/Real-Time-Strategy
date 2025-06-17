@@ -1,10 +1,7 @@
-using System.Buffers.Text;
 using System.Collections;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 using static AudioManager;
 
 public class Worker : Unit {
@@ -34,7 +31,10 @@ public class Worker : Unit {
         deathSound = AudioManager.SoundType.WorkerDeath;
     }
 
-    private void SetStateWorking() {
+    private void SetStateWorking(Transform target = null) {
+        if (target != null) {
+            this.transform.LookAt(target.transform.position);
+        }
         state = State.Working;
         agent.isStopped = true;
         agent.ResetPath();
@@ -82,7 +82,7 @@ public class Worker : Unit {
             yield return new WaitForSecondsRealtime(.2f);
         }
 
-        SetStateWorking();
+        SetStateWorking(mine.transform);
 
         yield return new WaitForSecondsRealtime(mineTime);
         if (mine.Gold < goldAmount) mine.Deduct(mine.Gold);
@@ -96,18 +96,30 @@ public class Worker : Unit {
         StartMine(mine);
     }
 
-    private IEnumerator Chop(Tree tree) { 
+    private IEnumerator Chop(Tree tree) {
 
         if (carryingLumber || carryingGold) {
             yield return ReturnResources();
         }
 
         yield return Move(DestinationCalculation(tree.GetComponent<Collider>()));
-        while (agent.remainingDistance >= agent.stoppingDistance) {
-            yield return new WaitForSecondsRealtime(.2f);
+
+        if (tree.taken) {
+            Collider[] col = Physics.OverlapSphere(this.transform.position, visibilityRange, LayerMask.GetMask("Tree"));
+
+            col = col.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToArray();
+
+            if (col.Length <= 0) yield break;
+
+            Tree nt = col[0].gameObject.GetComponent<Tree>();
+            StartChop(nt);
+            yield break;
+        }
+        else {
+            tree.taken = true;
         }
 
-        SetStateWorking();
+        SetStateWorking(tree.transform);
 
         StartCoroutine(AudioManager.Instance.Play(chopSound));
         yield return new WaitForSecondsRealtime(chopTime);
@@ -120,7 +132,7 @@ public class Worker : Unit {
 
         yield return ReturnResources();
 
-        yield return Move(DestinationCalculation(tree.GetComponent<Collider>()));
+        yield return Move(tree.transform.parent.position);
 
         Collider[] colliders = Physics.OverlapSphere(this.transform.position, visibilityRange, LayerMask.GetMask("Tree"));
         colliders = colliders.OrderBy(x => Vector3.Distance(transform.position, x.transform.position)).ToArray();
@@ -130,8 +142,6 @@ public class Worker : Unit {
     }
 
     private void Construct(Vector3 destination, int id) {
-
-        bm.PurchaseBuilding(id);
 
         Building building = bm.PlaceBuilding(destination, id).transform.GetChild(0).GetComponent<Building>();
         if (building == null) return;
@@ -150,7 +160,7 @@ public class Worker : Unit {
 
         yield return Move(DestinationCalculation(building.transform.parent.Find("ConstructionSite").GetComponent<Collider>()));
 
-        SetStateWorking();
+        SetStateWorking(building.transform);
 
         while(building.Health < building.maxHealth) {
             StartCoroutine(AudioManager.Instance.Play(constructSound));
@@ -170,10 +180,6 @@ public class Worker : Unit {
     private IEnumerator ReturnResources() {
 
         yield return Move(DestinationCalculation(home.GetComponent<Collider>()));
-
-        while (agent.remainingDistance >=  agent.stoppingDistance) {
-            yield return new WaitForSecondsRealtime(.2f);
-        }
 
         if (carryingGold) {
 
