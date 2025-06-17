@@ -149,6 +149,7 @@
     <Compile Include="Assets\GameFiles\GameAssets\ImportedAssets\Free Slash VFX\Demo\Scripts\FPSCounter.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Building.cs" />
     <Compile Include="Assets\GameFiles\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\GameFiles\Scripts\PauseMenu.cs" />
     <Compile Include="Assets\GameFiles\Scripts\Tree.cs" />
     <Compile Include="Assets\GameFiles\Scripts\CameraControl.cs" />
   </ItemGroup>

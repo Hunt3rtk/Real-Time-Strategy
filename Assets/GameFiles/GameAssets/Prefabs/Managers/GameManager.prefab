@@ -55,6 +55,8 @@ MonoBehaviour:
   buildingManager: {fileID: 0}
   home: {fileID: 0}
   units: {fileID: 11400000, guid: f6d25498c92a3e04693514e435b57a4a, type: 2}
+  validPlacement: 1
+  stump: {fileID: 0}
   roadLayerMask:
     serializedVersion: 2
     m_Bits: 8191
@@ -116,6 +118,14 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 8e06cce5-5a2e-4ebc-94ff-32bf99f5e89e
     m_ActionName: 'Building/Cancel[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: e1d67dc2-53b1-4b4a-8134-8ca5be69fad7
+    m_ActionName: 'Universal/Escape[/Keyboard/escape]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 5473ab4e-bf2e-4295-a8ec-abe2abf195bf
+    m_ActionName: 'Pause/Unpause[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Gameplay
@@ -134,9 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AgentTypeID: 1479372276
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 2, z: 0}
+  m_CollectObjects: 1
+  m_Size: {x: 500, y: 10, z: 500}
+  m_Center: {x: 0, y: 0, z: 0}
   m_LayerMask:
     serializedVersion: 2
     m_Bits: 6863
@@ -150,5 +160,5 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2000
-  m_NavMeshData: {fileID: 23800000, guid: cec8839c8937651408749c2a2b6ee45c, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 70162fc50eee54545a85a7c88ce1a21e, type: 2}
   m_BuildHeightMesh: 0

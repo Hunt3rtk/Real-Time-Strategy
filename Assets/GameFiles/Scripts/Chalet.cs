@@ -3,32 +3,33 @@ using UnityEngine;
 
 public class Chalet : Building {
 
-    void Start()
+    void Awake()
     {
         int unitSlots = FindAnyObjectByType<GameManager>().unitSlots += 2;
         FindAnyObjectByType<HUDManager>().UpdateUnitSlots(unitSlots);
-        
-        Health = maxHealth;
 
         damageFlash = GetComponent<DamageFlash>();
-        
-        buildingAnimationPlayer = transform.parent.GetComponentInParent<BuildingAnimationPlayer>();
-        
+
+        buildingAnimationPlayer = transform.GetComponentInParent<BuildingAnimationPlayer>();
+
         if (transform.Find("SparkleParticleEffect") != null)
         {
             buildingAnimationPlayer.FinishedEffect.particleSystem = transform.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
         }
 
-        if (transform.Find("BuildingDestroyed") != null) {
+        if (transform.Find("BuildingDestroyed") != null)
+        {
             buildingAnimationPlayer.DestroyedEffect.particleSystem = transform.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
         }
+        
+        Health = maxHealth;
     }
 
     public override void Repaired() {
         this.gameObject.SetActive(true);
         StartCoroutine(AudioManager.Instance.Play(AudioManager.SoundType.BuildingComplete));
 
-        buildingAnimationPlayer = transform.parent.GetComponentInParent<BuildingAnimationPlayer>();
+        buildingAnimationPlayer = transform.GetComponentInParent<BuildingAnimationPlayer>();
         buildingAnimationPlayer.PlayFinished(transform);
     }
 

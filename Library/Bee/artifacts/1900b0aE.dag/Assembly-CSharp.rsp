@@ -479,6 +479,7 @@
 "Assets/GameFiles/Scripts/Mine.cs"
 "Assets/GameFiles/Scripts/MineGoldBar.cs"
 "Assets/GameFiles/Scripts/ObjectsDataBaseSO.cs"
+"Assets/GameFiles/Scripts/PauseMenu.cs"
 "Assets/GameFiles/Scripts/PlacementValidity.cs"
 "Assets/GameFiles/Scripts/PlayerData.cs"
 "Assets/GameFiles/Scripts/Solider.cs"

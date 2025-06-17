@@ -91,12 +91,19 @@ public class CameraControl : MonoBehaviour {
         cameraInput.Disable();
     }
 
-    public void Disable() {
+    public void Disable()
+    {
         OnDisable();
     }
 
+    public void Enable()
+    {
+        OnEnable();
+    }
 
-    private void Update() {
+
+    private void Update()
+    {
         GetKeyboardMovement();
         if (useScreenEdge) { CheckMouseAtScreenEdge(); }
         DragCamera();

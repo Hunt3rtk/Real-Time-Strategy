@@ -33,6 +33,9 @@ public class GameManager : MonoBehaviour
     private BuildingManager buildingManager;
 
     [SerializeField]
+    internal CameraControl cameraControl;
+
+    [SerializeField]
     internal Transform home;
 
     [SerializeField]
@@ -55,7 +58,8 @@ public class GameManager : MonoBehaviour
     //Singleton
     public static GameManager Instance;
 
-    public void Awake() {
+    public void Awake()
+    {
         Instance = this;
     }
 
@@ -94,6 +98,7 @@ public class GameManager : MonoBehaviour
                 inputManager.DisablePause();
                 state = State.Gameplay;
                 inputManager.EnableGameplay();
+                cameraControl.Enable();
                 break;
             case State.Gameplay:
             default:
@@ -109,11 +114,13 @@ public class GameManager : MonoBehaviour
                 inputManager.DisableGameplay();
                 state = State.Building;
                 inputManager.EnableBuilding();
+
                 break;
             case State.Pause:
                 inputManager.DisablePause();
                 state = State.Building;
                 inputManager.EnableBuilding();
+                cameraControl.Enable();
                 break;
             case State.Building:
             default:
@@ -128,18 +135,19 @@ public class GameManager : MonoBehaviour
                 state = State.Pause;
                 inputManager.DisableGameplay();
                 inputManager.EnablePause();
+                cameraControl.Disable();
                 break;
             case State.Building:
                 state = State.Pause;
                 ActivateBuildingCancel();
                 inputManager.DisableBuilding();
                 inputManager.EnablePause();
+                cameraControl.Disable();
                 break;
             case State.Pause:
             default:
                 break;
         }
-        CameraControl.Instance.Disable();
         Time.timeScale = 0;
     }
     /*----------------------------------*/

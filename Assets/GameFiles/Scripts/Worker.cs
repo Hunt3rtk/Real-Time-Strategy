@@ -162,7 +162,7 @@ public class Worker : Unit {
 
         SetStateWorking(building.transform);
 
-        while(building.Health < building.maxHealth) {
+        while (building.Health < building.maxHealth) {
             StartCoroutine(AudioManager.Instance.Play(constructSound));
             yield return new WaitForSecondsRealtime(1.5f);
             building.Health += 100;

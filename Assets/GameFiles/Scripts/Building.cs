@@ -27,34 +27,38 @@ public class Building : MonoBehaviour {
     }
     public float maxHealth;
 
-    internal BuildingAnimationPlayer buildingAnimationPlayer;
+    public BuildingAnimationPlayer buildingAnimationPlayer;
 
     public DamageFlash damageFlash;
 
     [HideInInspector]
     public float strikeDelay = 0;
 
-    void Start() {
+    void Awake()
+    {
 
         damageFlash = GetComponent<DamageFlash>();
-        
-        buildingAnimationPlayer = transform.parent.GetComponentInParent<BuildingAnimationPlayer>();
 
-         Health = maxHealth;
+        if (transform.GetComponentInParent<BuildingAnimationPlayer>() != null) {
+            buildingAnimationPlayer = transform.GetComponentInParent<BuildingAnimationPlayer>();
+        }
         
-        if (transform.parent.Find("SparkleParticleEffect") != null){
-            buildingAnimationPlayer.FinishedEffect.particleSystem = transform.parent.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
+        if (transform.Find("SparkleParticleEffect") != null) {
+            buildingAnimationPlayer.FinishedEffect.particleSystem = transform.Find("SparkleParticleEffect").GetComponent<ParticleSystem>();
         }
 
-        if (transform.parent.Find("BuildingDestroyed") != null) {
-            buildingAnimationPlayer.DestroyedEffect.particleSystem = transform.parent.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
+        if (transform.Find("BuildingDestroyed") != null) {
+            buildingAnimationPlayer.DestroyedEffect.particleSystem = transform.Find("BuildingDestroyed").GetComponent<ParticleSystem>();
         }
+        
+        Health = maxHealth;
     }
 
     public virtual void Repaired() {
         this.gameObject.SetActive(true);
         this.transform.parent.Find("ConstructionSite").gameObject.SetActive(false);
-        
+
+        buildingAnimationPlayer = transform.GetComponentInParent<BuildingAnimationPlayer>();
         buildingAnimationPlayer.PlayFinished(transform);
     }
 

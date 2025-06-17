@@ -8,10 +8,12 @@ public class MainMenu : MonoBehaviour {
     }
 
     public void PlayGame() {
-        SceneManager.LoadScene("DemoLevel");
+        AudioManager.Instance.Play(AudioManager.SoundType.PurchaseSuccess);
+        SceneManager.LoadScene("Level1");
     }
 
     public void QuitGame() {
+        AudioManager.Instance.Play(AudioManager.SoundType.PurchaseSuccess);
         Application.Quit();
     }
 

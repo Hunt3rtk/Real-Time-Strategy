@@ -21,6 +21,8 @@ public class WaveSpawnManager : MonoBehaviour {
 
     public GameObject victoryScreen;
 
+    public Building enemyBase;
+
     public GameObject[] spawners;
 
     [SerializeField]
@@ -43,7 +45,7 @@ public class WaveSpawnManager : MonoBehaviour {
     }
 
     void FixedUpdate() {
-        if (FindFirstObjectByType<Enemy>() == null && waves.Count <= waveIndex) {
+        if (FindFirstObjectByType<Enemy>() == null && waves.Count <= waveIndex || enemyBase.enabled == false) {
             Time.timeScale = 0;
             victoryScreen.SetActive(true);
         } else if (FindFirstObjectByType<Enemy>() == null) {

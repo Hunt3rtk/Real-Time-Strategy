@@ -1513,6 +1513,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1841157237575543851}
+  - component: {fileID: 5282824773064051209}
   m_Layer: 13
   m_Name: RoadParent
   m_TagString: Untagged
@@ -1538,6 +1539,30 @@ Transform:
   - {fileID: 9097386464051082520}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5282824773064051209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7060181079755503206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921a011cb73516b4586e97ff8eef4f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlaceEffect:
+    particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
+    delay: 0.1
+  FinishedEffect:
+    particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
+    delay: 0
+  DestroyedEffect:
+    particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
+    delay: 0
 --- !u!1 &7118769311251023921
 GameObject:
   m_ObjectHideFlags: 0

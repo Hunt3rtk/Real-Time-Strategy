@@ -95,6 +95,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6207962418225038813}
+  - component: {fileID: 6486893763962263399}
   m_Layer: 0
   m_Name: EnemyCastle
   m_TagString: Untagged
@@ -121,6 +122,30 @@ Transform:
   - {fileID: 4841743249642529217}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -135, z: 0}
+--- !u!114 &6486893763962263399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2588869737246046664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921a011cb73516b4586e97ff8eef4f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlaceEffect:
+    particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
+    delay: 0.1
+  FinishedEffect:
+    particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
+    delay: 0
+  DestroyedEffect:
+    particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
+    delay: 0
 --- !u!1 &3901090570011050174
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,6 +1256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 100000
+  buildingAnimationPlayer: {fileID: 0}
   damageFlash: {fileID: 0}
   strikeDelay: 0
 --- !u!114 &3124942436245189422

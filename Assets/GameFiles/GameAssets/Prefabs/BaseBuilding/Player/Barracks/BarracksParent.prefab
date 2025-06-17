@@ -770,6 +770,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 2000
+  buildingAnimationPlayer: {fileID: 0}
+  damageFlash: {fileID: 0}
   strikeDelay: 0
 --- !u!114 &6991116335980044809
 MonoBehaviour:
@@ -1860,6 +1862,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2309096383256386501}
+  - component: {fileID: 4422591375009785867}
   m_Layer: 9
   m_Name: BarracksParent
   m_TagString: Building
@@ -1890,6 +1893,30 @@ Transform:
   - {fileID: 1193151185779432959}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4422591375009785867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7500817165020274920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921a011cb73516b4586e97ff8eef4f67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlaceEffect:
+    particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
+    delay: 0.1
+  FinishedEffect:
+    particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
+    delay: 0
+  DestroyedEffect:
+    particleSystem: {fileID: 0}
+    visualEffect: {fileID: 0}
+    delay: 0
 --- !u!1 &8126541525786401067
 GameObject:
   m_ObjectHideFlags: 0
