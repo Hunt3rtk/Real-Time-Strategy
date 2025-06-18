@@ -13,7 +13,14 @@ public class BuildingManager : MonoBehaviour {
 
     //Resource Data
     [SerializeField]
-    private PlayerData playerData;
+    private int initLumber = 800;
+
+    [SerializeField]
+    private int initGold = 500;
+
+    private int lumber;
+
+    private int gold;
 
     //Building Variables
     [SerializeField]
@@ -34,6 +41,9 @@ public class BuildingManager : MonoBehaviour {
     private List<Transform> nodes = new List<Transform>();
 
     void Start() {
+        gold = initGold;
+        lumber = initLumber;
+
         hudm.UpdateLumber(GetLumber());
         hudm.UpdateGold(GetGold());
 
@@ -51,7 +61,7 @@ public class BuildingManager : MonoBehaviour {
     }
 
     public bool isAffordable(int id) {
-        if (playerData.lumber < database.objectsData[id].cost) {
+        if (lumber < database.objectsData[id].cost) {
             Debug.Log("Not Enough Lumber");
             return false;
         }
@@ -191,31 +201,31 @@ public class BuildingManager : MonoBehaviour {
     }
 
     public void AddLumber(int amount) {
-        playerData.lumber += amount;
-        hudm.UpdateLumber(playerData.lumber);
+        lumber += amount;
+        hudm.UpdateLumber(lumber);
     }
 
     public void AddGold(int amount) {
-        playerData.gold += amount;
-        hudm.UpdateGold(playerData.gold);
+        gold += amount;
+        hudm.UpdateGold(gold);
     }
 
     public void RemoveLumber(int amount) {
-        playerData.lumber -= amount;
-        hudm.UpdateLumber(playerData.lumber);
+        lumber -= amount;
+        hudm.UpdateLumber(lumber);
     }
 
     public void RemoveGold(int amount) {
-        playerData.gold -= amount;
-        hudm.UpdateGold(playerData.gold);
+        gold -= amount;
+        hudm.UpdateGold(gold);
     }
 
     public int GetLumber() {
-        return playerData.lumber;
+        return lumber;
     }
 
     public int GetGold() {
-        return playerData.gold;
+        return gold;
     }
 
     public float GetBuildTime(int id) {

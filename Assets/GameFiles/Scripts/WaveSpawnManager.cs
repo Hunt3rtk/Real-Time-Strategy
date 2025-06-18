@@ -1,11 +1,14 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 using static AudioManager;
 
-public class WaveSpawnManager : MonoBehaviour {
+public class WaveSpawnManager : MonoBehaviour
+{
 
     [SerializeField]
     public Text timer;
@@ -27,16 +30,18 @@ public class WaveSpawnManager : MonoBehaviour {
 
     [SerializeField]
     public List<Wave> waves;
-    
+
     [System.Serializable]
-    public class Wave {
+    public class Wave
+    {
         public float restTime;
         public float waveTime;
         public Batch[] batches;
     }
 
     [System.Serializable]
-    public class Batch {
+    public class Batch
+    {
 
         public int enemyOne;
         public int enemyTwo;
@@ -44,18 +49,23 @@ public class WaveSpawnManager : MonoBehaviour {
         public int spawner;
     }
 
-    void FixedUpdate() {
-        if (FindFirstObjectByType<Enemy>() == null && waves.Count <= waveIndex || enemyBase.enabled == false) {
-            Time.timeScale = 0;
-            victoryScreen.SetActive(true);
-        } else if (FindFirstObjectByType<Enemy>() == null) {
-            if (!musicChange) {
+    void FixedUpdate()
+    {
+        if (FindFirstObjectByType<Enemy>() == null && waves.Count <= waveIndex || enemyBase.Health <= 0)
+        {
+            StartCoroutine(Victory());
+        }
+        else if (FindFirstObjectByType<Enemy>() == null)
+        {
+            if (!musicChange)
+            {
                 AudioManager.Instance.ChangeMusic(SoundType.Music_Preparation);
                 musicChange = true;
             }
             time += Time.deltaTime;
             timer.text = (waves[waveIndex].restTime - (int)time).ToString();
-            if (time >= waves[waveIndex].restTime) {
+            if (time >= waves[waveIndex].restTime)
+            {
                 AudioManager.Instance.ChangeMusic(SoundType.Music_Battle);
                 musicChange = false;
                 SpawnWave();
@@ -66,31 +76,50 @@ public class WaveSpawnManager : MonoBehaviour {
         }
     }
 
-    void SpawnWave() {
-        foreach (Batch batch in waves[waveIndex].batches) {
-            if (batch.spawner >= spawners.Length || spawners[batch.spawner].GetComponentInChildren<Building>() == null) {
+    void SpawnWave()
+    {
+        foreach (Batch batch in waves[waveIndex].batches)
+        {
+            if (batch.spawner >= spawners.Length || spawners[batch.spawner].GetComponentInChildren<Building>() == null)
+            {
                 continue;
             }
-            for (int i = 0; i < batch.enemyOne; i++) {
+            for (int i = 0; i < batch.enemyOne; i++)
+            {
                 SpawnUnit(0, spawners[batch.spawner].transform);
             }
-            for (int i = 0; i < batch.enemyTwo; i++) {
+            for (int i = 0; i < batch.enemyTwo; i++)
+            {
                 SpawnUnit(1, spawners[batch.spawner].transform);
             }
-             for (int i = 0; i < batch.enemyThree; i++) {
+            for (int i = 0; i < batch.enemyThree; i++)
+            {
                 SpawnUnit(2, spawners[batch.spawner].transform);
             }
         }
     }
 
     //Instantiates a Unit
-    public void SpawnUnit(int id, Transform location) {
+    public void SpawnUnit(int id, Transform location)
+    {
         GameObject newUnit = Instantiate(units.unitDatas[id].prefab);
         Unit unit = newUnit.GetComponent<Unit>();
-        
+
         NavMeshHit hit;
         NavMesh.SamplePosition(location.position, out hit, 100f, NavMesh.AllAreas);
-        unit.agent.Warp(new Vector3(hit.position.x, hit.position.y+.5f, hit.position.z));
+        unit.agent.Warp(new Vector3(hit.position.x, hit.position.y + .5f, hit.position.z));
+    }
+    
+    public IEnumerator Victory()
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        while (Time.timeScale > 0.1f)
+        {
+            Time.timeScale -= Time.deltaTime * 0.5f;
+            yield return null;
+        }
+        Time.timeScale = 0;
+        victoryScreen.SetActive(true);
     }
 
 }

@@ -66,6 +66,7 @@ public class Building : MonoBehaviour {
         this.gameObject.SetActive(false);
         this.transform.parent.Find("ConstructionSite").gameObject.SetActive(true);
 
+        buildingAnimationPlayer = transform.GetComponentInParent<BuildingAnimationPlayer>();
         buildingAnimationPlayer.PlayDestroyed(transform);
         
     }
