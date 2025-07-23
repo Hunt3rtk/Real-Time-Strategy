@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -104,6 +105,7 @@ public class CameraControl : MonoBehaviour {
 
     private void Update()
     {
+        if ( Time.timeScale == 0f) { return; }
         GetKeyboardMovement();
         if (useScreenEdge) { CheckMouseAtScreenEdge(); }
         DragCamera();
@@ -144,6 +146,7 @@ public class CameraControl : MonoBehaviour {
             transform.position += targetPostion * speed * Time.deltaTime;
         } else {
             horizontalVelocity = Vector3.Lerp(horizontalVelocity, Vector3.zero, Time.deltaTime * damping);
+            if (horizontalVelocity == new Vector3(float.NaN, 0, float.NaN)) horizontalVelocity = Vector3.zero;
             transform.position += horizontalVelocity * Time.deltaTime;
         }
 
@@ -193,7 +196,7 @@ public class CameraControl : MonoBehaviour {
             moveDirection += GetCameraRight();
         }
 
-                if (mousePostion.y < edgeTolerance * Screen.height) {
+        if (mousePostion.y < edgeTolerance * Screen.height) {
             moveDirection -= GetCameraForward();
         } else if (mousePostion.y > (1f - edgeTolerance) * Screen.height){
             moveDirection += GetCameraForward();
